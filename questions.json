@@ -1,0 +1,986 @@
+{
+    "easy": [
+      {
+        "context": "Direct Examination of Witness",
+        "question": "Did you hear your neighbor say that the defendant was at the scene of the crime?",
+        "correctObjections": ["hearsay"],
+        "explanation": "This question asks about an out-of-court statement being offered to prove the truth of the matter asserted—that the defendant was at the scene. Classic hearsay."
+      },
+      {
+        "context": "Direct Examination of Witness",
+        "question": "You saw the red car at the intersection, didn't you?",
+        "correctObjections": ["leading"],
+        "explanation": "This is a leading question on direct examination. It suggests the answer that the witness saw a red car at the intersection."
+      },
+      {
+        "context": "Cross-Examination of Witness",
+        "question": "You saw the defendant at the store, correct?",
+        "correctObjections": ["no-objection"],
+        "explanation": "Leading questions are permitted on cross-examination. This is a proper cross-examination question."
+    },
+        {
+        "context": "Direct Examination of Witness",
+        "question": "What do you think the defendant was thinking when he entered the building?",
+        "correctObjections": ["speculation"],
+        "explanation": "This question asks the witness to speculate about another person's thoughts, which the witness cannot know."
+      },
+      {
+        "context": "Direct Examination of Witness",
+        "question": "Do you believe the defendant is a violent person and do you think he committed this crime?",
+        "correctObjections": ["compound", "speculation"],
+        "explanation": "This is a compound question that contains two separate questions in one. It also asks for speculation about whether the defendant committed the crime."
+      },
+      {
+        "context": "Direct Examination of Witness",
+        "question": "When did you stop beating your wife?",
+        "correctObjections": ["assumes-facts"],
+        "explanation": "This question improperly assumes facts not in evidence—that the witness has been beating their wife."
+      },
+      {
+        "context": "Direct Examination of Witness",
+        "question": "What is your name?",
+        "correctObjections": ["no-objection"],
+        "explanation": "This is a proper, non-leading question on direct examination that seeks relevant background information."
+      },
+      {
+        "context": "Direct Examination of Witness",
+        "question": "You're just making this all up to protect your friend, aren't you?",
+        "correctObjections": ["argumentative"],
+        "explanation": "This question is argumentative—it attacks the witness rather than seeking information."
+      },
+      {
+        "context": "Direct Examination of Witness",
+        "question": "Tell us everything that happened that night.",
+        "correctObjections": ["narrative"],
+        "explanation": "This calls for a narrative response—an open-ended explanation instead of targeted information."
+      },
+      {
+        "context": "Direct Examination of Witness",
+        "question": "In your opinion, did the defendant violate Section 422 of the Penal Code?",
+        "correctObjections": ["legal-conclusion"],
+        "explanation": "This calls for a legal conclusion, which is the job of the judge or jury, not a witness."
+      },
+      {
+        "context": "Direct Examination of Witness",
+        "question": "Did you see anything unusual that day?",
+        "correctObjections": ["vague"],
+        "explanation": "This question is vague and ambiguous. 'Unusual' is subjective and unclear."
+      },
+      {
+        "context": "Direct Examination of Witness",
+        "question": "Where were you on the night of January 15th?",
+        "correctObjections": ["no-objection"],
+        "explanation": "This is a proper, non-leading question seeking relevant information."
+      },
+      {
+        "context": "Direct Examination of Witness",
+        "question": "Your house is three miles from the crime scene, right?",
+        "correctObjections": ["leading"],
+        "explanation": "This is a leading question on direct examination that suggests the answer within the question."
+      },
+      {
+        "context": "Direct Examination of Witness",
+        "question": "Did someone tell you they saw the defendant with a weapon?",
+        "correctObjections": ["hearsay"],
+        "explanation": "This seeks testimony about an out-of-court statement to prove the truth of the matter asserted."
+      },
+      {
+        "context": "Direct Examination of Witness",
+        "question": "What were you wearing on February 12th last year?",
+        "correctObjections": ["relevance"],
+        "explanation": "Without establishing any connection to the case, this question appears to lack relevance to the issues being tried."
+      },
+      {
+        "context": "Direct Examination of Witness",
+        "question": "When you arrived at the scene, what did you observe?",
+        "correctObjections": ["no-objection"],
+        "explanation": "This is a proper, non-leading question seeking relevant firsthand observations."
+      },
+      {
+        "context": "Direct Examination of Witness",
+        "question": "If the light had been red instead of green, would you have still crossed the intersection?",
+        "correctObjections": ["speculation"],
+        "explanation": "This asks the witness to speculate about what they would have done in a hypothetical situation."
+      },
+      {
+        "context": "Direct Examination of Witness",
+        "question": "Do you know what time it was and who was with you and what were they wearing?",
+        "correctObjections": ["compound"],
+        "explanation": "This contains multiple questions bundled into one, making it difficult to provide a clear answer."
+      },
+      {
+        "context": "Direct Examination of Witness",
+        "question": "After fleeing the scene of the accident, where did you go?",
+        "correctObjections": ["assumes-facts"],
+        "explanation": "This question improperly assumes the witness fled the scene of an accident, a fact not yet established."
+      },
+      {
+        "context": "Cross-Examination of Witness",
+        "question": "You testified earlier that you saw the defendant at 9 PM, correct?",
+        "correctObjections": ["no-objection"],
+        "explanation": "This is a proper leading question on cross-examination, referring to the witness's previous testimony."
+      },
+          {
+            "context": "Direct Examination of Witness",
+            "question": "What is your favorite TV show?",
+            "correctObjections": ["relevance"],
+            "explanation": "This question has no relevance to the legal case."
+          },
+          {
+            "context": "Direct Examination of Witness",
+            "question": "What did you eat for breakfast on the day of the incident?",
+            "correctObjections": ["relevance"],
+            "explanation": "Unless diet is relevant, this question is not related to the case."
+          },
+          {
+            "context": "Direct Examination of Witness",
+            "question": "Did someone tell you that the defendant had a knife?",
+            "correctObjections": ["hearsay"],
+            "explanation": "This asks about an out-of-court statement being used for the truth of the matter asserted."
+          },
+          {
+            "context": "Direct Examination of Witness",
+            "question": "Didn’t your friend say the defendant was angry before the fight?",
+            "correctObjections": ["hearsay"],
+            "explanation": "This question asks about what someone else said outside of court, making it hearsay."
+          },
+          {
+            "context": "Direct Examination of Witness",
+            "question": "The defendant was yelling at the victim, wasn’t he?",
+            "correctObjections": ["leading"],
+            "explanation": "This question suggests its own answer and is not allowed on direct examination."
+          },
+          {
+            "context": "Direct Examination of Witness",
+            "question": "You saw the defendant run away after the shooting, right?",
+            "correctObjections": ["leading"],
+            "explanation": "This question suggests a fact (that the defendant ran away) and is improper on direct."
+          },
+          {
+            "context": "Direct Examination of Witness",
+            "question": "What do you think the defendant was planning to do?",
+            "correctObjections": ["speculation"],
+            "explanation": "The witness cannot testify about another person’s thoughts or future intentions."
+          },
+          {
+            "context": "Direct Examination of Witness",
+            "question": "If the light had been red instead of green, would you have stopped?",
+            "correctObjections": ["speculation"],
+            "explanation": "This asks the witness to speculate about a hypothetical situation."
+          },
+          {
+            "context": "Direct Examination of Witness",
+            "question": "Did you believe the defendant was capable of violence?",
+            "correctObjections": ["speculation"],
+            "explanation": "This question asks the witness to speculate about the defendant’s nature."
+          },
+          {
+            "context": "Direct Examination of Witness",
+            "question": "Did you see if the defendant was thinking about hurting someone?",
+            "correctObjections": ["speculation"],
+            "explanation": "This asks the witness to infer the defendant’s mental state, which is speculative."
+          },
+          {
+            "context": "Direct Examination of Witness",
+            "question": "Can you tell us everything that happened from the beginning of the day until now?",
+            "correctObjections": ["calls for narrative"],
+            "explanation": "This question asks for a broad, open-ended answer rather than specific testimony."
+          },
+          {
+            "context": "Direct Examination of Witness",
+            "question": "Tell the jury the entire conversation you had with the defendant.",
+            "correctObjections": ["calls for narrative"],
+            "explanation": "This invites an extended, unstructured response instead of a clear answer."
+          },
+          {
+            "context": "Direct Examination of Witness",
+            "question": "What happened in the store before, during, and after the robbery?",
+            "correctObjections": ["calls for narrative"],
+            "explanation": "This question calls for a lengthy and open-ended answer rather than specific testimony."
+          },
+          {
+            "context": "Direct Examination of Witness",
+            "question": "When did you stop cheating on your taxes?",
+            "correctObjections": ["assumes-facts"],
+            "explanation": "This assumes facts that have not been introduced into evidence."
+          },
+          {
+            "context": "Direct Examination of Witness",
+            "question": "Why did you start drinking before the fight?",
+            "correctObjections": ["assumes-facts"],
+            "explanation": "This question assumes the witness was drinking, which has not been established."
+          },
+          {
+            "context": "Direct Examination of Witness",
+            "question": "So after you fled the scene, what did you do next?",
+            "correctObjections": ["assumes-facts"],
+            "explanation": "This assumes the witness fled the scene, which is not yet in evidence."
+          },
+          {
+            "context": "Direct Examination of Witness",
+            "question": "Do you agree that the defendant violated the law?",
+            "correctObjections": ["legal-conclusion"],
+            "explanation": "This question calls for a legal conclusion, which is the role of the judge or jury."
+          },
+          {
+            "context": "Direct Examination of Witness",
+            "question": "Would you say the defendant committed theft under Section 459 of the Penal Code?",
+            "correctObjections": ["legal-conclusion"],
+            "explanation": "This asks the witness to apply the law, which is the job of the judge or jury."
+          },
+          {
+            "context": "Direct Examination of Witness",
+            "question": "Do you believe the defendant is guilty?",
+            "correctObjections": ["legal-conclusion"],
+            "explanation": "Determining guilt is the role of the jury, not the witness."
+          },
+          {
+            "context": "Direct Examination of Witness",
+            "question": "Do you think it was illegal for the defendant to take the money?",
+            "correctObjections": ["legal-conclusion"],
+            "explanation": "This question asks the witness to decide a legal issue, which is improper."
+          },
+          {
+            "context": "Direct Examination of Witness",
+            "question": "You're just making this up because you're friends with the defendant, right?",
+            "correctObjections": ["argumentative"],
+            "explanation": "This question is argumentative because it attacks the witness’s credibility rather than seeking information."
+          },
+          {
+            "context": "Direct Examination of Witness",
+            "question": "Are you lying to protect your friend?",
+            "correctObjections": ["argumentative"],
+            "explanation": "This is an argumentative question that challenges the witness rather than seeking facts."
+          },
+          {
+            "context": "Direct Examination of Witness",
+            "question": "The defendant looked angry, right?",
+            "correctObjections": ["vague"],
+            "explanation": "The term 'angry' is subjective and can mean different things to different people."
+          },
+          {
+            "context": "Direct Examination of Witness",
+            "question": "Was the store busy?",
+            "correctObjections": ["vague"],
+            "explanation": "The word 'busy' is unclear and lacks specificity."
+          },
+          {
+            "context": "Direct Examination of Witness",
+            "question": "Did the driver seem reckless?",
+            "correctObjections": ["vague"],
+            "explanation": "The term 'reckless' is ambiguous and open to interpretation."
+          },
+          {
+            "context": "Direct Examination of Witness",
+            "question": "Was the parking lot dark?",
+            "correctObjections": ["vague"],
+            "explanation": "The word 'dark' is subjective and could mean different things based on perception."
+          },
+          {
+            "context": "Direct Examination of Witness",
+            "question": "Where were you at 10 PM?",
+            "correctObjections": ["no-objection"],
+            "explanation": "This is a proper, non-leading question seeking factual information."
+          }
+        ],
+
+
+
+
+
+
+
+
+
+
+
+        
+
+        
+    "medium": [
+      {
+        "context": "Direct Examination of Witness",
+        "question": "My client is innocent, wouldn't you agree?",
+        "correctObjections": ["argumentative", "leading"],
+        "explanation": "This question is both argumentative and leading. It seeks agreement with the attorney's conclusion rather than seeking factual information, and suggests the desired answer."
+      },
+          {
+            "context": "Direct Examination of Witness",
+            "question": "Did you know that the defendant was known for being reckless?",
+            "correctObjections": ["relevance"],
+            "explanation": "The defendant’s reputation for recklessness is not necessarily relevant to this case unless character evidence is admissible."
+          },
+          {
+            "context": "Direct Examination of Witness",
+            "question": "Isn't it true that your cousin told you the defendant had a weapon?",
+            "correctObjections": ["hearsay"],
+            "explanation": "The question asks the witness to testify about what their cousin said outside of court, which is hearsay."
+          },
+          {
+            "context": "Direct Examination of Witness",
+            "question": "The defendant was driving over 80 mph, correct?",
+            "correctObjections": ["leading"],
+            "explanation": "This is a leading question because it suggests the answer rather than allowing the witness to provide their own response."
+          },
+          {
+            "context": "Direct Examination of Witness",
+            "question": "Do you think the defendant regretted what he did?",
+            "correctObjections": ["speculation"],
+            "explanation": "The witness cannot testify about the defendant’s thoughts or feelings."
+          },
+          {
+            "context": "Direct Examination of Witness",
+            "question": "Did you see the suspect enter the store and threaten the cashier?",
+            "correctObjections": ["compound"],
+            "explanation": "This question improperly combines two separate inquiries into one."
+          },
+          {
+            "context": "Direct Examination of Witness",
+            "question": "What did the defendant say when he confessed to the crime?",
+            "correctObjections": ["assumes-facts"],
+            "explanation": "The question assumes the defendant confessed, which has not been established."
+          },
+          {
+            "context": "Direct Examination of Witness",
+            "question": "You were scared for your life, weren’t you?",
+            "correctObjections": ["leading"],
+            "explanation": "The question improperly suggests an emotional state rather than allowing the witness to describe their experience."
+          },
+          {
+            "context": "Direct Examination of Witness",
+            "question": "Wouldn't you agree that the defendant acted aggressively?",
+            "correctObjections": ["argumentative"],
+            "explanation": "This question is phrased in a way that challenges the witness rather than eliciting factual testimony."
+          },
+          {
+            "context": "Direct Examination of Witness",
+            "question": "Can you describe everything that happened between the start of the party and the moment the police arrived?",
+            "correctObjections": ["calls for narrative"],
+            "explanation": "This invites a broad, narrative response rather than a focused, relevant answer."
+          },
+          {
+            "context": "Direct Examination of Witness",
+            "question": "Based on your understanding of the law, would you say the defendant committed fraud?",
+            "correctObjections": ["legal-conclusion"],
+            "explanation": "The question improperly asks the witness to make a legal determination, which is the role of the judge or jury."
+          },
+          {
+            "context": "Direct Examination of Witness",
+            "question": "Would you say the defendant was acting weird?",
+            "correctObjections": ["vague"],
+            "explanation": "The term 'weird' is too vague and ambiguous to provide clear testimony."
+          },
+          {
+            "context": "Cross-Examination of Witness",
+            "question": "Your best friend is the defendant, correct?",
+            "correctObjections": ["no-objection"],
+            "explanation": "This is a proper question for impeachment purposes, as it explores potential bias."
+          },
+          {
+            "context": "Direct Examination of Witness",
+            "question": "Did the officer tell you that the defendant was lying?",
+            "correctObjections": ["hearsay"],
+            "explanation": "This question seeks testimony about an out-of-court statement offered for its truth."
+          },
+          {
+            "context": "Direct Examination of Witness",
+            "question": "If the defendant had been sober, do you think he would have acted differently?",
+            "correctObjections": ["speculation"],
+            "explanation": "This asks the witness to speculate about an alternate scenario."
+          },
+          {
+            "context": "Direct Examination of Witness",
+            "question": "You saw the defendant running and yelling, didn’t you?",
+            "correctObjections": ["leading"],
+            "explanation": "The question improperly suggests its own answer."
+          },
+          {
+            "context": "Direct Examination of Witness",
+            "question": "Tell us everything you remember about that night.",
+            "correctObjections": ["calls for narrative"],
+            "explanation": "This question is too open-ended and invites an extended, unfocused response."
+          },
+          {
+            "context": "Direct Examination of Witness",
+            "question": "Isn't it true that you are lying right now?",
+            "correctObjections": ["argumentative"],
+            "explanation": "This question challenges the witness rather than seeking factual information."
+          },
+          {
+            "context": "Direct Examination of Witness",
+            "question": "You don’t have a history of making false claims, do you?",
+            "correctObjections": ["argumentative"],
+            "explanation": "This is phrased in a way that attacks the witness rather than eliciting testimony."
+          },
+          {
+            "context": "Direct Examination of Witness",
+            "question": "Would you say the lighting conditions were bad?",
+            "correctObjections": ["vague"],
+            "explanation": "The term 'bad' is ambiguous and does not provide specific information."
+          },
+          {
+            "context": "Direct Examination of Witness",
+            "question": "Do you think the defendant should be convicted?",
+            "correctObjections": ["legal-conclusion"],
+            "explanation": "This question improperly asks the witness to make a legal judgment."
+          },
+          {
+            "context": "Direct Examination of Witness",
+            "question": "How fast was the car going when it ran the red light and hit the pedestrian?",
+            "correctObjections": ["assumes-facts"],
+            "explanation": "This question presumes that the car ran the red light and hit a pedestrian."
+          },
+          {
+            "context": "Direct Examination of Witness",
+            "question": "What was the significance of the blood spatter pattern?",
+            "correctObjections": ["calls for expert opinion"],
+            "explanation": "This question requires specialized forensic knowledge, which a lay witness cannot provide."
+          },
+          {
+            "context": "Direct Examination of Witness",
+            "question": "Do you believe the defendant is a bad person?",
+            "correctObjections": ["legal-conclusion"],
+            "explanation": "This question improperly seeks a moral or legal judgment."
+          },
+          {
+            "context": "Direct Examination of Witness",
+            "question": "Would you consider the defendant a violent individual?",
+            "correctObjections": ["speculation"],
+            "explanation": "This asks the witness to speculate about the defendant’s nature."
+          },
+          {
+            "context": "Cross-Examination of Witness",
+            "question": "You testified that you heard the argument at 10 PM, but your phone records show you were in another city. How do you explain that?",
+            "correctObjections": ["assumes-facts"],
+            "explanation": "This assumes the accuracy of phone records that have not been established as evidence."
+          }
+        ],
+
+
+
+
+        
+            "hard": [
+              {
+                "context": "Direct Examination of Expert Witness",
+                "question": "Dr. Benson, as a forensic pathologist with over 25 years of experience, based on your review of the autopsy report, crime scene photographs, and toxicology results, would you say, to a reasonable degree of medical certainty, that the victim’s injuries are inconsistent with the defendant’s version of events?",
+                "correctObjections": ["assumes-facts", "calls for expert opinion"],
+                "explanation": "The question assumes facts not in evidence (that the defendant provided a version of events) and calls for an expert opinion, which may be permissible depending on foundation."
+              },
+              {
+                "context": "Cross-Examination of Eyewitness",
+                "question": "You were approximately 200 feet away from the scene, at night, with no streetlights, and you were wearing glasses with a prescription over two years old. Are you really asking this jury to believe you had a clear and accurate view of the suspect’s face?",
+                "correctObjections": ["argumentative", "assumes-facts"],
+                "explanation": "This is a hostile question meant to challenge credibility rather than elicit testimony, and it assumes facts not in evidence (glasses prescription, no streetlights)."
+              },
+              {
+                "context": "Direct Examination of Defendant’s Employer",
+                "question": "Would you say that, in your personal opinion, the defendant has always been an honest and ethical employee, and that he would never be capable of committing a violent crime?",
+                "correctObjections": ["calls for character evidence", "speculation"],
+                "explanation": "Character evidence is generally inadmissible to prove conduct on a particular occasion, and the employer cannot speculate about the defendant’s actions outside of work."
+              },
+              {
+                "context": "Direct Examination of Officer on Scene",
+                "question": "Officer Gomez, when you arrived at the scene, the defendant immediately ran from you, attempted to discard an object in the nearby alley, and had blood on his hands, didn’t he?",
+                "correctObjections": ["leading", "assumes-facts"],
+                "explanation": "This question improperly suggests a specific answer (leading) and assumes facts that have not yet been established."
+              },
+              {
+                "context": "Direct Examination of Financial Expert",
+                "question": "Given your review of the company’s financial records, is it fair to say that, in your professional opinion, the defendant’s actions meet the standard definition of financial fraud under the Securities and Exchange Act?",
+                "correctObjections": ["calls for legal conclusion"],
+                "explanation": "This improperly asks the expert to define the law and apply it to the facts, which is the role of the court."
+              },
+              {
+                "context": "Direct Examination of Civil Plaintiff",
+                "question": "Before you tripped on the sidewalk outside the defendant’s store, did you notice any signs warning pedestrians of a dangerous condition, and did the store manager ever apologize for not fixing it sooner?",
+                "correctObjections": ["compound", "hearsay"],
+                "explanation": "This improperly combines multiple inquiries and asks about an out-of-court statement (apology), which is hearsay."
+              },
+              {
+                "context": "Cross-Examination of Defense Witness",
+                "question": "Your testimony today contradicts what you said in your police statement, what you told investigators two weeks later, and what you admitted under oath in a previous hearing, doesn’t it?",
+                "correctObjections": ["argumentative", "assumes-facts"],
+                "explanation": "This aggressively challenges the witness rather than seeking information, and it assumes contradictions that may not have been introduced into evidence."
+              },
+              {
+                "context": "Direct Examination of Lay Witness",
+                "question": "Would you say that the defendant’s behavior on the night in question was erratic and suspicious enough that any reasonable person would have thought he was guilty?",
+                "correctObjections": ["speculation", "legal-conclusion"],
+                "explanation": "This asks the witness to speculate about how others would react and improperly asks for a legal conclusion."
+              },
+              {
+                "context": "Direct Examination of Medical Expert",
+                "question": "Dr. Howard, in your expert opinion, could a reasonable physician have diagnosed the victim’s internal bleeding earlier, and had they done so, would it have prevented their death?",
+                "correctObjections": ["speculation", "calls for expert opinion"],
+                "explanation": "This requires speculation about a hypothetical alternative scenario and asks for an expert opinion on a medical standard."
+              },
+              {
+                "context": "Direct Examination of Police Investigator",
+                "question": "When you reviewed the security footage, was the defendant clearly holding a weapon in his right hand when he entered the store?",
+                "correctObjections": ["assumes-facts", "leading"],
+                "explanation": "This assumes the defendant is visible in the footage holding a weapon, which may not have been established yet, and it is leading."
+              },
+              {
+                "context": "Cross-Examination of Eyewitness",
+                "question": "You claim you saw the defendant at the scene, but isn’t it true that you have a history of vision problems, you weren’t wearing your glasses that night, and you were drinking at the bar just 30 minutes before the incident?",
+                "correctObjections": ["assumes-facts", "argumentative"],
+                "explanation": "This aggressively challenges the witness’s credibility rather than seeking new testimony and assumes multiple facts not yet in evidence."
+              },
+              {
+                "context": "Direct Examination of Defendant",
+                "question": "You were completely calm and not at all nervous when the police arrived, correct?",
+                "correctObjections": ["leading", "assumes-facts"],
+                "explanation": "The question improperly suggests an answer and assumes facts about the defendant’s emotional state."
+              },
+              {
+                "context": "Direct Examination of Psychiatrist",
+                "question": "Doctor, based on your evaluation of the defendant, do you believe he was legally insane at the time of the incident?",
+                "correctObjections": ["calls for legal conclusion"],
+                "explanation": "Even an expert witness cannot determine a legal issue such as whether the defendant meets the legal definition of insanity."
+              },
+              {
+                "context": "Direct Examination of Forensic Accountant",
+                "question": "Can you explain in full detail how the fraudulent transactions were processed, including every step the defendant took to conceal them from auditors?",
+                "correctObjections": ["calls for narrative"],
+                "explanation": "This question invites an unnecessarily long, unstructured response rather than targeted information."
+              },
+              {
+                "context": "Direct Examination of Crime Scene Analyst",
+                "question": "From your analysis of the blood spatter pattern, is it fair to say the victim’s injuries were inconsistent with the defendant’s self-defense claim?",
+                "correctObjections": ["calls for expert opinion", "leading"],
+                "explanation": "While an expert may discuss forensic findings, leading questions are not allowed on direct."
+              },
+              {
+                "context": "Direct Examination of Financial Advisor",
+                "question": "Would you agree that anyone who signs a contract without reading it is responsible for any consequences that follow?",
+                "correctObjections": ["vague", "legal-conclusion"],
+                "explanation": "This is vague and improperly calls for a legal conclusion regarding contract law."
+              },
+              {
+                "context": "Cross-Examination of Victim’s Employer",
+                "question": "You didn’t actually see the alleged harassment occur, yet you are still here testifying that the defendant acted inappropriately, correct?",
+                "correctObjections": ["argumentative"],
+                "explanation": "This is a confrontational question that challenges credibility rather than seeking information."
+              }
+            ],
+            
+            
+                "trials": [
+                    {
+                        "name": "The Smith Murder Trial",
+                        "questions": [
+                          {
+                            "context": "Direct Examination of Detective Johnson (Prosecution) - Initial Scene Description",
+                            "context_detail": "Detective Johnson is the lead investigator.  The prosecution begins by establishing the crime scene.",
+                            "question": "Detective Johnson, can you please describe for the court your initial observations upon arriving at the victim's apartment on the morning of July 16th?",
+                            "correctObjections": ["calls for narrative", "vague"],
+                            "explanation": "Still broad, invites unfocused narrative and lacks specificity."
+                          },
+                          {
+                            "context": "Direct Examination of Detective Johnson (Prosecution) - Focus on Entry Point",
+                            "context_detail": "Building upon the general scene, the prosecutor focuses on a key element: entry.",
+                            "question": "You mentioned the front door, Detective.  Was there anything about the condition of the front door that stood out to you during your initial inspection?",
+                            "correctObjections": ["no-objection"],
+                            "explanation": "More focused, directs the detective to specific details about the front door's condition."
+                          },
+                          {
+                            "context": "Direct Examination of Detective Johnson (Prosecution) - Leading to Forced Entry?",
+                            "context_detail": "Prosecution now tries to subtly suggest 'forced entry' through the questioning.",
+                            "question": "Detective, did you observe any signs of forced entry anywhere at the apartment?",
+                            "correctObjections": ["leading"],
+                            "explanation": "Slightly leading, suggests the answer 'yes' to forced entry. Better phrased as 'What did you observe regarding possible entry points?'"
+                          },
+                          {
+                            "context": "Direct Examination of Detective Johnson (Prosecution) - Focusing on a Broken Window",
+                            "context_detail": "Having established the detective's observations, the prosecutor now directs attention to specific evidence.",
+                            "question": "Moving on, Detective Johnson, you collected evidence at the scene.  Did that evidence include any fragments of glass?",
+                            "correctObjections": ["no-objection"],
+                            "explanation": "Proper transition, and focuses on a specific piece of evidence."
+                          },
+                          {
+                            "context": "Direct Examination of Detective Johnson (Prosecution) - Connecting Glass to Window & Forced Entry",
+                            "context_detail": "Prosecution attempts to link the glass to the idea of forced entry.",
+                            "question": "And where were these glass fragments located in relation to the broken window you previously described?",
+                            "correctObjections": ["no-objection"],
+                            "explanation": "Logically follows, connects evidence to scene description."
+                          },
+                          {
+                            "context": "Moving on from Direct Examination of Detective Johnson (Prosecution) - Scene Description",
+                            "context_detail": "Prosecution signals a shift in questioning after establishing the scene.",
+                            "question": "**Moving on, Detective.**  During your investigation, did you interview a Mrs. Davis?",
+                            "correctObjections": ["no-objection"],
+                            "explanation": "Explicitly signals a shift and new topic of questioning (witness interviews)."
+                          },
+                          {
+                            "context": "Cross-Examination of Detective Johnson (Defense) - Challenging Detective's Narrative",
+                            "context_detail": "Defense begins cross-examination, aiming to undermine the prosecution's narrative.",
+                            "question": "Detective Johnson, you've painted a picture of 'forced entry,' but isn't it true the front door lock was functioning normally?",
+                            "correctObjections": ["argumentative", "mischaracterizes evidence"],
+                            "explanation": "Argumentative; asserts 'forced entry' characterization and challenges door lock function directly, potentially misrepresenting prior testimony."
+                          },
+                          {
+                            "context": "Cross-Examination of Detective Johnson (Defense) -  Focusing on Alternative Entry Points",
+                            "context_detail": "Defense shifts focus to alternative possibilities to counter 'forced entry'.",
+                            "question": "And regarding this 'broken window,' Detective, wasn't it on the *ground floor* and easily accessible from the street?",
+                            "correctObjections": ["argumentative"],
+                            "explanation": "Argumentative; asserts accessibility instead of asking for descriptive facts about window location."
+                          },
+                          {
+                            "context": "Cross-Examination of Detective Johnson (Defense) -  Implying Other Possibilities (Open Back Entrance)",
+                            "context_detail": "Defense broadens the scope to suggest other unsecured access points.",
+                            "question": "Detective, isn't it possible that anyone could have entered through the back entrance of the building, which you described as often being left unlocked?",
+                            "correctObjections": ["speculation", "assumes facts not in evidence"],
+                            "explanation": "Speculation; 'possible' is speculative. Assumes back entrance 'often unlocked' without prior foundation."
+                          },
+                          {
+                            "context": "Moving on from Cross-Examination of Detective Johnson (Defense) - Entry Points",
+                            "context_detail": "Defense transitions from challenging entry points to a new area of cross-examination.",
+                            "question": "**Moving on, Detective.**  Regarding the glass fragments, you mentioned collecting them. Were those fragments ever definitively matched to the broken window in the victim's apartment?",
+                            "correctObjections": ["vague"],
+                            "explanation": "Vague - 'definitively matched' is unclear standard of matching being asked about."
+                          },
+                          {
+                            "context": "Redirect Examination of Detective Johnson (Prosecution) - Re-establishing Forced Entry Narrative",
+                            "context_detail": "Prosecution redirects to repair damage done by cross-examination and reinforce 'forced entry'.",
+                            "question": "Detective Johnson, despite the defense's questions about other possible entries, based on your professional assessment of the scene as a whole, was the evidence *consistent with* forced entry through the front door?",
+                            "correctObjections": ["leading", "speculation"],
+                            "explanation": "Leading; suggests 'yes' to forced entry.  'Consistent with' is still somewhat speculative for expert opinion on ultimate issue."
+                          },
+                          {
+                            "context": "Moving on from Detective Johnson",
+                            "context_detail": "Trial moves on to a new witness.",
+                            "question": "**Moving on from Detective Johnson, Your Honor.** The prosecution calls Dr. Emily Carter to the stand.",
+                            "correctObjections": ["no-objection"],
+                            "explanation": "Standard trial procedure."
+                          },
+                          {
+                            "context": "Direct Examination of Dr. Emily Carter, Forensic Pathologist (Prosecution) - Qualifications",
+                            "context_detail": "Prosecution begins direct examination of the medical expert by establishing credentials.",
+                            "question": "Dr. Carter, for the court, can you briefly summarize your professional qualifications and experience in forensic pathology?",
+                            "correctObjections": ["no-objection"],
+                            "explanation": "Standard procedure for qualifying an expert."
+                          },
+                          {
+                            "context": "Direct Examination of Dr. Emily Carter, Forensic Pathologist (Prosecution) - Cause of Death",
+                            "context_detail": "After qualifications, prosecution moves to the core of the expert's testimony: cause of death.",
+                            "question": "Dr. Carter, based on your autopsy of the body identified as [Victim's Name], what were your findings regarding the cause of death?",
+                            "correctObjections": ["no-objection"],
+                            "explanation": "Direct and relevant question within expert's scope."
+                          },
+                          {
+                            "context": "Direct Examination of Dr. Emily Carter, Forensic Pathologist (Prosecution) - Weapon Type (General)",
+                            "context_detail": "Prosecution explores details of the injuries, starting with the general type of weapon.",
+                            "question": "Doctor, were you able to determine the *type* of instrument that could have caused these injuries?",
+                            "correctObjections": ["no-objection"],
+                            "explanation": "Appropriately general for initial exploration of weapon type."
+                          },
+                          {
+                            "context": "Direct Examination of Dr. Emily Carter, Forensic Pathologist (Prosecution) - Weapon Type (Specific - Kitchen Knife)",
+                            "context_detail": "Prosecution now attempts to narrow down the weapon type to a specific example.",
+                            "question": "In your expert opinion, could the wounds be consistent with a standard kitchen knife?",
+                            "correctObjections": ["speculation", "vague", "lacks foundation"],
+                            "explanation": "Still somewhat speculative and vague. Lacks specific foundation connecting wounds to a *specific* kitchen knife type."
+                          },
+                          {
+                            "context": "Moving on from Direct Examination of Dr. Carter - Weapon Type",
+                            "context_detail": "Prosecution transitions away from weapon specifics.",
+                            "question": "**Moving on, Doctor.**  Did your examination reveal any evidence of defensive wounds on the victim's body?",
+                            "correctObjections": ["no-objection"],
+                            "explanation": "Signals shift to new area: defensive wounds."
+                          },
+                           {
+                            "context": "Cross-Examination of Dr. Emily Carter (Defense) - Challenging Time of Death Estimate",
+                            "context_detail": "Defense cross-examines the pathologist, focusing on weaknesses in time of death estimation.",
+                            "question": "Dr. Carter, you provided an estimated time of death range. Isn't it correct that time of death estimations are not exact and have a degree of uncertainty?",
+                            "correctObjections": ["argumentative"],
+                            "explanation": "Argumentative; asserts uncertainty instead of asking about factors *affecting* certainty in *this case*."
+                          },
+                          {
+                            "context": "Cross-Examination of Dr. Emily Carter (Defense) -  Exploring Alternative Causes of Blunt Force Trauma",
+                            "context_detail": "Defense questions the assumed cause of blunt force trauma.",
+                            "question": "Regarding the blunt force trauma you described, could such trauma *possibly* be caused by a fall, rather than a weapon?",
+                            "correctObjections": ["speculation", "vague"],
+                            "explanation": "Speculative; 'possibly' invites speculation. Vague; 'fall' is overly broad."
+                          },
+                          {
+                            "context": "Cross-Examination of Dr. Emily Carter (Defense) - Focusing on Lack of Specific Weapon Identification",
+                            "context_detail": "Defense highlights the pathologist's inability to definitively identify a weapon.",
+                            "question": "Doctor, you testified the wounds *could* be consistent with a kitchen knife, but you cannot say with certainty that a kitchen knife *was* the weapon, correct?",
+                            "correctObjections": ["argumentative", "mischaracterizes evidence"],
+                            "explanation": "Argumentative; asserts a conclusion about certainty.  Potentially mischaracterizes the nuance of 'consistent with' testimony."
+                          },
+                          {
+                            "context": "Moving on from Cross-Examination of Dr. Carter - Weapon",
+                            "context_detail": "Defense transitions to a new topic in cross-examination.",
+                            "question": "**Moving on, Doctor.** You mentioned 'defensive wounds.'  Are defensive wounds always indicative of an attack?",
+                            "correctObjections": ["vague"],
+                            "explanation": "Vague; 'always indicative of an attack' is too broad and lacks context - what alternative is implied?"
+                          },
+                          {
+                            "context": "Redirect Examination of Dr. Emily Carter (Prosecution) - Clarifying Defensive Wounds",
+                            "context_detail": "Prosecution redirects to clarify the meaning of 'defensive wounds' after defense questioning.",
+                            "question": "Dr. Carter, in response to defense counsel's question, can you explain to the jury what the typical characteristics of defensive wounds are, and why they are described as 'defensive'?",
+                            "correctObjections": ["no-objection"],
+                            "explanation": "Proper redirect; clarifies the nature and significance of defensive wounds in context of defense questions."
+                          },
+                          {
+                            "context": "Moving on from Dr. Carter",
+                            "context_detail": "Trial proceeds to the next witness.",
+                            "question": "**Thank you, Dr. Carter.  No further questions.**  The prosecution calls Ms. Sarah Miller to the stand.",
+                            "correctObjections": ["no-objection"],
+                            "explanation": "Standard trial transition."
+                          },
+                          {
+                            "context": "Direct Examination of Ms. Sarah Miller, Eyewitness (Prosecution) - Introduction and Location",
+                            "context_detail": "Prosecution introduces the eyewitness and establishes her location on the night in question.",
+                            "question": "Ms. Miller, please state your name and address for the record.  And Ms. Miller, on the evening of July 15th, where were you at approximately 10 PM?",
+                            "correctObjections": ["no-objection"],
+                            "explanation": "Standard introductory and scene-setting questions for eyewitness testimony."
+                          },
+                          {
+                            "context": "Direct Examination of Ms. Sarah Miller, Eyewitness (Prosecution) - Observation of a Person",
+                            "context_detail": "Prosecution moves to the core of the eyewitness testimony - observing a person near the victim's apartment.",
+                            "question": "While you were there, Ms. Miller, did you happen to observe anyone near the entrance to the apartment building at [Victim's Address]?",
+                            "correctObjections": ["no-objection"],
+                            "explanation": "Direct question about observation, sets stage for identification."
+                          },
+                          {
+                            "context": "Direct Examination of Ms. Sarah Miller, Eyewitness (Prosecution) - Description of the Person",
+                            "context_detail": "Prosecution elicits a description of the person observed.",
+                            "question": "Can you describe for the court the individual you observed at that location?",
+                            "correctObjections": ["calls for narrative"],
+                            "explanation": "Slightly broad 'describe' could elicit overly long narrative, but generally acceptable for initial description."
+                          },
+                          {
+                            "context": "Direct Examination of Ms. Sarah Miller, Eyewitness (Prosecution) - Identifying the Defendant (Leading)",
+                            "context_detail": "Prosecution attempts to directly link the observed person to the defendant.",
+                            "question": "Ms. Miller, is the person you saw in the courtroom today?",
+                            "correctObjections": ["leading"],
+                            "explanation": "Leading because it suggests the person is present and prompts a courtroom identification directed at the defendant."
+                          },
+                           {
+                            "context": "Moving on from Direct Examination of Ms. Miller - Identification",
+                            "context_detail": "Prosecution transitions away from direct identification attempt.",
+                            "question": "**Moving on, Ms. Miller.**  You mentioned the individual was wearing a hat. Could you describe the hat in more detail?",
+                            "correctObjections": ["vague"],
+                            "explanation": "Vague - 'more detail' is unclear what aspect of the hat description is needed."
+                          },
+                          {
+                            "context": "Cross-Examination of Ms. Sarah Miller (Defense) - Distance and Lighting",
+                            "context_detail": "Defense begins cross-examination, focusing on factors that could impair eyewitness accuracy.",
+                            "question": "Ms. Miller, isn't it true that you were observing this person from approximately half a block away?",
+                            "correctObjections": ["argumentative"],
+                            "explanation": "Argumentative; asserts distance as fact rather than asking for witness's estimate of distance."
+                          },
+                          {
+                            "context": "Cross-Examination of Ms. Sarah Miller (Defense) - Darkness",
+                            "context_detail": "Defense continues to challenge eyewitness conditions by focusing on lighting.",
+                            "question": "And it was nighttime, correct? It was dark out, wasn't it?",
+                            "correctObjections": ["compound"],
+                            "explanation": "Compound; asks two questions (nighttime, darkness) in one."
+                          },
+                          {
+                            "context": "Cross-Examination of Ms. Sarah Miller (Defense) -  Duration of Observation",
+                            "context_detail": "Defense questions the length of time the witness had to observe the person.",
+                            "question": "Ms. Miller, how long did you actually observe this individual - was it just a few seconds?",
+                            "correctObjections": ["compound", "argumentative"],
+                            "explanation": "Compound; 'how long' and 'just a few seconds' are separate questions/assertions. Argumentative; 'just a few seconds' suggests brevity and undermines reliability."
+                          },
+                          {
+                            "context": "Moving on from Cross-Examination of Ms. Miller - Observation Conditions",
+                            "context_detail": "Defense moves to a new area of cross-examination after questioning observation conditions.",
+                            "question": "**Moving on, Ms. Miller.**  In your initial statement to the police, did you mention anything about the person wearing a hat?",
+                            "correctObjections": ["no-objection"],
+                            "explanation": "Proper question about prior consistent/inconsistent statements."
+                          },
+                          {
+                            "context": "Redirect Examination of Ms. Sarah Miller (Prosecution) - Reaffirming Confidence",
+                            "context_detail": "Prosecution redirects to bolster the eyewitness's testimony after defense challenges.",
+                            "question": "Ms. Miller, despite the distance and nighttime conditions, are you still confident in your description of the clothing the person was wearing?",
+                            "correctObjections": ["leading"],
+                            "explanation": "Leading; pushes the witness to reaffirm confidence despite weaknesses highlighted by defense."
+                          },
+                          {
+                            "context": "Moving on from Ms. Miller",
+                            "context_detail": "Trial proceeds to the defendant's testimony.",
+                            "question": "**No further questions, Ms. Miller. Thank you.** The defense calls Mr. David Smith to the stand.",
+                            "correctObjections": ["no-objection"],
+                            "explanation": "Standard trial transition."
+                          },
+                          {
+                            "context": "Direct Examination of Mr. David Smith, Defendant (Defense) - Alibi",
+                            "context_detail": "Defense begins direct examination of the defendant, starting with alibi.",
+                            "question": "Mr. Smith, for the court, where were you on the evening of July 15th, specifically between the hours of 9 PM and 11 PM?",
+                            "correctObjections": ["no-objection"],
+                            "explanation": "Proper alibi question, focused on relevant timeframe."
+                          },
+                          {
+                            "context": "Direct Examination of Mr. David Smith, Defendant (Defense) -  Denying Presence at Scene",
+                            "context_detail": "Defense directly addresses the defendant's presence at the crime scene.",
+                            "question": "Were you at any time that evening at or near [Victim's Address]?",
+                            "correctObjections": ["leading"],
+                            "explanation": "Leading; suggests 'no' to presence at the scene."
+                          },
+                          {
+                            "context": "Direct Examination of Mr. David Smith, Defendant (Defense) - Relationship with Victim (Open-ended)",
+                            "context_detail": "Defense explores the defendant's relationship with the victim.",
+                            "question": "Mr. Smith, can you tell the court about your relationship with the deceased, [Victim's Name]?",
+                            "correctObjections": ["calls for narrative", "vague"],
+                            "explanation": "Broad 'tell the court about your relationship' invites narrative and lacks specific focus. Vague - what aspects are relevant?"
+                          },
+                          {
+                            "context": "Direct Examination of Mr. David Smith, Defendant (Defense) - Denying Intent to Harm",
+                            "context_detail": "Defense seeks to negate intent to harm, a key element in many criminal cases.",
+                            "question": "Mr. Smith, did you ever intend to cause harm to [Victim's Name]?",
+                            "correctObjections": ["leading"],
+                            "explanation": "Leading; suggests 'no' to intent to harm."
+                          },
+                          {
+                            "context": "Moving on from Direct Examination of Defendant - Intent",
+                            "context_detail": "Defense transitions from intent to broader character evidence (improperly).",
+                            "question": "**Moving on, Mr. Smith.**  Would you describe yourself as a violent person?",
+                            "correctObjections": ["improper character evidence"],
+                            "explanation": "Improper character evidence to show conformity therewith."
+                          },
+                          {
+                            "context": "Cross-Examination of Mr. David Smith (Prosecution) - Challenging Alibi (Corroboration)",
+                            "context_detail": "Prosecution cross-examines the defendant, attacking his alibi.",
+                            "question": "Mr. Smith, you stated you were home alone all evening.  Did anyone see you there at any point during that time?",
+                            "correctObjections": ["hearsay"],
+                            "explanation": "Calls for hearsay if it implies he should bring another witness to corroborate his alibi."
+                          },
+                          {
+                            "context": "Cross-Examination of Mr. David Smith (Prosecution) - Attacking Credibility (Convenience)",
+                            "context_detail": "Prosecution directly attacks the credibility and believability of the defendant's alibi.",
+                            "question": "Isn't it convenient for you to claim you were home alone, with no one to verify your story, at the very time of the murder?",
+                            "correctObjections": ["argumentative", "badgering witness"],
+                            "explanation": "Argumentative and badgering; directly attacks credibility and implies fabrication of alibi."
+                          },
+                          {
+                            "context": "Cross-Examination of Mr. David Smith (Prosecution) -  Improper Character/Prior Arrests",
+                            "context_detail": "Prosecution attempts to introduce improper character evidence through prior arrest record.",
+                            "question": "Mr. Smith, have you ever been arrested for assault or any violent crime?",
+                            "correctObjections": ["relevance", "improper character evidence"],
+                            "explanation": "Irrelevant to guilt in *this* case without specific exception. Improper character evidence suggesting propensity based on prior arrests alone."
+                          },
+                          {
+                            "context": "Moving on from Cross-Examination of Defendant - Prior Arrests",
+                            "context_detail": "Prosecution moves away from improper character evidence.",
+                            "question": "**Moving on, Mr. Smith.**  You mentioned you were home. Did you make or receive any phone calls that evening?",
+                            "correctObjections": ["no-objection"],
+                            "explanation": "Legitimate follow-up to alibi, exploring details of his evening."
+                          },
+                          {
+                            "context": "Re-direct Examination of Mr. David Smith (Defense) - Clarifying Phone Contact",
+                            "context_detail": "Defense redirects to allow the defendant to elaborate on phone activity to strengthen alibi.",
+                            "question": "Mr. Smith, regarding those phone calls, were any of those calls to individuals who could confirm you were at home that evening?",
+                            "correctObjections": ["hearsay"],
+                            "explanation": "Still skirts hearsay rules if seeking to introduce *another person's* potential corroboration through *his* testimony.  Better to ask about call content, not potential witness confirmation."
+                          },
+                          {
+                            "context": "Re-cross Examination of Mr. David Smith (Prosecution) -  Suggesting Evidence Tampering (Deleted Calls)",
+                            "context_detail": "Prosecution re-crosses, attempting to undermine the phone call alibi by suggesting evidence tampering.",
+                            "question": "Mr. Smith, did you by any chance delete any phone calls or messages from your phone from the evening of July 15th or the morning of July 16th?",
+                            "correctObjections": ["speculation", "assumes facts not in evidence"],
+                            "explanation": "Speculation; 'by any chance delete' is speculative. Assumes deletion happened without any basis."
+                          },
+                            {
+                            "context": "Final Trial Transition",
+                            "context_detail": "End of witness testimony.",
+                            "question": "**No further questions, Mr. Smith. Thank you, Your Honor, the defense rests.**",
+                            "correctObjections": ["no-objection"],
+                            "explanation": "Standard trial procedure."
+                          }
+                        ]
+                      },
+                  {
+                    "name": "The Corporate Fraud Trial",
+                    "questions": [
+                      {
+                        "context": "Direct Examination of Financial Analyst Ms. Reed",
+                        "question": "State your name, occupation, and your professional qualifications, please.",
+                        "correctObjections": ["no-objection"],
+                        "explanation": "Proper introductory foundation for an expert witness."
+                      },
+                      {
+                        "context": "Direct Examination of Financial Analyst Ms. Reed",
+                        "question": "From your analysis, can you confirm that the defendant clearly intended to deceive shareholders?",
+                        "correctObjections": ["legal-conclusion", "speculation"],
+                        "explanation": "This asks the witness to provide a legal conclusion about intent and speculate about the defendant's mindset."
+                      },
+                      {
+                        "context": "Cross-Examination of Financial Analyst Ms. Reed",
+                        "question": "Ms. Reed, isn't it a fact that your consulting firm was fired by the defendant's company last year, leading to potential bias in your testimony?",
+                        "correctObjections": ["no-objection"],
+                        "explanation": "Proper cross-examination exploring potential bias of the witness."
+                      },
+                      {
+                        "context": "Cross-Examination of Financial Analyst Ms. Reed",
+                        "question": "Given the complexity of corporate finance, isn't it possible these irregularities were simply innocent accounting errors?",
+                        "correctObjections": ["speculation"],
+                        "explanation": "This question asks the expert witness to speculate on hypothetical scenarios."
+                      },
+                      {
+                        "context": "Direct Examination of Corporate Executive Mr. Harper",
+                        "question": "Mr. Harper, what was your understanding of your fiduciary duties under Section 10(b) of the Securities Exchange Act of 1934?",
+                        "correctObjections": ["legal-conclusion"],
+                        "explanation": "Calls for the witness to offer a legal conclusion or interpretation of statutory duties."
+                      },
+                      {
+                        "context": "Cross-Examination of Corporate Executive Mr. Harper",
+                        "question": "You approved every questionable transaction identified in the indictment, correct?",
+                        "correctObjections": ["leading", "argumentative"],
+                        "explanation": "Although leading questions are typically permitted on cross-examination, this one may be objectionable for being argumentative."
+                      }
+                    ]
+                  },
+                  
+                  {
+                    "name": "Capella v. Petzicon",
+                    "questions": [
+                      {
+                        "context": "Cross-Examination of Sam Stone",
+                        "question": "Good evening, Mr. Stone. Let’s talk about your background. Just to clarify, you are here testifying as an expert witness in the field of chemical engineering?",
+                        "correctObjections": ["no-objection"],
+                        "explanation": "This establishes credentials and is standard cross-examination."
+                      },
+                      {
+                        "context": "Cross-Examination of Sam Stone",
+                        "question": "For the past 15 years, you have been the lead investigator for Petzicon. Is that true?",
+                        "correctObjections": ["no-objection"],
+                        "explanation": "This is a factual question establishing work history."
+                      },
+                      {
+                        "context": "Cross-Examination of Sam Stone",
+                        "question": "Would you agree that part of your role is to ensure that the company’s reputation remains intact?",
+                        "correctObjections": ["argumentative"],
+                        "explanation": "This question implies bias and is argumentative."
+                      },
+                      {
+                        "context": "Cross-Examination of Sam Stone",
+                        "question": "Isn’t it true that upper management can still sell products without modification, even after you raise concerns?",
+                        "correctObjections": ["no-objection"],
+                        "explanation": "This is a factual inquiry into company policy."
+                      },
+                      {
+                        "context": "Cross-Examination of Sam Stone",
+                        "question": "Sally’s Death: You explicitly mention in your affidavit that if a necropsy had been performed, we would have known the definitive cause of Sally’s death, correct?",
+                        "correctObjections": ["no-objection"],
+                        "explanation": "This question is drawn from the witness's affidavit and is a valid point of impeachment."
+                      },
+                      {
+                        "context": "Cross-Examination of Sam Stone",
+                        "question": "Mr. Stone, as a stipulated chemical engineer, knowing the risk of toxicity, wouldn’t an absolute expiration date—rather than a ‘recommended’ date—better protect customers and their pets from harm?",
+                        "correctObjections": ["speculation", "argumentative"],
+                        "explanation": "This question asks the witness to speculate on company policy changes and is argumentative."
+                      }
+                    ]
+                  }
+                ]
+              }
+              
+
+
+
+    

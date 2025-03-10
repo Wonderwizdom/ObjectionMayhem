@@ -1,0 +1,1193 @@
+<!DOCTYPE html><html lang="en"><head><meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://code.jquery.com https://unpkg.com https://d3js.org https://threejs.org https://cdn.plot.ly https://stackpath.bootstrapcdn.com https://maps.googleapis.com https://cdn.tailwindcss.com https://ajax.googleapis.com https://kit.fontawesome.com https://cdn.datatables.net https://maxcdn.bootstrapcdn.com https://code.highcharts.com https://tako-static-assets-production.s3.amazonaws.com https://www.youtube.com https://fonts.googleapis.com https://fonts.gstatic.com https://pfst.cf2.poecdn.net https://puc.poecdn.net https://i.imgur.com https://wikimedia.org https://*.icons8.com https://*.giphy.com https://picsum.photos https://images.unsplash.com; frame-src 'self' https://www.youtube.com https://trytako.com; child-src 'self'; manifest-src 'self'; worker-src 'self'; upgrade-insecure-requests; block-all-mixed-content;">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Objection Mayhem</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#5D5CDE',
+                        secondary: '#f59e0b',
+                        court: {
+                            light: '#f8f9fa',
+                            dark: '#27272a',
+                        }
+                    },
+                    animation: {
+                        'pulse-once': 'pulse 1s ease-in-out 1',
+                    }
+                }
+            }
+        };
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @keyframes appear {
+            0% { opacity: 0; transform: translateY(10px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        
+        .appear {
+            animation: appear 0.4s ease-out forwards;
+        }
+
+        .gavel-animation {
+            animation: gavel 0.7s ease-in-out;
+        }
+
+        @keyframes gavel {
+            0% { transform: rotate(0deg); }
+            25% { transform: rotate(-20deg); }
+            50% { transform: rotate(0deg); }
+            75% { transform: rotate(-10deg); }
+            100% { transform: rotate(0deg); }
+        }
+
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background-color: rgba(93, 92, 222, 0.5);
+            border-radius: 10px;
+        }
+
+        .dark .custom-scrollbar::-webkit-scrollbar-thumb {
+            background-color: rgba(93, 92, 222, 0.7);
+        }
+    </style>
+</head>
+<body class="bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 min-h-screen transition-colors duration-300">
+    <!-- Add modal for objection details -->
+    <div id="objection-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+        <div class="bg-white dark:bg-gray-800 rounded-lg shadow-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+            <div class="p-6">
+                <div class="flex justify-between items-start mb-4">
+                    <h2 id="modal-title" class="text-2xl font-bold text-primary"></h2>
+                    <button id="close-modal" class="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 transition-colors">
+                        <i class="fas fa-times text-xl"></i>
+                    </button>
+                </div>
+                <div id="modal-content" class="space-y-4">
+                    <!-- Content will be populated dynamically -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container mx-auto px-4 py-8 max-w-4xl">
+        <!-- Header -->
+        <header class="text-center mb-8">
+            <div class="flex justify-center items-center mb-2">
+                <i class="fas fa-gavel text-primary text-4xl md:text-5xl mr-3" id="gavel-icon"></i>
+                <h1 class="text-3xl md:text-5xl font-bold">Objection Mayhem</h1>
+            </div>
+            <p class="text-lg text-gray-600 dark:text-gray-300 mt-2">Think like a trial attorney and identify valid objections!</p>
+        </header>
+
+        <!-- Game Container -->
+        <div class="bg-court-light dark:bg-court-dark rounded-lg shadow-lg p-6 mb-8" id="game-container">
+            <!-- Start Screen -->
+            <div id="start-screen" class="flex flex-col items-center justify-center">
+                <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md w-full max-w-2xl mb-8">
+                    <h2 class="text-2xl font-bold mb-4 text-center text-primary">Welcome to the Courtroom!</h2>
+                    <p class="mb-4">In <span class="font-semibold">Objection Mayhem</span>, you'll play the role of a trial attorney who must identify valid objections during direct and cross-examinations.</p>
+                    <p class="mb-4">For each question, decide whether there's a valid objection and select the correct legal basis. If the question is proper, select "No Objection".</p>
+                    <p class="mb-6">Choose your difficulty level to begin:</p>
+                    
+                    <div class="flex flex-wrap justify-center gap-4">
+                        <button class="difficulty-btn flex-1 px-6 py-3 bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-100 rounded-lg font-medium hover:bg-green-200 dark:hover:bg-green-800 transition-colors" data-difficulty="easy">
+                            Easy
+                        </button>
+                        <button class="difficulty-btn flex-1 px-6 py-3 bg-yellow-100 dark:bg-yellow-900 text-yellow-800 dark:text-yellow-100 rounded-lg font-medium hover:bg-yellow-200 dark:hover:bg-yellow-800 transition-colors" data-difficulty="medium">
+                            Medium
+                        </button>
+                        <button class="difficulty-btn flex-1 px-6 py-3 bg-red-100 dark:bg-red-900 text-red-800 dark:text-red-100 rounded-lg font-medium hover:bg-red-200 dark:hover:bg-red-800 transition-colors" data-difficulty="hard">
+                            Hard
+                        </button>
+                    </div>
+                    
+                    <!-- Add Trial Mode Button -->
+                    <div class="mt-4">
+                        <button class="difficulty-btn px-6 py-3 bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-100 rounded-lg font-medium hover:bg-purple-200 dark:hover:bg-purple-800 transition-colors w-full" data-difficulty="trial">
+                            <i class="fas fa-balance-scale mr-2"></i> Trial Mode
+                        </button>
+                        <p class="text-sm text-gray-600 dark:text-gray-400 mt-2">Experience complete trial scenarios with connected questions.</p>
+                    </div>
+                </div>
+                
+                <!-- Objection Types Section -->
+                <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md w-full max-w-2xl mx-auto">
+                    <h3 class="text-2xl font-semibold mb-6 text-primary text-center">Objection Types</h3>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <!-- Card 1 -->
+                      <div class="objection-card border border-gray-200 dark:border-gray-700 rounded-lg p-4 hover:shadow-md transition-shadow cursor-pointer" data-objection="relevance">
+                        <h4 class="font-semibold text-primary mb-1">Relevance</h4>
+                        <p class="text-sm text-gray-700 dark:text-gray-300">
+                          Question has no bearing on the issues of the case.
+                        </p>
+                      </div>
+                      
+                      <!-- Card 2 -->
+                      <div class="objection-card border border-gray-200 dark:border-gray-700 rounded-lg p-4 hover:shadow-md transition-shadow cursor-pointer" data-objection="hearsay">
+                        <h4 class="font-semibold text-primary mb-1">Hearsay</h4>
+                        <p class="text-sm text-gray-700 dark:text-gray-300">
+                          Out-of-court statements offered to prove the truth.
+                        </p>
+                      </div>
+                      
+                      <!-- Card 3 -->
+                      <div class="objection-card border border-gray-200 dark:border-gray-700 rounded-lg p-4 hover:shadow-md transition-shadow cursor-pointer" data-objection="leading">
+                        <h4 class="font-semibold text-primary mb-1">Leading</h4>
+                        <p class="text-sm text-gray-700 dark:text-gray-300">
+                          Suggests the answer within the question (direct exam).
+                        </p>
+                      </div>
+                      
+                      <!-- Card 4 -->
+                      <div class="objection-card border border-gray-200 dark:border-gray-700 rounded-lg p-4 hover:shadow-md transition-shadow cursor-pointer" data-objection="speculation">
+                        <h4 class="font-semibold text-primary mb-1">Speculation</h4>
+                        <p class="text-sm text-gray-700 dark:text-gray-300">
+                          Asks witness to guess or assume.
+                        </p>
+                      </div>
+                      
+                      <!-- Card 5 -->
+                      <div class="objection-card border border-gray-200 dark:border-gray-700 rounded-lg p-4 hover:shadow-md transition-shadow cursor-pointer" data-objection="compound">
+                        <h4 class="font-semibold text-primary mb-1">Compound</h4>
+                        <p class="text-sm text-gray-700 dark:text-gray-300">
+                          Contains multiple questions in one.
+                        </p>
+                      </div>
+                      
+                      <!-- Card 6 -->
+                      <div class="objection-card border border-gray-200 dark:border-gray-700 rounded-lg p-4 hover:shadow-md transition-shadow cursor-pointer" data-objection="assumes-facts">
+                        <h4 class="font-semibold text-primary mb-1">Assumes Facts</h4>
+                        <p class="text-sm text-gray-700 dark:text-gray-300">
+                          Presumes unproven facts.
+                        </p>
+                      </div>
+                      
+                      <!-- Card 7 -->
+                      <div class="objection-card border border-gray-200 dark:border-gray-700 rounded-lg p-4 hover:shadow-md transition-shadow cursor-pointer" data-objection="argumentative">
+                        <h4 class="font-semibold text-primary mb-1">Argumentative</h4>
+                        <p class="text-sm text-gray-700 dark:text-gray-300">
+                          Challenges witness rather than seeks information.
+                        </p>
+                      </div>
+                      
+                      <!-- Card 8 -->
+                      <div class="objection-card border border-gray-200 dark:border-gray-700 rounded-lg p-4 hover:shadow-md transition-shadow cursor-pointer" data-objection="narrative">
+                        <h4 class="font-semibold text-primary mb-1">Narrative</h4>
+                        <p class="text-sm text-gray-700 dark:text-gray-300">
+                          Invites an open-ended explanation.
+                        </p>
+                      </div>
+                      
+                      <!-- Card 9 -->
+                      <div class="objection-card border border-gray-200 dark:border-gray-700 rounded-lg p-4 hover:shadow-md transition-shadow cursor-pointer" data-objection="legal-conclusion">
+                        <h4 class="font-semibold text-primary mb-1">Legal Conclusion</h4>
+                        <p class="text-sm text-gray-700 dark:text-gray-300">
+                          Asks witness to interpret law.
+                        </p>
+                      </div>
+                      
+                      <!-- Card 10 -->
+                      <div class="objection-card border border-gray-200 dark:border-gray-700 rounded-lg p-4 hover:shadow-md transition-shadow cursor-pointer" data-objection="vague">
+                        <h4 class="font-semibold text-primary mb-1">Vague/Ambiguous</h4>
+                        <p class="text-sm text-gray-700 dark:text-gray-300">
+                          Question is unclear or confusing.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+            </div>
+
+            <!-- Trial Selection Screen (initially hidden) -->
+            <div id="trial-selection-screen" class="hidden">
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="text-2xl font-bold text-primary">
+                        <i class="fas fa-balance-scale mr-2"></i> Select a Trial
+                    </h2>
+                    <button id="back-to-home" class="text-gray-600 dark:text-gray-300 hover:text-red-500 dark:hover:text-red-400 transition">
+                        <i class="fas fa-arrow-left mr-1"></i> Back
+                    </button>
+                </div>
+                
+                <div class="bg-gray-50 dark:bg-gray-800 rounded-lg p-6">
+                    <p class="mb-4 text-gray-600 dark:text-gray-300">
+                        Choose a trial scenario to experience a complete courtroom storyline.
+                    </p>
+                    
+                    <div id="trial-list" class="mt-4">
+                        <!-- Trial buttons will be generated here -->
+                        <div class="text-center py-6 text-gray-400">
+                            <i class="fas fa-spinner fa-spin text-2xl mb-2"></i>
+                            <p>Loading trials...</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Game Screen (initially hidden) -->
+            <div id="game-screen" class="hidden">
+                <!-- Score and Progress -->
+                <div class="flex flex-col sm:flex-row justify-between items-center mb-6">
+                    <div class="flex items-center mb-3 sm:mb-0">
+                        <div class="text-lg font-medium">Score: <span id="score" class="text-primary font-bold">0</span></div>
+                        <div class="text-lg font-medium ml-5">Question: <span id="question-number" class="text-primary font-bold">1</span>/<span id="total-questions">10</span></div>
+                    </div>
+                    <div class="flex items-center">
+                        <div id="difficulty-display" class="px-3 py-1 rounded-full text-sm font-medium mr-4"></div>
+                        <button id="end-game" class="text-gray-600 dark:text-gray-300 hover:text-red-500 dark:hover:text-red-400 transition">
+                            <i class="fas fa-times-circle mr-1"></i> End Game
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Courtroom Scene -->
+                <div class="bg-gray-100 dark:bg-gray-800 rounded-lg p-5 mb-6">
+                    <div class="flex items-start mb-4">
+                        <div class="flex-shrink-0 w-8 text-primary">
+                            <i class="fas fa-user-tie"></i>
+                        </div>
+                        <div class="flex-1">
+                            <div class="text-sm text-gray-500 dark:text-gray-400 mb-1" id="question-context">Direct Examination of Witness</div>
+                            <p class="text-lg font-medium" id="question-text">Loading question...</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Objection Buttons -->
+                <div class="mb-6">
+                    <h3 class="text-lg font-semibold mb-3">Choose Your Objection:</h3>
+                    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-2 mb-4">
+                        <button class="objection-btn px-2 py-3 bg-gray-100 dark:bg-gray-700 rounded-lg hover:bg-primary hover:text-white dark:hover:bg-primary text-sm transition-colors" data-objection="relevance">Relevance</button>
+                        <button class="objection-btn px-2 py-3 bg-gray-100 dark:bg-gray-700 rounded-lg hover:bg-primary hover:text-white dark:hover:bg-primary text-sm transition-colors" data-objection="hearsay">Hearsay</button>
+                        <button class="objection-btn px-2 py-3 bg-gray-100 dark:bg-gray-700 rounded-lg hover:bg-primary hover:text-white dark:hover:bg-primary text-sm transition-colors" data-objection="leading">Leading</button>
+                        <button class="objection-btn px-2 py-3 bg-gray-100 dark:bg-gray-700 rounded-lg hover:bg-primary hover:text-white dark:hover:bg-primary text-sm transition-colors" data-objection="speculation">Speculation</button>
+                        <button class="objection-btn px-2 py-3 bg-gray-100 dark:bg-gray-700 rounded-lg hover:bg-primary hover:text-white dark:hover:bg-primary text-sm transition-colors" data-objection="compound">Compound</button>
+                        <button class="objection-btn px-2 py-3 bg-gray-100 dark:bg-gray-700 rounded-lg hover:bg-primary hover:text-white dark:hover:bg-primary text-sm transition-colors" data-objection="assumes-facts">Assumes Facts</button>
+                        <button class="objection-btn px-2 py-3 bg-gray-100 dark:bg-gray-700 rounded-lg hover:bg-primary hover:text-white dark:hover:bg-primary text-sm transition-colors" data-objection="argumentative">Argumentative</button>
+                        <button class="objection-btn px-2 py-3 bg-gray-100 dark:bg-gray-700 rounded-lg hover:bg-primary hover:text-white dark:hover:bg-primary text-sm transition-colors" data-objection="narrative">Calls for Narrative</button>
+                        <button class="objection-btn px-2 py-3 bg-gray-100 dark:bg-gray-700 rounded-lg hover:bg-primary hover:text-white dark:hover:bg-primary text-sm transition-colors" data-objection="legal-conclusion">Legal Conclusion</button>
+                        <button class="objection-btn px-2 py-3 bg-gray-100 dark:bg-gray-700 rounded-lg hover:bg-primary hover:text-white dark:hover:bg-primary text-sm transition-colors" data-objection="vague">Vague/Ambiguous</button>
+                    </div>
+                    <button id="no-objection" class="w-full py-3 bg-gray-200 dark:bg-gray-600 rounded-lg hover:bg-gray-300 dark:hover:bg-gray-500 font-medium transition-colors">No Objection</button>
+                </div>
+
+                <!-- Feedback Area (Initially Hidden) -->
+                <div id="feedback-container" class="hidden mb-6 p-4 rounded-lg">
+                    <div class="flex items-start">
+                        <div class="flex-shrink-0 mt-1 mr-3">
+                            <i id="feedback-icon" class="fas fa-check-circle text-2xl text-green-500"></i>
+                        </div>
+                        <div class="flex-1">
+                            <h3 id="feedback-title" class="font-bold mb-2 text-lg">Correct!</h3>
+                            <p id="feedback-text" class="mb-2"></p>
+                            <div id="correct-objection" class="mb-2 font-medium"></div>
+                        </div>
+                    </div>
+                    <div class="mt-4 flex justify-end">
+                        <button id="next-question" class="px-5 py-2 bg-primary text-white rounded-lg hover:bg-opacity-90 transition-colors">Next Question</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Results Screen (initially hidden) -->
+            <div id="results-screen" class="hidden">
+                <div class="text-center mb-6">
+                    <div class="inline-block rounded-full bg-primary bg-opacity-20 p-5 mb-4">
+                        <i class="fas fa-trophy text-primary text-5xl"></i>
+                    </div>
+                    <h2 class="text-2xl font-bold mb-2">Game Completed!</h2>
+                    <div class="text-xl">Final Score: <span id="final-score" class="font-bold text-primary">0</span>/<span id="total-possible">10</span></div>
+                    <div id="performance-message" class="mt-2 text-lg"></div>
+                </div>
+                
+                <div class="mb-6 bg-white dark:bg-gray-800 rounded-lg p-6 shadow">
+                    <h3 class="text-xl font-bold mb-4">Your Performance</h3>
+                    <div class="flex flex-col md:flex-row gap-4 justify-between">
+                        <div class="flex-1">
+                            <div class="mb-3">
+                                <div class="text-sm text-gray-500 dark:text-gray-400">Correct Objections</div>
+                                <div class="text-3xl font-bold text-green-500" id="correct-objections">0</div>
+                            </div>
+                            <div>
+                                <div class="text-sm text-gray-500 dark:text-gray-400">Highest Streak</div>
+                                <div class="text-3xl font-bold text-primary" id="highest-streak">0</div>
+                            </div>
+                        </div>
+                        <div class="flex-1">
+                            <div class="mb-3">
+                                <div class="text-sm text-gray-500 dark:text-gray-400">Incorrect Objections</div>
+                                <div class="text-3xl font-bold text-red-500" id="incorrect-objections">0</div>
+                            </div>
+                            <div>
+                                <div class="text-sm text-gray-500 dark:text-gray-400">Accuracy</div>
+                                <div class="text-3xl font-bold text-blue-500" id="accuracy-percentage">0%</                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Certificate section -->
+                <div class="mb-6 bg-white dark:bg-gray-800 rounded-lg p-6 shadow">
+                    <h3 class="text-xl font-bold mb-4">Get Your Certificate</h3>
+                    <div class="mb-4">
+                        <label for="player-name" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Enter your name:</label>
+                        <input type="text" id="player-name" class="w-full px-4 py-2 border rounded-md dark:bg-gray-700 dark:border-gray-600 focus:outline-none focus:ring-2 focus:ring-primary" placeholder="John Doe">
+                    </div>
+                    <button id="generate-certificate" class="w-full px-6 py-3 bg-secondary text-white rounded-lg hover:bg-opacity-90 transition-colors">
+                        <i class="fas fa-certificate mr-2"></i> Generate Certificate
+                    </button>
+                </div>
+                
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <button id="play-again" class="px-6 py-3 bg-primary text-white rounded-lg hover:bg-opacity-90 transition-colors">
+                        <i class="fas fa-redo mr-2"></i> Play Again
+                    </button>
+                    <button id="return-home" class="px-6 py-3 bg-gray-200 dark:bg-gray-700 rounded-lg hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors">
+                        <i class="fas fa-home mr-2"></i> Return to Home
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Dark Mode Toggle -->
+        <div class="fixed bottom-4 right-4">
+            <button id="theme-toggle" class="w-10 h-10 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center shadow-md hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors">
+                <i class="fas fa-moon dark:hidden"></i>
+                <i class="fas fa-sun hidden dark:block"></i>
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Dark mode detection and toggle
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            document.documentElement.classList.add('dark');
+        }
+        
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
+            if (event.matches) {
+                document.documentElement.classList.add('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+            }
+        });
+        
+        document.getElementById('theme-toggle').addEventListener('click', () => {
+            document.documentElement.classList.toggle('dark');
+        });
+
+        // Game state variables
+        let gameState = {
+            difficulty: null,
+            score: 0,
+            questionsAsked: 0,
+            totalQuestions: 10,
+            currentQuestion: null,
+            currentStreak: 0,
+            highestStreak: 0,
+            correctAnswers: 0,
+            incorrectAnswers: 0,
+            questionBank: [],
+            usedQuestions: [],
+            currentTrial: null, // Add trial tracking
+            trialName: null     // Add trial name tracking
+        };
+
+        let questionBanks = {}; // Empty object to store questions
+
+// Load questions from JSON file
+async function loadQuestions() {
+    try {
+        const response = await fetch('questions.json'); // Fetch the JSON file
+        if (!response.ok) throw new Error("Failed to load questions");
+        questionBanks = await response.json(); // Store the JSON data
+        console.log("Questions loaded:", questionBanks);
+    } catch (error) {
+        console.error("Error loading questions:", error);
+        // Add fallback questions in case JSON loading fails
+        questionBanks = {
+            easy: [],
+            medium: [],
+            hard: [],
+            trials: []
+        };
+    }
+}
+
+// Add function to select a random trial
+function selectRandomTrial() {
+    if (!questionBanks.trials || !Array.isArray(questionBanks.trials) || questionBanks.trials.length === 0) {
+        console.error("No trials available!");
+        // Return a default trial if none are available
+        return {
+            name: "Demo Trial",
+            questions: [
+                {
+                    context: "Direct Examination",
+                    question: "Please state your name for the record.",
+                    correctObjections: ["no-objection"],
+                    explanation: "This is a proper question to establish identity."
+                }
+            ]
+        };
+    }
+    
+    const trials = questionBanks.trials;
+    const randomIndex = Math.floor(Math.random() * trials.length);
+    return trials[randomIndex];
+}
+
+// Function to get a random "easy" question
+function getRandomEasyQuestion() {
+    if (!questionBanks.easy || questionBanks.easy.length === 0) {
+        console.error("Questions not loaded yet!");
+        return;
+    }
+
+    const questions = questionBanks.easy;
+    const randomIndex = Math.floor(Math.random() * questions.length);
+    const selectedQuestion = questions[randomIndex];
+
+    // Update the HTML with the selected question
+    document.getElementById("context").textContent = selectedQuestion.context;
+    document.getElementById("question").textContent = selectedQuestion.question;
+    document.getElementById("correct-objections").textContent = selectedQuestion.correctObjections.join(", ");
+    document.getElementById("explanation").textContent = selectedQuestion.explanation;
+}
+
+// Load questions when the page starts
+loadQuestions();
+
+        // Initialize game elements
+        const startScreen = document.getElementById('start-screen');
+        const trialSelectionScreen = document.getElementById('trial-selection-screen');
+        const gameScreen = document.getElementById('game-screen');
+        const resultsScreen = document.getElementById('results-screen');
+        const difficultyButtons = document.querySelectorAll('.difficulty-btn');
+        const objectionButtons = document.querySelectorAll('.objection-btn');
+        const noObjectionButton = document.getElementById('no-objection');
+        const nextQuestionButton = document.getElementById('next-question');
+        const gavelIcon = document.getElementById('gavel-icon');
+        const feedbackContainer = document.getElementById('feedback-container');
+        const playAgainButton = document.getElementById('play-again');
+        const returnHomeButton = document.getElementById('return-home');
+        const endGameButton = document.getElementById('end-game');
+        const backToHomeButton = document.getElementById('back-to-home');
+
+        // Gavel animation when clicked
+        gavelIcon.addEventListener('click', () => {
+            gavelIcon.classList.add('gavel-animation');
+            setTimeout(() => {
+                gavelIcon.classList.remove('gavel-animation');
+            }, 700);
+        });
+
+        // Start game when difficulty selected
+        difficultyButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const difficulty = button.dataset.difficulty;
+                if (difficulty === 'trial') {
+                    showTrialSelection();
+                } else {
+                    startGame(difficulty);
+                }
+            });
+        });
+
+        // Show trial selection screen
+        function showTrialSelection() {
+            startScreen.classList.add('hidden');
+            trialSelectionScreen.classList.remove('hidden');
+            
+            // Generate trial options based on available trials
+            const trialList = document.getElementById('trial-list');
+            trialList.innerHTML = '';
+            
+            if (!questionBanks.trials || !Array.isArray(questionBanks.trials) || questionBanks.trials.length === 0) {
+                trialList.innerHTML = '<p class="text-center text-gray-500 dark:text-gray-400 py-6">No trials available</p>';
+                return;
+            }
+            
+            // Create a button for each trial
+            questionBanks.trials.forEach((trial, index) => {
+                const trialButton = document.createElement('button');
+                trialButton.className = 'w-full text-left p-4 bg-white dark:bg-gray-700 rounded-lg shadow-sm hover:shadow-md mb-3 transition-shadow';
+                trialButton.innerHTML = `
+                    <h3 class="text-xl font-semibold text-purple-800 dark:text-purple-300">${trial.name}</h3>
+                    <p class="text-sm text-gray-600 dark:text-gray-300 mt-1">${trial.questions.length} questions</p>
+                `;
+                trialButton.addEventListener('click', () => {
+                    startTrialGame(index);
+                });
+                trialList.appendChild(trialButton);
+            });
+        }
+
+        // Function to start a specific trial by index
+        function startTrialGame(trialIndex) {
+            const selectedTrial = questionBanks.trials[trialIndex];
+            gameState = {
+                difficulty: 'trial',
+                score: 0,
+                questionsAsked: 0,
+                totalQuestions: selectedTrial.questions.length,
+                currentQuestion: null,
+                currentStreak: 0,
+                highestStreak: 0,
+                correctAnswers: 0,
+                incorrectAnswers: 0,
+                questionBank: [...selectedTrial.questions],
+                usedQuestions: [],
+                currentTrial: selectedTrial,
+                trialName: selectedTrial.name,
+                trialIndex: trialIndex
+            };
+            
+            // Update UI
+            document.getElementById('score').textContent = '0';
+            document.getElementById('question-number').textContent = '1';
+            document.getElementById('total-questions').textContent = gameState.totalQuestions;
+            
+            // Set difficulty display
+            const difficultyDisplay = document.getElementById('difficulty-display');
+            difficultyDisplay.textContent = `Trial: ${gameState.trialName}`;
+            difficultyDisplay.classList.add('bg-purple-100', 'text-purple-800');
+            difficultyDisplay.classList.remove('bg-green-100', 'bg-yellow-100', 'bg-red-100', 
+                'text-green-800', 'text-yellow-800', 'text-red-800');
+            
+            // Show game screen
+            trialSelectionScreen.classList.add('hidden');
+            gameScreen.classList.remove('hidden');
+            
+            // Load first question
+            loadNextQuestion();
+        }
+
+        // Initialize game with selected difficulty
+        function startGame(difficulty) {
+            // Only for non-trial modes
+            if (difficulty === 'trial') {
+                return;
+            }
+
+            gameState = {
+                difficulty: difficulty,
+                score: 0,
+                questionsAsked: 0,
+                totalQuestions: 10,
+                currentQuestion: null,
+                currentStreak: 0,
+                highestStreak: 0,
+                correctAnswers: 0,
+                incorrectAnswers: 0,
+                questionBank: [...questionBanks[difficulty]],
+                usedQuestions: [],
+                currentTrial: null,
+                trialName: null
+            };
+
+            // Update UI for the current difficulty
+            document.getElementById('score').textContent = '0';
+            document.getElementById('question-number').textContent = '1';
+            document.getElementById('total-questions').textContent = gameState.totalQuestions;
+            
+            // Set the difficulty display style
+            const difficultyDisplay = document.getElementById('difficulty-display');
+            switch(difficulty) {
+                case 'easy':
+                    difficultyDisplay.textContent = 'Easy';
+                    difficultyDisplay.classList.add('bg-green-100', 'text-green-800');
+                    difficultyDisplay.classList.remove('bg-yellow-100', 'bg-red-100', 'bg-purple-100', 
+                        'text-yellow-800', 'text-red-800', 'text-purple-800');
+                    break;
+                case 'medium':
+                    difficultyDisplay.textContent = 'Medium';
+                    difficultyDisplay.classList.add('bg-yellow-100', 'text-yellow-800');
+                    difficultyDisplay.classList.remove('bg-green-100', 'bg-red-100', 'bg-purple-100', 
+                        'text-green-800', 'text-red-800', 'text-purple-800');
+                    break;
+                case 'hard':
+                    difficultyDisplay.textContent = 'Hard';
+                    difficultyDisplay.classList.add('bg-red-100', 'text-red-800');
+                    difficultyDisplay.classList.remove('bg-green-100', 'bg-yellow-100', 'bg-purple-100', 
+                        'text-green-800', 'text-yellow-800', 'text-purple-800');
+                    break;
+            }
+            
+            // Show game screen, hide start screen
+            startScreen.classList.add('hidden');
+            gameScreen.classList.remove('hidden');
+            resultsScreen.classList.add('hidden');
+            
+            // Load first question
+            loadNextQuestion();
+        }
+
+        function loadNextQuestion() {
+            // Hide feedback container
+            feedbackContainer.classList.add('hidden');
+            
+            // Enable all objection buttons
+            objectionButtons.forEach(button => {
+                button.disabled = false;
+                button.classList.remove('bg-gray-300', 'cursor-not-allowed');
+            });
+            noObjectionButton.disabled = false;
+            noObjectionButton.classList.remove('cursor-not-allowed');
+            
+            // Check if we've reached the total number of questions
+            if (gameState.questionsAsked >= gameState.totalQuestions) {
+                endGame();
+                return;
+            }
+            
+            if (gameState.difficulty === 'trial') {
+                // For trial mode, questions must be used in sequence
+                if (gameState.questionsAsked < gameState.questionBank.length) {
+                    gameState.currentQuestion = gameState.questionBank[gameState.questionsAsked];
+                    
+                    // Update context to show trial progress
+                    const contextElement = document.getElementById('question-context');
+                    contextElement.textContent = `${gameState.trialName} - ${gameState.currentQuestion.context}`;
+                    
+                    // Update question text
+                    document.getElementById('question-text').textContent = gameState.currentQuestion.question;
+                    document.getElementById('question-number').textContent = gameState.questionsAsked + 1;
+                }
+            } else {
+                // Select a random question from the bank
+                if (gameState.questionBank.length === 0) {
+                    // If we've used all questions, reset the bank
+                    gameState.questionBank = [...gameState.usedQuestions];
+                    gameState.usedQuestions = [];
+                }
+                
+                // Existing random question selection logic
+                const randomIndex = Math.floor(Math.random() * gameState.questionBank.length);
+                gameState.currentQuestion = gameState.questionBank[randomIndex];
+                
+                // Remove the question from the bank and add to used questions
+                gameState.questionBank.splice(randomIndex, 1);
+                gameState.usedQuestions.push(gameState.currentQuestion);
+                
+                // Update the UI with the question
+                document.getElementById('question-context').textContent = gameState.currentQuestion.context;
+                document.getElementById('question-text').textContent = gameState.currentQuestion.question;
+                document.getElementById('question-number').textContent = gameState.questionsAsked + 1;
+            }
+        }
+
+        // Handle objection selection
+        objectionButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const objection = button.dataset.objection;
+                checkAnswer(objection);
+            });
+        });
+
+        // Handle no objection selection
+        noObjectionButton.addEventListener('click', () => {
+            checkAnswer('no-objection');
+        });
+
+        // Check if the answer is correct
+        function checkAnswer(selectedObjection) {
+            const correctObjections = gameState.currentQuestion.correctObjections;
+            const isCorrect = correctObjections.includes(selectedObjection);
+            
+            // Disable all objection buttons after selection
+            objectionButtons.forEach(button => {
+                button.disabled = true;
+                button.classList.add('cursor-not-allowed');
+            });
+            noObjectionButton.disabled = true;
+            noObjectionButton.classList.add('cursor-not-allowed');
+            
+            // Update scoring
+            if (isCorrect) {
+                gameState.score += 10;
+                gameState.correctAnswers++;
+                gameState.currentStreak++;
+                if (gameState.currentStreak > gameState.highestStreak) {
+                    gameState.highestStreak = gameState.currentStreak;
+                }
+            } else {
+                gameState.incorrectAnswers++;
+                gameState.currentStreak = 0;
+            }
+            
+            // Update score display
+            document.getElementById('score').textContent = gameState.score;
+            
+            // Show feedback
+            showFeedback(isCorrect, selectedObjection);
+            
+            // Increment questions asked
+            gameState.questionsAsked++;
+        }
+
+        // Show feedback based on answer
+        function showFeedback(isCorrect, selectedObjection) {
+            const feedbackContainer = document.getElementById('feedback-container');
+            const feedbackIcon = document.getElementById('feedback-icon');
+            const feedbackTitle = document.getElementById('feedback-title');
+            const feedbackText = document.getElementById('feedback-text');
+            const correctObjectionElement = document.getElementById('correct-objection');
+            
+            // Set feedback styles based on correctness
+            if (isCorrect) {
+                feedbackContainer.classList.remove('bg-red-100', 'dark:bg-red-900');
+                feedbackContainer.classList.add('bg-green-100', 'dark:bg-green-900');
+                feedbackIcon.classList.remove('fa-times-circle', 'text-red-500');
+                feedbackIcon.classList.add('fa-check-circle', 'text-green-500');
+                feedbackTitle.textContent = 'Correct!';
+                feedbackTitle.classList.remove('text-red-700', 'dark:text-red-300');
+                feedbackTitle.classList.add('text-green-700', 'dark:text-green-300');
+            } else {
+                feedbackContainer.classList.remove('bg-green-100', 'dark:bg-green-900');
+                feedbackContainer.classList.add('bg-red-100', 'dark:bg-red-900');
+                feedbackIcon.classList.remove('fa-check-circle', 'text-green-500');
+                feedbackIcon.classList.add('fa-times-circle', 'text-red-500');
+                feedbackTitle.textContent = 'Incorrect';
+                feedbackTitle.classList.remove('text-green-700', 'dark:text-green-300');
+                feedbackTitle.classList.add('text-red-700', 'dark:text-red-300');
+            }
+            
+            // Set explanation text
+            feedbackText.textContent = gameState.currentQuestion.explanation;
+            
+            // Show correct objection if wrong
+            if (!isCorrect) {
+                let correctObjText = '';
+                if (gameState.currentQuestion.correctObjections.includes('no-objection')) {
+                    correctObjText = 'The correct answer is: No Objection';
+                } else {
+                    const objectionNames = {
+                        'relevance': 'Relevance',
+                        'hearsay': 'Hearsay',
+                        'leading': 'Leading Question',
+                        'speculation': 'Speculation',
+                        'compound': 'Compound Question',
+                        'assumes-facts': 'Assumes Facts Not in Evidence',
+                        'argumentative': 'Argumentative',
+                        'narrative': 'Calls for Narrative',
+                        'legal-conclusion': 'Calls for Legal Conclusion',
+                        'vague': 'Vague/Ambiguous',
+                        'calls for expert opinion': 'Calls for Expert Opinion'
+                    };
+                    
+                    const formattedObjections = gameState.currentQuestion.correctObjections.map(
+                        obj => objectionNames[obj] || obj
+                    );
+                    
+                    correctObjText = 'The correct objection' + 
+                        (formattedObjections.length > 1 ? 's are' : ' is') + 
+                        ': ' + formattedObjections.join(', ');
+                }
+                correctObjectionElement.textContent = correctObjText;
+                correctObjectionElement.classList.remove('hidden');
+            } else {
+                correctObjectionElement.classList.add('hidden');
+            }
+            
+            // Show feedback container
+            feedbackContainer.classList.remove('hidden');
+            feedbackContainer.classList.add('appear');
+        }
+
+        // Move to next question
+        nextQuestionButton.addEventListener('click', () => {
+            loadNextQuestion();
+        });
+
+        // End game and show results
+        function endGame() {
+            gameScreen.classList.add('hidden');
+            resultsScreen.classList.remove('hidden');
+            
+            // Update results screen
+            document.getElementById('final-score').textContent = gameState.score;
+            document.getElementById('total-possible').textContent = gameState.totalQuestions * 10;
+            document.getElementById('correct-objections').textContent = gameState.correctAnswers;
+            document.getElementById('incorrect-objections').textContent = gameState.incorrectAnswers;
+            document.getElementById('highest-streak').textContent = gameState.highestStreak;
+            
+            const accuracy = gameState.totalQuestions > 0 
+                ? Math.round((gameState.correctAnswers / gameState.totalQuestions) * 100) 
+                : 0;
+            document.getElementById('accuracy-percentage').textContent = accuracy + '%';
+            
+            // Set performance message
+            const performanceMessage = document.getElementById('performance-message');
+            
+            if (gameState.difficulty === 'trial') {
+                const trialTitle = gameState.trialName || "Trial";
+                performanceMessage.textContent = `${trialTitle} Complete - Accuracy: ${accuracy}%`;
+                performanceMessage.className = 'mt-2 text-lg text-purple-600 dark:text-purple-400';
+            } else if (accuracy >= 90) {
+                performanceMessage.textContent = 'Outstanding! You\'re ready for the courtroom!';
+                performanceMessage.className = 'mt-2 text-lg text-green-600 dark:text-green-400';
+            } else if (accuracy >= 70) {
+                performanceMessage.textContent = 'Good job! You\'re well on your way to becoming a skilled attorney.';
+                performanceMessage.className = 'mt-2 text-lg text-blue-600 dark:text-blue-400';
+            } else if (accuracy >= 50) {
+                performanceMessage.textContent = 'Not bad! With more practice, you\'ll improve your objection skills.';
+                performanceMessage.className = 'mt-2 text-lg text-yellow-600 dark:text-yellow-400';
+            } else {
+                performanceMessage.textContent = 'Keep studying! Legal objections take time to master.';
+                performanceMessage.className = 'mt-2 text-lg text-red-600 dark:text-red-400';
+            }
+        }
+
+        // Play again button
+        playAgainButton.addEventListener('click', () => {
+            if (gameState.difficulty === 'trial') {
+                // For trial mode, go back to trial selection
+                resultsScreen.classList.add('hidden');
+                showTrialSelection();
+            } else {
+                startGame(gameState.difficulty);
+            }
+        });
+
+        // Return to home button
+        returnHomeButton.addEventListener('click', () => {
+            resultsScreen.classList.add('hidden');
+            trialSelectionScreen.classList.add('hidden');
+            startScreen.classList.remove('hidden');
+        });
+
+        // End game early
+        endGameButton.addEventListener('click', () => {
+            endGame();
+        });
+
+        // Add event listener for back-to-home button
+        backToHomeButton.addEventListener('click', () => {
+            trialSelectionScreen.classList.add('hidden');
+            startScreen.classList.remove('hidden');
+        });
+
+        document.getElementById('generate-certificate').addEventListener('click', generateCertificate);
+
+        document.getElementById('generate-certificate').addEventListener('click', generateCertificate);
+
+function generateCertificate() {
+    const playerName = document.getElementById('player-name').value.trim();
+    if (!playerName) {
+        alert('Please enter your name to generate a certificate.');
+        return;
+    }
+
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF({
+        orientation: 'landscape',
+        unit: 'mm',
+        format: 'a4'
+    });
+
+    // 🎨 Background Color (Soft Ivory for Prestige)
+    doc.setFillColor(255, 253, 245);
+    doc.rect(0, 0, 297, 210, 'F');
+
+    // ✨ Elegant Gold Border with Double Line
+    doc.setDrawColor(218, 165, 32);
+    doc.setLineWidth(3);
+    doc.rect(12, 12, 273, 186);
+    doc.setLineWidth(1);
+    doc.rect(18, 18, 261, 174);
+
+    // 🏛️ Title: "Certificate of Achievement"
+    doc.setFont('times', 'bolditalic');
+    doc.setTextColor(33, 33, 33);
+    doc.setFontSize(36);
+    doc.text('Certificate of Achievement', 148.5, 40, { align: 'center' });
+
+    // 📜 Decorative Line
+    doc.setLineWidth(1);
+    doc.line(90, 45, 207, 45);
+
+    // 🎖️ Subtitle
+    doc.setFontSize(22);
+    doc.setFont('times', 'italic');
+    doc.setTextColor(139, 69, 19); // Brown-gold accent
+    doc.text('Presented to', 148.5, 60, { align: 'center' });
+
+    // 🏆 Awardee Name (Bigger, Royal Blue)
+    doc.setFont('times', 'bold');
+    doc.setFontSize(30);
+    doc.setTextColor(0, 0, 128);
+    doc.text(playerName, 148.5, 78, { align: 'center' });
+
+    // 🏅 Recognition Text
+    doc.setFontSize(16);
+    doc.setFont('times', 'italic');
+    doc.setTextColor(33, 33, 33);
+    doc.text(`For demonstrating outstanding legal expertise in`, 148.5, 95, { align: 'center' });
+    doc.setFont('times', 'bold');
+    
+    // Special text for trial mode
+    if (gameState.difficulty === 'trial') {
+        doc.text(`Objection Mayhem - ${gameState.trialName}`, 148.5, 110, { align: 'center' });
+    } else {
+        doc.text(`Objection Mayhem`, 148.5, 110, { align: 'center' });
+    }
+
+    // 🏆 Performance Metrics
+    const score = gameState.score;
+    const totalPossible = gameState.totalQuestions * 10;
+    const accuracy = gameState.totalQuestions > 0 
+        ? Math.round((gameState.correctAnswers / gameState.totalQuestions) * 100) 
+        : 0;
+    const legalNickname = getLegalNickname(accuracy);
+    
+    // Format difficulty text - show trial name if in trial mode
+    const difficultyText = gameState.difficulty === 'trial' 
+        ? 'Trial Mode' 
+        : gameState.difficulty.charAt(0).toUpperCase() + gameState.difficulty.slice(1);
+
+    doc.setFontSize(16);
+    doc.setFont('times', 'normal');
+    doc.text(`Score: ${score} / ${totalPossible} | Difficulty: ${difficultyText}`, 148.5, 125, { align: 'center' });
+
+    // ✨ Awarded Title (Gold Font)
+    doc.setFontSize(22);
+    doc.setFont('times', 'bolditalic');
+    doc.setTextColor(218, 165, 32);
+    doc.text(`Earning the title: "${legalNickname}"`, 148.5, 142, { align: 'center' });
+
+    // 📅 Date of Issue
+    const today = new Date();
+    const dateString = today.toLocaleDateString();
+    doc.setFontSize(14);
+    doc.setTextColor(33, 33, 33);
+    doc.text(`Issued on: ${dateString}`, 148.5, 157, { align: 'center' });
+
+    // 🏛️ Signature (Script Font)
+    doc.setFont('cursive');  
+    doc.setFontSize(26);
+    doc.text('Stevo Alexander', 148.5, 175, { align: 'center' });
+
+    // ✏️ Signature Line & Title
+    doc.setDrawColor(0, 0, 0);
+    doc.setLineWidth(0.5);
+    doc.line(89, 180, 208, 180);
+    doc.setFontSize(12);
+    doc.setTextColor(0, 0, 0);
+    doc.text('Judge of Objection Mayhem', 148.5, 188, { align: 'center' });
+
+    // 💾 Save the Certificate
+    doc.save(`objection-mayhem-certificate-${playerName.replace(/\s+/g, '-').toLowerCase()}.pdf`);
+}
+
+function getLegalNickname(accuracy) {
+    if (accuracy >= 95) return "The Supreme Justice";
+    if (accuracy >= 90) return "Legal Eagle";
+    if (accuracy >= 85) return "Master of Objections";
+    if (accuracy >= 80) return "The Law Hammer";
+    if (accuracy >= 75) return "Courtroom Virtuoso";
+    if (accuracy >= 70) return "The Case Closer";
+    if (accuracy >= 65) return "Objection Specialist";
+    if (accuracy >= 60) return "Rising Attorney";
+    if (accuracy >= 50) return "Litigation Apprentice";
+    if (accuracy >= 40) return "Junior Counselor";
+    if (accuracy >= 30) return "Law Student";
+    if (accuracy >= 20) return "Legal Intern";
+    return "Aspiring Attorney";
+}
+
+
+        // Add objection details modal functionality
+        const objectionModal = document.getElementById('objection-modal');
+        const modalTitle = document.getElementById('modal-title');
+        const modalContent = document.getElementById('modal-content');
+        const closeModal = document.getElementById('close-modal');
+        const objectionCards = document.querySelectorAll('.objection-card');
+
+        // Objection details database with extended information
+        const objectionDetails = {
+            relevance: {
+                title: "Relevance",
+                description: "An objection on the grounds of relevance is raised when a question, evidence, or testimony has no logical connection to the facts in issue or the elements that need to be proven in the case.",
+                legalBasis: "Evidence must be both logically and legally relevant to be admissible. Under Federal Rule of Evidence 401, evidence is relevant if it has any tendency to make a fact more or less probable and the fact is of consequence in determining the action.",
+                examples: [
+                    "<strong>Attorney:</strong> \"What color was your car in high school?\"<br><strong>Objection:</strong> Relevance (in a case about a recent car accident where the witness's high school car isn't at issue)",
+                    "<strong>Attorney:</strong> \"Do you enjoy fishing on weekends?\"<br><strong>Objection:</strong> Relevance (in a workplace discrimination case where the witness's hobbies are unrelated)",
+                    "<strong>Attorney:</strong> \"How many speeding tickets has the defendant received in his lifetime?\"<br><strong>Objection:</strong> Relevance (in a breach of contract case unrelated to driving)"
+                ],
+                whenToUse: "Use this objection when the question has no bearing on proving or disproving any element of the claims or defenses in the case. However, be aware that courts often give attorneys some leeway, especially during cross-examination, to establish context or credibility."
+            },
+            hearsay: {
+                title: "Hearsay",
+                description: "Hearsay is an out-of-court statement offered to prove the truth of the matter asserted in the statement. It's generally inadmissible because the declarant (person who made the statement) isn't subject to cross-examination about their perception, memory, or truthfulness.",
+                legalBasis: "Federal Rule of Evidence 802 prohibits hearsay evidence, though there are numerous exceptions found in Rules 803, 804, and 807. The core concern is the reliability of second-hand information.",
+                examples: [
+                    "<strong>Attorney:</strong> \"What did your neighbor tell you about the accident?\"<br><strong>Objection:</strong> Hearsay (if offered to prove what happened in the accident)",
+                    "<strong>Attorney:</strong> \"According to the sales report your colleague prepared, what were the quarterly figures?\"<br><strong>Objection:</strong> Hearsay (if the colleague isn't testifying)",
+                    "<strong>Attorney:</strong> \"Your friend told you the defendant was angry that day, correct?\"<br><strong>Objection:</strong> Hearsay (if offered to prove the defendant's emotional state)"
+                ],
+                whenToUse: "Use when a witness is being asked to repeat someone else's statement to prove that statement is true. Remember that many exceptions exist, such as excited utterances, present sense impressions, business records, and statements against interest."
+            },
+            leading: {
+                title: "Leading Question",
+                description: "A leading question suggests the desired answer within the question itself. These questions often can be answered with a simple 'yes' or 'no' and typically contain the information the attorney wants the witness to confirm rather than eliciting the witness's own words.",
+                legalBasis: "Federal Rule of Evidence 611(c) prohibits leading questions on direct examination, except as necessary to develop the witness's testimony. They are generally permitted on cross-examination.",
+                examples: [
+                    "<strong>Attorney on Direct:</strong> \"You were scared when you saw the gun, weren't you?\"<br><strong>Objection:</strong> Leading (suggests that the witness was scared)",
+                    "<strong>Attorney on Direct:</strong> \"The light was red when the defendant drove through the intersection, correct?\"<br><strong>Objection:</strong> Leading (provides the witness with the conclusion)",
+                    "<strong>Attorney on Direct:</strong> \"You saw the defendant take the money from the register, didn't you?\"<br><strong>Objection:</strong> Leading (suggests the witness saw a specific action)"
+                ],
+                whenToUse: "Use during direct examination when opposing counsel is suggesting answers to their own witness. Don't object during cross-examination, as leading questions are permitted. Some exceptions during direct examination include preliminary matters, hostile witnesses, or child witnesses."
+            },
+            speculation: {
+                title: "Speculation",
+                description: "An objection to speculation challenges a question that asks the witness to guess, make assumptions, or offer opinions beyond their personal knowledge or expertise. Witnesses should generally testify only to facts they personally perceived.",
+                legalBasis: "Federal Rule of Evidence 602 requires that witnesses have personal knowledge of the matter about which they testify. Rule 701 limits lay opinion testimony to those rationally based on perception and helpful to understanding the testimony.",
+                examples: [
+                    "<strong>Attorney:</strong> \"What do you think the defendant was thinking when he signed the contract?\"<br><strong>Objection:</strong> Calls for speculation (about another person's thoughts)",
+                    "<strong>Attorney:</strong> \"If the safety guard had been installed, would the accident have been prevented?\"<br><strong>Objection:</strong> Calls for speculation (about hypothetical scenario)",
+                    "<strong>Attorney:</strong> \"Why do you think the other driver didn't stop at the sign?\"<br><strong>Objection:</strong> Calls for speculation (about another's motivations)"
+                ],
+                whenToUse: "Use when a question asks the witness to guess about matters outside their direct knowledge, hypothetical scenarios, others' mental states, or makes predictions without proper foundation. Expert witnesses have more latitude to offer opinions based on hypotheticals."
+            },
+            compound: {
+                title: "Compound Question",
+                description: "A compound question improperly combines two or more separate questions into one. This creates ambiguity because it's unclear which part of the compound question the witness is answering, potentially confusing the record and the jury.",
+                legalBasis: "While not explicitly addressed in the Federal Rules of Evidence, compound questions are objectionable under Rule 611(a), which gives courts control over questioning to make procedures effective and protect witnesses from harassment or undue embarrassment.",
+                examples: [
+                    "<strong>Attorney:</strong> \"Did you see the accident and did you call the police?\"<br><strong>Objection:</strong> Compound (combines witnessing with reporting)",
+                    "<strong>Attorney:</strong> \"Was the defendant speeding and did he run the red light?\"<br><strong>Objection:</strong> Compound (combines two different traffic violations)",
+                    "<strong>Attorney:</strong> \"Did you review the contract and did you find it acceptable?\"<br><strong>Objection:</strong> Compound (combines reading with evaluation)"
+                ],
+                whenToUse: "Object when a question contains multiple inquiries joined by 'and' or 'or' that should be addressed separately. This is especially important when the answer might be different for each part of the question."
+            },
+            "assumes-facts": {
+                title: "Assumes Facts Not in Evidence",
+                description: "This objection applies when a question assumes as true a fact that hasn't been established by testimony or admitted into evidence. Such questions can be misleading by slipping in unproven assumptions.",
+                legalBasis: "Federal Rule of Evidence 611(a) gives courts control over questioning to make testimony effective and avoid wasting time. Questions that assume unproven facts violate this principle and can prejudice the jury.",
+                examples: [
+                    "<strong>Attorney:</strong> \"When did you stop falsifying company records?\"<br><strong>Objection:</strong> Assumes facts not in evidence (assumes records were falsified)",
+                    "<strong>Attorney:</strong> \"Why didn't you help the victim after the accident?\"<br><strong>Objection:</strong> Assumes facts not in evidence (assumes the witness was present and didn't help)",
+                    "<strong>Attorney:</strong> \"How many drinks did the defendant have before driving?\"<br><strong>Objection:</strong> Assumes facts not in evidence (if there's no evidence the defendant had any drinks)"
+                ],
+                whenToUse: "Use when a question contains an embedded assumption that hasn't been established. Be alert for questions that begin with 'when,' 'where,' 'how,' or 'why' that might smuggle in unproven facts."
+            },
+            argumentative: {
+                title: "Argumentative",
+                description: "An argumentative question is one that challenges the witness rather than seeks information. These questions often aim to argue with the witness, make speeches to the jury, or force the witness to adopt the attorney's characterizations or conclusions.",
+                legalBasis: "Federal Rule of Evidence 611(a) gives courts control over examining witnesses to make testimony effective and protect witnesses from harassment. Argumentative questions go beyond legitimate examination.",
+                examples: [
+                    "<strong>Attorney:</strong> \"You're just making this up as you go along, aren't you?\"<br><strong>Objection:</strong> Argumentative (attacks witness credibility rather than seeking information)",
+                    "<strong>Attorney:</strong> \"Given your history of lying, why should anyone believe your testimony today?\"<br><strong>Objection:</strong> Argumentative (makes an argument rather than asking a question)",
+                    "<strong>Attorney:</strong> \"You didn't really care about safety protocols, did you?\"<br><strong>Objection:</strong> Argumentative (characterizes witness attitude rather than seeking facts)"
+                ],
+                whenToUse: "Object when opposing counsel is engaging in argument with the witness rather than eliciting testimony, using rhetorical questions, or making speeches disguised as questions. Distinguished from tough but legitimate cross-examination."
+            },
+            narrative: {
+                title: "Calls for Narrative",
+                description: "This objection is used when a question invites the witness to give an extended, open-ended response rather than answering a specific inquiry. Narrative questions may elicit irrelevant, nonresponsive, or inadmissible information.",
+                legalBasis: "While not explicitly addressed in the Federal Rules of Evidence, narrative objections stem from Rule 611(a), which promotes efficient questioning and gives courts authority to exercise control over witness examination.",
+                examples: [
+                    "<strong>Attorney:</strong> \"Tell us everything that happened that day.\"<br><strong>Objection:</strong> Calls for narrative (overly broad time frame)",
+                    "<strong>Attorney:</strong> \"Describe your entire employment history with the company.\"<br><strong>Objection:</strong> Calls for narrative (lacks specificity)",
+                    "<strong>Attorney:</strong> \"What do you recall about the contract negotiations?\"<br><strong>Objection:</strong> Calls for narrative (open-ended about complex process)"
+                ],
+                whenToUse: "Use when a question is so open-ended that it invites a rambling answer, likely containing inadmissible content. However, some narrative testimony may be appropriate to establish background or context, and judges often have discretion to allow limited narrative responses."
+            },
+            "legal-conclusion": {
+                title: "Calls for Legal Conclusion",
+                description: "This objection applies when a question asks a lay witness to offer an opinion on a legal issue or standard that should be determined by the judge or jury. Witnesses should generally testify to facts, not legal interpretations.",
+                legalBasis: "Under Federal Rules of Evidence 701 and 702, lay witnesses may only offer opinions rationally based on their perception, not specialized knowledge including legal conclusions. Only the judge can instruct on the law.",
+                examples: [
+                    "<strong>Attorney:</strong> \"In your opinion, was the defendant negligent?\"<br><strong>Objection:</strong> Calls for a legal conclusion (negligence is a legal standard)",
+                    "<strong>Attorney:</strong> \"Do you believe the contract was legally binding?\"<br><strong>Objection:</strong> Calls for a legal conclusion (validity of contracts is a legal determination)",
+                    "<strong>Attorney:</strong> \"Would you say the officer had probable cause for the arrest?\"<br><strong>Objection:</strong> Calls for a legal conclusion (probable cause is a legal standard)"
+                ],
+                whenToUse: "Use when a question asks a lay witness to apply legal standards or make legal determinations. Expert witnesses may have more leeway to discuss ultimate issues, but even they cannot usurp the role of the judge in interpreting law."
+            },
+            vague: {
+                title: "Vague/Ambiguous",
+                description: "This objection challenges questions that are unclear, imprecise, or could be interpreted in multiple ways. Vague questions create confusion and may lead to unreliable testimony because the witness may not understand what information is being sought.",
+                legalBasis: "Federal Rule of Evidence 611(a) promotes questioning that is clear and effective for ascertaining the truth. Vague or ambiguous questions undermine this goal by creating confusion in the record.",
+                examples: [
+                    "<strong>Attorney:</strong> \"What happened with that thing at that time?\"<br><strong>Objection:</strong> Vague/Ambiguous (lacks specific reference points)",
+                    "<strong>Attorney:</strong> \"Did they act appropriately?\"<br><strong>Objection:</strong> Vague/Ambiguous (undefined standard of 'appropriate')",
+                    "<strong>Attorney:</strong> \"Were you there when it occurred?\"<br><strong>Objection:</strong> Vague/Ambiguous (unclear what 'it' refers to)"
+                ],
+                whenToUse: "Object when a question contains undefined terms, unclear referents (like 'it' or 'they' without clear antecedents), or could be reasonably interpreted in multiple ways. The goal is to ensure that both the witness and fact-finder clearly understand what is being asked."
+            }
+        };
+
+        // Add click event listeners to objection cards
+        objectionCards.forEach(card => {
+            card.addEventListener('click', () => {
+                const objectionType = card.dataset.objection;
+                const details = objectionDetails[objectionType];
+                
+                if (details) {
+                    // Populate modal with objection details
+                    modalTitle.textContent = details.title;
+                    
+                    let contentHTML = `
+                        <div class="text-gray-700 dark:text-gray-300">
+                            <p class="mb-4">${details.description}</p>
+                            
+                            <h3 class="text-lg font-semibold text-primary mt-6 mb-2">Legal Basis</h3>
+                            <p class="mb-4">${details.legalBasis}</p>
+                            
+                            <h3 class="text-lg font-semibold text-primary mt-6 mb-2">Examples</h3>
+                            <div class="bg-gray-50 dark:bg-gray-700 rounded-lg p-4 mb-4">
+                                ${details.examples.map(example => `<div class="mb-3">${example}</div>`).join('')}
+                            </div>
+                            
+                            <h3 class="text-lg font-semibold text-primary mt-6 mb-2">When to Use</h3>
+                            <p>${details.whenToUse}</p>
+                        </div>
+                    `;
+                    
+                    modalContent.innerHTML = contentHTML;
+                    
+                    // Show modal
+                    objectionModal.classList.remove('hidden');
+                }
+            });
+        });
+
+        // Close modal when clicking close button
+        closeModal.addEventListener('click', () => {
+            objectionModal.classList.add('hidden');
+        });
+
+        // Close modal when clicking outside content area
+        objectionModal.addEventListener('click', (event) => {
+            if (event.target === objectionModal) {
+                objectionModal.classList.add('hidden');
+            }
+        });
+
+        // Close modal with escape key
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape' && !objectionModal.classList.contains('hidden')) {
+                objectionModal.classList.add('hidden');
+            }
+        });
+
+    </script>
+
+
+</body></html>
