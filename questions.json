@@ -183,19 +183,19 @@
           {
             "context": "Direct Examination of Witness",
             "question": "Can you tell us everything that happened from the beginning of the day until now?",
-            "correctObjections": ["calls for narrative"],
+            "correctObjections": ["narrative"],
             "explanation": "This question asks for a broad, open-ended answer rather than specific testimony."
           },
           {
             "context": "Direct Examination of Witness",
             "question": "Tell the jury the entire conversation you had with the defendant.",
-            "correctObjections": ["calls for narrative"],
+            "correctObjections": ["narrative"],
             "explanation": "This invites an extended, unstructured response instead of a clear answer."
           },
           {
             "context": "Direct Examination of Witness",
             "question": "What happened in the store before, during, and after the robbery?",
-            "correctObjections": ["calls for narrative"],
+            "correctObjections": ["narrative"],
             "explanation": "This question calls for a lengthy and open-ended answer rather than specific testimony."
           },
           {
@@ -355,7 +355,7 @@
           {
             "context": "Direct Examination of Witness",
             "question": "Can you describe everything that happened between the start of the party and the moment the police arrived?",
-            "correctObjections": ["calls for narrative"],
+            "correctObjections": ["narrative"],
             "explanation": "This invites a broad, narrative response rather than a focused, relevant answer."
           },
           {
@@ -397,7 +397,7 @@
           {
             "context": "Direct Examination of Witness",
             "question": "Tell us everything you remember about that night.",
-            "correctObjections": ["calls for narrative"],
+            "correctObjections": ["narrative"],
             "explanation": "This question is too open-ended and invites an extended, unfocused response."
           },
           {
@@ -542,7 +542,7 @@
               {
                 "context": "Direct Examination of Forensic Accountant",
                 "question": "Can you explain in full detail how the fraudulent transactions were processed, including every step the defendant took to conceal them from auditors?",
-                "correctObjections": ["calls for narrative"],
+                "correctObjections": ["narrative"],
                 "explanation": "This question invites an unnecessarily long, unstructured response rather than targeted information."
               },
               {
@@ -574,7 +574,7 @@
                             "context": "Direct Examination of Detective Johnson (Prosecution) - Initial Scene Description",
                             "context_detail": "Detective Johnson is the lead investigator.  The prosecution begins by establishing the crime scene.",
                             "question": "Detective Johnson, can you please describe for the court your initial observations upon arriving at the victim's apartment on the morning of July 16th?",
-                            "correctObjections": ["calls for narrative", "vague"],
+                            "correctObjections": ["narrative", "vague"],
                             "explanation": "Still broad, invites unfocused narrative and lacks specificity."
                           },
                           {
@@ -749,7 +749,7 @@
                             "context": "Direct Examination of Ms. Sarah Miller, Eyewitness (Prosecution) - Description of the Person",
                             "context_detail": "Prosecution elicits a description of the person observed.",
                             "question": "Can you describe for the court the individual you observed at that location?",
-                            "correctObjections": ["calls for narrative"],
+                            "correctObjections": ["narrative"],
                             "explanation": "Slightly broad 'describe' could elicit overly long narrative, but generally acceptable for initial description."
                           },
                           {
@@ -826,7 +826,7 @@
                             "context": "Direct Examination of Mr. David Smith, Defendant (Defense) - Relationship with Victim (Open-ended)",
                             "context_detail": "Defense explores the defendant's relationship with the victim.",
                             "question": "Mr. Smith, can you tell the court about your relationship with the deceased, [Victim's Name]?",
-                            "correctObjections": ["calls for narrative", "vague"],
+                            "correctObjections": ["narrative", "vague"],
                             "explanation": "Broad 'tell the court about your relationship' invites narrative and lacks specific focus. Vague - what aspects are relevant?"
                           },
                           {
