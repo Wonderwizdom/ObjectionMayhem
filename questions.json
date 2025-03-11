@@ -460,6 +460,15 @@
 
 
         
+
+
+
+
+
+
+
+
+
             "hard": [
               {
                 "context": "Direct Examination of Expert Witness",
@@ -565,422 +574,742 @@
               }
             ],
             
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            
             
                 "trials": [
                     {
-                        "name": "The Smith Murder Trial",
-                        "questions": [
-                          {
-                            "context": "Direct Examination of Detective Johnson (Prosecution) - Initial Scene Description",
-                            "context_detail": "Detective Johnson is the lead investigator.  The prosecution begins by establishing the crime scene.",
-                            "question": "Detective Johnson, can you please describe for the court your initial observations upon arriving at the victim's apartment on the morning of July 16th?",
-                            "correctObjections": ["narrative", "vague"],
-                            "explanation": "Still broad, invites unfocused narrative and lacks specificity."
-                          },
-                          {
-                            "context": "Direct Examination of Detective Johnson (Prosecution) - Focus on Entry Point",
-                            "context_detail": "Building upon the general scene, the prosecutor focuses on a key element: entry.",
-                            "question": "You mentioned the front door, Detective.  Was there anything about the condition of the front door that stood out to you during your initial inspection?",
-                            "correctObjections": ["no-objection"],
-                            "explanation": "More focused, directs the detective to specific details about the front door's condition."
-                          },
-                          {
-                            "context": "Direct Examination of Detective Johnson (Prosecution) - Leading to Forced Entry?",
-                            "context_detail": "Prosecution now tries to subtly suggest 'forced entry' through the questioning.",
-                            "question": "Detective, did you observe any signs of forced entry anywhere at the apartment?",
-                            "correctObjections": ["leading"],
-                            "explanation": "Slightly leading, suggests the answer 'yes' to forced entry. Better phrased as 'What did you observe regarding possible entry points?'"
-                          },
-                          {
-                            "context": "Direct Examination of Detective Johnson (Prosecution) - Focusing on a Broken Window",
-                            "context_detail": "Having established the detective's observations, the prosecutor now directs attention to specific evidence.",
-                            "question": "Moving on, Detective Johnson, you collected evidence at the scene.  Did that evidence include any fragments of glass?",
-                            "correctObjections": ["no-objection"],
-                            "explanation": "Proper transition, and focuses on a specific piece of evidence."
-                          },
-                          {
-                            "context": "Direct Examination of Detective Johnson (Prosecution) - Connecting Glass to Window & Forced Entry",
-                            "context_detail": "Prosecution attempts to link the glass to the idea of forced entry.",
-                            "question": "And where were these glass fragments located in relation to the broken window you previously described?",
-                            "correctObjections": ["no-objection"],
-                            "explanation": "Logically follows, connects evidence to scene description."
-                          },
-                          {
-                            "context": "Moving on from Direct Examination of Detective Johnson (Prosecution) - Scene Description",
-                            "context_detail": "Prosecution signals a shift in questioning after establishing the scene.",
-                            "question": "**Moving on, Detective.**  During your investigation, did you interview a Mrs. Davis?",
-                            "correctObjections": ["no-objection"],
-                            "explanation": "Explicitly signals a shift and new topic of questioning (witness interviews)."
-                          },
-                          {
-                            "context": "Cross-Examination of Detective Johnson (Defense) - Challenging Detective's Narrative",
-                            "context_detail": "Defense begins cross-examination, aiming to undermine the prosecution's narrative.",
-                            "question": "Detective Johnson, you've painted a picture of 'forced entry,' but isn't it true the front door lock was functioning normally?",
-                            "correctObjections": ["argumentative", "mischaracterizes evidence"],
-                            "explanation": "Argumentative; asserts 'forced entry' characterization and challenges door lock function directly, potentially misrepresenting prior testimony."
-                          },
-                          {
-                            "context": "Cross-Examination of Detective Johnson (Defense) -  Focusing on Alternative Entry Points",
-                            "context_detail": "Defense shifts focus to alternative possibilities to counter 'forced entry'.",
-                            "question": "And regarding this 'broken window,' Detective, wasn't it on the *ground floor* and easily accessible from the street?",
-                            "correctObjections": ["argumentative"],
-                            "explanation": "Argumentative; asserts accessibility instead of asking for descriptive facts about window location."
-                          },
-                          {
-                            "context": "Cross-Examination of Detective Johnson (Defense) -  Implying Other Possibilities (Open Back Entrance)",
-                            "context_detail": "Defense broadens the scope to suggest other unsecured access points.",
-                            "question": "Detective, isn't it possible that anyone could have entered through the back entrance of the building, which you described as often being left unlocked?",
-                            "correctObjections": ["speculation", "assumes facts not in evidence"],
-                            "explanation": "Speculation; 'possible' is speculative. Assumes back entrance 'often unlocked' without prior foundation."
-                          },
-                          {
-                            "context": "Moving on from Cross-Examination of Detective Johnson (Defense) - Entry Points",
-                            "context_detail": "Defense transitions from challenging entry points to a new area of cross-examination.",
-                            "question": "**Moving on, Detective.**  Regarding the glass fragments, you mentioned collecting them. Were those fragments ever definitively matched to the broken window in the victim's apartment?",
-                            "correctObjections": ["vague"],
-                            "explanation": "Vague - 'definitively matched' is unclear standard of matching being asked about."
-                          },
-                          {
-                            "context": "Redirect Examination of Detective Johnson (Prosecution) - Re-establishing Forced Entry Narrative",
-                            "context_detail": "Prosecution redirects to repair damage done by cross-examination and reinforce 'forced entry'.",
-                            "question": "Detective Johnson, despite the defense's questions about other possible entries, based on your professional assessment of the scene as a whole, was the evidence *consistent with* forced entry through the front door?",
-                            "correctObjections": ["leading", "speculation"],
-                            "explanation": "Leading; suggests 'yes' to forced entry.  'Consistent with' is still somewhat speculative for expert opinion on ultimate issue."
-                          },
-                          {
-                            "context": "Moving on from Detective Johnson",
-                            "context_detail": "Trial moves on to a new witness.",
-                            "question": "**Moving on from Detective Johnson, Your Honor.** The prosecution calls Dr. Emily Carter to the stand.",
-                            "correctObjections": ["no-objection"],
-                            "explanation": "Standard trial procedure."
-                          },
-                          {
-                            "context": "Direct Examination of Dr. Emily Carter, Forensic Pathologist (Prosecution) - Qualifications",
-                            "context_detail": "Prosecution begins direct examination of the medical expert by establishing credentials.",
-                            "question": "Dr. Carter, for the court, can you briefly summarize your professional qualifications and experience in forensic pathology?",
-                            "correctObjections": ["no-objection"],
-                            "explanation": "Standard procedure for qualifying an expert."
-                          },
-                          {
-                            "context": "Direct Examination of Dr. Emily Carter, Forensic Pathologist (Prosecution) - Cause of Death",
-                            "context_detail": "After qualifications, prosecution moves to the core of the expert's testimony: cause of death.",
-                            "question": "Dr. Carter, based on your autopsy of the body identified as [Victim's Name], what were your findings regarding the cause of death?",
-                            "correctObjections": ["no-objection"],
-                            "explanation": "Direct and relevant question within expert's scope."
-                          },
-                          {
-                            "context": "Direct Examination of Dr. Emily Carter, Forensic Pathologist (Prosecution) - Weapon Type (General)",
-                            "context_detail": "Prosecution explores details of the injuries, starting with the general type of weapon.",
-                            "question": "Doctor, were you able to determine the *type* of instrument that could have caused these injuries?",
-                            "correctObjections": ["no-objection"],
-                            "explanation": "Appropriately general for initial exploration of weapon type."
-                          },
-                          {
-                            "context": "Direct Examination of Dr. Emily Carter, Forensic Pathologist (Prosecution) - Weapon Type (Specific - Kitchen Knife)",
-                            "context_detail": "Prosecution now attempts to narrow down the weapon type to a specific example.",
-                            "question": "In your expert opinion, could the wounds be consistent with a standard kitchen knife?",
-                            "correctObjections": ["speculation", "vague", "lacks foundation"],
-                            "explanation": "Still somewhat speculative and vague. Lacks specific foundation connecting wounds to a *specific* kitchen knife type."
-                          },
-                          {
-                            "context": "Moving on from Direct Examination of Dr. Carter - Weapon Type",
-                            "context_detail": "Prosecution transitions away from weapon specifics.",
-                            "question": "**Moving on, Doctor.**  Did your examination reveal any evidence of defensive wounds on the victim's body?",
-                            "correctObjections": ["no-objection"],
-                            "explanation": "Signals shift to new area: defensive wounds."
-                          },
-                           {
-                            "context": "Cross-Examination of Dr. Emily Carter (Defense) - Challenging Time of Death Estimate",
-                            "context_detail": "Defense cross-examines the pathologist, focusing on weaknesses in time of death estimation.",
-                            "question": "Dr. Carter, you provided an estimated time of death range. Isn't it correct that time of death estimations are not exact and have a degree of uncertainty?",
-                            "correctObjections": ["argumentative"],
-                            "explanation": "Argumentative; asserts uncertainty instead of asking about factors *affecting* certainty in *this case*."
-                          },
-                          {
-                            "context": "Cross-Examination of Dr. Emily Carter (Defense) -  Exploring Alternative Causes of Blunt Force Trauma",
-                            "context_detail": "Defense questions the assumed cause of blunt force trauma.",
-                            "question": "Regarding the blunt force trauma you described, could such trauma *possibly* be caused by a fall, rather than a weapon?",
-                            "correctObjections": ["speculation", "vague"],
-                            "explanation": "Speculative; 'possibly' invites speculation. Vague; 'fall' is overly broad."
-                          },
-                          {
-                            "context": "Cross-Examination of Dr. Emily Carter (Defense) - Focusing on Lack of Specific Weapon Identification",
-                            "context_detail": "Defense highlights the pathologist's inability to definitively identify a weapon.",
-                            "question": "Doctor, you testified the wounds *could* be consistent with a kitchen knife, but you cannot say with certainty that a kitchen knife *was* the weapon, correct?",
-                            "correctObjections": ["argumentative", "mischaracterizes evidence"],
-                            "explanation": "Argumentative; asserts a conclusion about certainty.  Potentially mischaracterizes the nuance of 'consistent with' testimony."
-                          },
-                          {
-                            "context": "Moving on from Cross-Examination of Dr. Carter - Weapon",
-                            "context_detail": "Defense transitions to a new topic in cross-examination.",
-                            "question": "**Moving on, Doctor.** You mentioned 'defensive wounds.'  Are defensive wounds always indicative of an attack?",
-                            "correctObjections": ["vague"],
-                            "explanation": "Vague; 'always indicative of an attack' is too broad and lacks context - what alternative is implied?"
-                          },
-                          {
-                            "context": "Redirect Examination of Dr. Emily Carter (Prosecution) - Clarifying Defensive Wounds",
-                            "context_detail": "Prosecution redirects to clarify the meaning of 'defensive wounds' after defense questioning.",
-                            "question": "Dr. Carter, in response to defense counsel's question, can you explain to the jury what the typical characteristics of defensive wounds are, and why they are described as 'defensive'?",
-                            "correctObjections": ["no-objection"],
-                            "explanation": "Proper redirect; clarifies the nature and significance of defensive wounds in context of defense questions."
-                          },
-                          {
-                            "context": "Moving on from Dr. Carter",
-                            "context_detail": "Trial proceeds to the next witness.",
-                            "question": "**Thank you, Dr. Carter.  No further questions.**  The prosecution calls Ms. Sarah Miller to the stand.",
-                            "correctObjections": ["no-objection"],
-                            "explanation": "Standard trial transition."
-                          },
-                          {
-                            "context": "Direct Examination of Ms. Sarah Miller, Eyewitness (Prosecution) - Introduction and Location",
-                            "context_detail": "Prosecution introduces the eyewitness and establishes her location on the night in question.",
-                            "question": "Ms. Miller, please state your name and address for the record.  And Ms. Miller, on the evening of July 15th, where were you at approximately 10 PM?",
-                            "correctObjections": ["no-objection"],
-                            "explanation": "Standard introductory and scene-setting questions for eyewitness testimony."
-                          },
-                          {
-                            "context": "Direct Examination of Ms. Sarah Miller, Eyewitness (Prosecution) - Observation of a Person",
-                            "context_detail": "Prosecution moves to the core of the eyewitness testimony - observing a person near the victim's apartment.",
-                            "question": "While you were there, Ms. Miller, did you happen to observe anyone near the entrance to the apartment building at [Victim's Address]?",
-                            "correctObjections": ["no-objection"],
-                            "explanation": "Direct question about observation, sets stage for identification."
-                          },
-                          {
-                            "context": "Direct Examination of Ms. Sarah Miller, Eyewitness (Prosecution) - Description of the Person",
-                            "context_detail": "Prosecution elicits a description of the person observed.",
-                            "question": "Can you describe for the court the individual you observed at that location?",
-                            "correctObjections": ["narrative"],
-                            "explanation": "Slightly broad 'describe' could elicit overly long narrative, but generally acceptable for initial description."
-                          },
-                          {
-                            "context": "Direct Examination of Ms. Sarah Miller, Eyewitness (Prosecution) - Identifying the Defendant (Leading)",
-                            "context_detail": "Prosecution attempts to directly link the observed person to the defendant.",
-                            "question": "Ms. Miller, is the person you saw in the courtroom today?",
-                            "correctObjections": ["leading"],
-                            "explanation": "Leading because it suggests the person is present and prompts a courtroom identification directed at the defendant."
-                          },
-                           {
-                            "context": "Moving on from Direct Examination of Ms. Miller - Identification",
-                            "context_detail": "Prosecution transitions away from direct identification attempt.",
-                            "question": "**Moving on, Ms. Miller.**  You mentioned the individual was wearing a hat. Could you describe the hat in more detail?",
-                            "correctObjections": ["vague"],
-                            "explanation": "Vague - 'more detail' is unclear what aspect of the hat description is needed."
-                          },
-                          {
-                            "context": "Cross-Examination of Ms. Sarah Miller (Defense) - Distance and Lighting",
-                            "context_detail": "Defense begins cross-examination, focusing on factors that could impair eyewitness accuracy.",
-                            "question": "Ms. Miller, isn't it true that you were observing this person from approximately half a block away?",
-                            "correctObjections": ["argumentative"],
-                            "explanation": "Argumentative; asserts distance as fact rather than asking for witness's estimate of distance."
-                          },
-                          {
-                            "context": "Cross-Examination of Ms. Sarah Miller (Defense) - Darkness",
-                            "context_detail": "Defense continues to challenge eyewitness conditions by focusing on lighting.",
-                            "question": "And it was nighttime, correct? It was dark out, wasn't it?",
-                            "correctObjections": ["compound"],
-                            "explanation": "Compound; asks two questions (nighttime, darkness) in one."
-                          },
-                          {
-                            "context": "Cross-Examination of Ms. Sarah Miller (Defense) -  Duration of Observation",
-                            "context_detail": "Defense questions the length of time the witness had to observe the person.",
-                            "question": "Ms. Miller, how long did you actually observe this individual - was it just a few seconds?",
-                            "correctObjections": ["compound", "argumentative"],
-                            "explanation": "Compound; 'how long' and 'just a few seconds' are separate questions/assertions. Argumentative; 'just a few seconds' suggests brevity and undermines reliability."
-                          },
-                          {
-                            "context": "Moving on from Cross-Examination of Ms. Miller - Observation Conditions",
-                            "context_detail": "Defense moves to a new area of cross-examination after questioning observation conditions.",
-                            "question": "**Moving on, Ms. Miller.**  In your initial statement to the police, did you mention anything about the person wearing a hat?",
-                            "correctObjections": ["no-objection"],
-                            "explanation": "Proper question about prior consistent/inconsistent statements."
-                          },
-                          {
-                            "context": "Redirect Examination of Ms. Sarah Miller (Prosecution) - Reaffirming Confidence",
-                            "context_detail": "Prosecution redirects to bolster the eyewitness's testimony after defense challenges.",
-                            "question": "Ms. Miller, despite the distance and nighttime conditions, are you still confident in your description of the clothing the person was wearing?",
-                            "correctObjections": ["leading"],
-                            "explanation": "Leading; pushes the witness to reaffirm confidence despite weaknesses highlighted by defense."
-                          },
-                          {
-                            "context": "Moving on from Ms. Miller",
-                            "context_detail": "Trial proceeds to the defendant's testimony.",
-                            "question": "**No further questions, Ms. Miller. Thank you.** The defense calls Mr. David Smith to the stand.",
-                            "correctObjections": ["no-objection"],
-                            "explanation": "Standard trial transition."
-                          },
-                          {
-                            "context": "Direct Examination of Mr. David Smith, Defendant (Defense) - Alibi",
-                            "context_detail": "Defense begins direct examination of the defendant, starting with alibi.",
-                            "question": "Mr. Smith, for the court, where were you on the evening of July 15th, specifically between the hours of 9 PM and 11 PM?",
-                            "correctObjections": ["no-objection"],
-                            "explanation": "Proper alibi question, focused on relevant timeframe."
-                          },
-                          {
-                            "context": "Direct Examination of Mr. David Smith, Defendant (Defense) -  Denying Presence at Scene",
-                            "context_detail": "Defense directly addresses the defendant's presence at the crime scene.",
-                            "question": "Were you at any time that evening at or near [Victim's Address]?",
-                            "correctObjections": ["leading"],
-                            "explanation": "Leading; suggests 'no' to presence at the scene."
-                          },
-                          {
-                            "context": "Direct Examination of Mr. David Smith, Defendant (Defense) - Relationship with Victim (Open-ended)",
-                            "context_detail": "Defense explores the defendant's relationship with the victim.",
-                            "question": "Mr. Smith, can you tell the court about your relationship with the deceased, [Victim's Name]?",
-                            "correctObjections": ["narrative", "vague"],
-                            "explanation": "Broad 'tell the court about your relationship' invites narrative and lacks specific focus. Vague - what aspects are relevant?"
-                          },
-                          {
-                            "context": "Direct Examination of Mr. David Smith, Defendant (Defense) - Denying Intent to Harm",
-                            "context_detail": "Defense seeks to negate intent to harm, a key element in many criminal cases.",
-                            "question": "Mr. Smith, did you ever intend to cause harm to [Victim's Name]?",
-                            "correctObjections": ["leading"],
-                            "explanation": "Leading; suggests 'no' to intent to harm."
-                          },
-                          {
-                            "context": "Moving on from Direct Examination of Defendant - Intent",
-                            "context_detail": "Defense transitions from intent to broader character evidence (improperly).",
-                            "question": "**Moving on, Mr. Smith.**  Would you describe yourself as a violent person?",
-                            "correctObjections": ["improper character evidence"],
-                            "explanation": "Improper character evidence to show conformity therewith."
-                          },
-                          {
-                            "context": "Cross-Examination of Mr. David Smith (Prosecution) - Challenging Alibi (Corroboration)",
-                            "context_detail": "Prosecution cross-examines the defendant, attacking his alibi.",
-                            "question": "Mr. Smith, you stated you were home alone all evening.  Did anyone see you there at any point during that time?",
-                            "correctObjections": ["hearsay"],
-                            "explanation": "Calls for hearsay if it implies he should bring another witness to corroborate his alibi."
-                          },
-                          {
-                            "context": "Cross-Examination of Mr. David Smith (Prosecution) - Attacking Credibility (Convenience)",
-                            "context_detail": "Prosecution directly attacks the credibility and believability of the defendant's alibi.",
-                            "question": "Isn't it convenient for you to claim you were home alone, with no one to verify your story, at the very time of the murder?",
-                            "correctObjections": ["argumentative", "badgering witness"],
-                            "explanation": "Argumentative and badgering; directly attacks credibility and implies fabrication of alibi."
-                          },
-                          {
-                            "context": "Cross-Examination of Mr. David Smith (Prosecution) -  Improper Character/Prior Arrests",
-                            "context_detail": "Prosecution attempts to introduce improper character evidence through prior arrest record.",
-                            "question": "Mr. Smith, have you ever been arrested for assault or any violent crime?",
-                            "correctObjections": ["relevance", "improper character evidence"],
-                            "explanation": "Irrelevant to guilt in *this* case without specific exception. Improper character evidence suggesting propensity based on prior arrests alone."
-                          },
-                          {
-                            "context": "Moving on from Cross-Examination of Defendant - Prior Arrests",
-                            "context_detail": "Prosecution moves away from improper character evidence.",
-                            "question": "**Moving on, Mr. Smith.**  You mentioned you were home. Did you make or receive any phone calls that evening?",
-                            "correctObjections": ["no-objection"],
-                            "explanation": "Legitimate follow-up to alibi, exploring details of his evening."
-                          },
-                          {
-                            "context": "Re-direct Examination of Mr. David Smith (Defense) - Clarifying Phone Contact",
-                            "context_detail": "Defense redirects to allow the defendant to elaborate on phone activity to strengthen alibi.",
-                            "question": "Mr. Smith, regarding those phone calls, were any of those calls to individuals who could confirm you were at home that evening?",
-                            "correctObjections": ["hearsay"],
-                            "explanation": "Still skirts hearsay rules if seeking to introduce *another person's* potential corroboration through *his* testimony.  Better to ask about call content, not potential witness confirmation."
-                          },
-                          {
-                            "context": "Re-cross Examination of Mr. David Smith (Prosecution) -  Suggesting Evidence Tampering (Deleted Calls)",
-                            "context_detail": "Prosecution re-crosses, attempting to undermine the phone call alibi by suggesting evidence tampering.",
-                            "question": "Mr. Smith, did you by any chance delete any phone calls or messages from your phone from the evening of July 15th or the morning of July 16th?",
-                            "correctObjections": ["speculation", "assumes facts not in evidence"],
-                            "explanation": "Speculation; 'by any chance delete' is speculative. Assumes deletion happened without any basis."
-                          },
-                            {
-                            "context": "Final Trial Transition",
-                            "context_detail": "End of witness testimony.",
-                            "question": "**No further questions, Mr. Smith. Thank you, Your Honor, the defense rests.**",
-                            "correctObjections": ["no-objection"],
-                            "explanation": "Standard trial procedure."
-                          }
-                        ]
-                      },
+    "name": "The Crown v. Mary Smith",
+    "statementOfFacts": "<p>Mary Smith is on trial for the murder of her husband, John Smith.  John was found dead in their apartment from a single gunshot wound to the chest. The prosecution alleges that Mary intentionally shot John after a heated argument stemming from financial difficulties and marital strife.  They point to a history of domestic disputes and a life insurance policy on John naming Mary as the sole beneficiary.  The defense argues that John was deeply depressed and struggling financially, suggesting suicide as a strong possibility, or alternatively, accidental death during a struggle.  No eyewitnesses to the shooting exist, and the case hinges on circumstantial evidence, expert testimony, and the credibility of witnesses.</p>",
+    "witnesses": [
+        {
+            "name": "Detective Miller",
+            "description": "Lead Detective for the City Police Department, primary investigator on the John Smith homicide",
+            "side": "prosecution",
+            "questions": [
+                {
+                    "context": "Direct Examination by Prosecutor",
+                    "question": "Detective Miller, can you describe the scene as you found it upon arriving at the Smith residence on the night of John Smith's death?",
+                    "correctObjections": ["no-objection"],
+                    "explanation": "This is a foundational question establishing the detective's firsthand observations of the crime scene. It is relevant as it sets the stage for the evidence and is not objectionable."
+                },
+                {
+                    "context": "Direct Examination by Prosecutor",
+                    "question": "Did you recover a weapon at the scene, and if so, can you describe its location relative to Mr. Smith's body?",
+                    "correctObjections": ["no-objection"],
+                    "explanation": "This question seeks relevant factual evidence about a key piece of potential evidence - the weapon. Its location is directly relevant to the circumstances of the death."
+                },
+                {
+                    "context": "Direct Examination by Prosecutor",
+                    "question": "Mrs. Johnson, the neighbor, told me that she heard shouting coming from the Smith apartment that night. Did she mention anything else?",
+                    "correctObjections": ["hearsay"],
+                    "explanation": "This question is clearly asking for hearsay. It seeks to introduce an out-of-court statement (Mrs. Johnson's statement to Detective Miller) to prove the truth of the matter asserted (that there was shouting). Unless an exception to the hearsay rule applies (like 'excited utterance' and further context is needed), this is objectionable. The detective's *personal* observations are admissible, but repeating what someone *else* said is generally not."
+                },
+                {
+                    "context": "Direct Examination by Prosecutor",
+                    "question": "Detective, in your extensive experience with homicide cases, does this case strike you as a murder or a suicide?",
+                    "correctObjections": ["speculation", "legal-conclusion"],
+                    "explanation": "This question is objectionable on multiple grounds. Firstly, it asks for *speculation*. While Detective Miller is experienced, forming an opinion on 'murder vs. suicide' based solely on scene observation is speculative without further evidence. Secondly, it verges on asking for a *legal conclusion* - whether a crime (murder) occurred.  Ultimately, it is for the jury to decide based on all evidence presented, not for the detective to offer a conclusive opinion on the legal classification of the death."
+                },
+                {
+                    "context": "Cross-Examination by Defense Attorney",
+                    "question": "Detective Miller, isn't it true that the apartment door was unlocked when you arrived, suggesting the possibility of forced entry by an unknown assailant?",
+                    "correctObjections": ["no-objection"],
+                    "explanation": "This is proper cross-examination. It tests the detective's observations and seeks to introduce facts that support an alternative theory (third-party involvement) to challenge the prosecution's narrative. It’s relevant to the circumstances of the death."
+                },
+                {
+                    "context": "Cross-Examination by Defense Attorney",
+                    "question": "You focused your entire investigation solely on Mrs. Smith from the moment you arrived, didn't you?",
+                    "correctObjections": ["argumentative"],
+                    "explanation": "This question is *argumentative*. It doesn't seek factual information but instead accuses the detective of bias and tunnel vision in their investigation. It challenges their methodology rather than eliciting facts, making it argumentative in tone and intent."
+                }
+            ]
+        },
+        {
+            "name": "Dr. Emily Carter",
+            "description": "Medical Examiner for the City, performed the autopsy on John Smith",
+            "side": "prosecution",
+            "questions": [
+                {
+                    "context": "Direct Examination by Prosecutor",
+                    "question": "Dr. Carter, are you board-certified in forensic pathology?",
+                    "correctObjections": ["no-objection"],
+                    "explanation": "This is a standard foundational question to establish the witness's expertise and credentials as a medical expert.  Certification in forensic pathology is directly relevant to their ability to testify about cause of death in a forensic context."
+                },
+                {
+                    "context": "Direct Examination by Prosecutor",
+                    "question": "Based on your autopsy, what was the cause of death for John Smith?",
+                    "correctObjections": ["no-objection"],
+                    "explanation": "This is the core question for the medical examiner. It directly seeks their expert opinion on the cause of death, based on their examination and within their area of expertise.  It's highly relevant to the case."
+                },
+                {
+                    "context": "Direct Examination by Prosecutor",
+                    "question": "Could you describe the trajectory of the bullet through Mr. Smith's body?",
+                    "correctObjections": ["no-objection"],
+                    "explanation": "This question seeks detailed factual information from the autopsy regarding the bullet's path. Bullet trajectory is highly relevant in determining the circumstances of the shooting (e.g., direction, angle), and is within the medical examiner's expert analysis."
+                },
+                {
+                    "context": "Direct Examination by Prosecutor",
+                    "question": "Assuming the gun was held by Mr. Smith himself, could he have physically pulled the trigger given the angle and direction of the wound?",
+                    "correctObjections": ["speculation", "vague/ambiguous"],
+                    "explanation": "This question is problematic. It asks for *speculation* as it's asking the medical examiner to make assumptions about physical capabilities and actions *not directly observed* or necessarily within their core expertise (biomechanics beyond wound analysis).  It's also *vague/ambiguous* -  'physically pulled the trigger' is broad.  Is it asking about reach, dexterity, or physical strength? Needs to be much more specific and tied to their actual findings from the autopsy."
+                },
+                {
+                    "context": "Cross-Examination by Defense Attorney",
+                    "question": "Dr. Carter, you can't definitively rule out suicide in this case, can you?",
+                    "correctObjections": ["no-objection"],
+                    "explanation": "This is proper cross-examination. It challenges the certainty of the medical examiner's conclusions and explores alternative possibilities (suicide vs. homicide). It is designed to highlight any ambiguities or limitations in the medical findings and is relevant to the defense's argument."
+                },
+                {
+                    "context": "Cross-Examination by Defense Attorney",
+                    "question": "Isn't it true that you rushed the autopsy because you had a tee time at the golf course?",
+                    "correctObjections": ["argumentative", "relevance"],
+                    "explanation": "This question is *argumentative* because it attacks the witness's character and insinuates professional negligence without factual basis in the question itself. It's also arguably *irrelevant* – the *speed* of the autopsy (unless demonstrably negligent and affecting results) is less important than the *findings* of the autopsy itself. The focus should be on the scientific findings and methodology, not the witness's personal schedule."
+                }
+            ]
+        },
+        {
+            "name": "Sarah Johnson",
+            "description": "Neighbor of the Smiths, living in the apartment next door",
+            "side": "prosecution",
+            "questions": [
+                {
+                    "context": "Direct Examination by Prosecutor",
+                    "question": "Ms. Johnson, how long have you lived next door to John and Mary Smith?",
+                    "correctObjections": ["no-objection"],
+                    "explanation": "This is a foundational question establishing the witness's proximity and potential for observation. It's relevant to context and background."
+                },
+                {
+                    "context": "Direct Examination by Prosecutor",
+                    "question": "On the evening of [Date of Death], did you hear anything unusual coming from the Smith apartment?",
+                    "correctObjections": ["no-objection"],
+                    "explanation": "This question is relevant as it directly seeks sensory information (hearing) that could be pertinent to events surrounding the death. It's not leading, and seeks factual observation."
+                },
+                {
+                    "context": "Direct Examination by Prosecutor",
+                    "question": "Can you describe the tone of the voices you heard - were they happy, or something else?",
+                    "correctObjections": ["leading"],
+                    "explanation": "This question is *leading*. By suggesting 'happy or something else?', it prompts the witness towards a specific type of answer (not happy, implying negative tone/argument). Leading questions are generally objectionable on direct examination as they suggest the desired answer."
+                },
+                {
+                    "context": "Direct Examination by Prosecutor",
+                    "question": "What exactly did you hear them say, word for word?",
+                    "correctObjections": ["calls-for-narrative"],
+                    "explanation": "This question *calls for a narrative*. It's overly broad and invites the witness to recount an extended and potentially unfocused account of everything they might have heard. It's not seeking specific facts, but an open-ended recitation, which is generally discouraged as it can be inefficient and rambling."
+                },
+                {
+                    "context": "Cross-Examination by Defense Attorney",
+                    "question": "Ms. Johnson, you mentioned you were watching a very loud action movie that night, correct?",
+                    "correctObjections": ["assumes-facts-not-in-evidence"],
+                    "explanation": "This question *assumes facts not in evidence*.  There's no indication in the prior testimony (or context provided) that Ms. Johnson *mentioned* watching a loud movie.  Unless this fact was established earlier through proper questioning, this question improperly injects a new, unproven fact into the cross-examination."
+                },
+                {
+                    "context": "Cross-Examination by Defense Attorney",
+                    "question": "So, isn't it possible you misheard or misinterpreted what you thought you heard from the Smiths’ apartment?",
+                    "correctObjections": ["no-objection"],
+                    "explanation": "This is proper cross-examination. It directly challenges the reliability of the witness's perception and memory, which are valid points to explore in cross-examination. It's relevant to the weight a jury should give her testimony."
+                }
+            ]
+        },
+        {
+            "name": "David Lee",
+            "description": "Long-time friend of the deceased, John Smith",
+            "side": "defense",
+            "questions": [
+                {
+                    "context": "Direct Examination by Defense Attorney",
+                    "question": "Mr. Lee, how long have you known John Smith?",
+                    "correctObjections": ["no-objection"],
+                    "explanation": "This is a foundational question establishing the basis of the witness's relationship with the deceased. It's relevant for establishing context and background."
+                },
+                {
+                    "context": "Direct Examination by Defense Attorney",
+                    "question": "In the weeks leading up to his death, how would you describe John's emotional state?",
+                    "correctObjections": ["no-objection"],
+                    "explanation": "This question seeks relevant information about John Smith's emotional state shortly before his death. It's pertinent to the defense's theory of suicide and seeks factual observations from a friend."
+                },
+                {
+                    "context": "Direct Examination by Defense Attorney",
+                    "question": "Did John ever mention to you that he was considering ending his life?",
+                    "correctObjections": ["no-objection"],
+                    "explanation": "This directly seeks relevant information about suicidal ideation, crucial to the defense's case for suicide.  While hearsay *if* offered to prove the truth of John's state of mind, it's likely admissible here to show John's *state of mind* itself, a relevant exception to hearsay rules in many jurisdictions."
+                },
+                {
+                    "context": "Direct Examination by Defense Attorney",
+                    "question": "Mr. Lee, in your opinion, do you think John Smith was the type of person who would commit suicide?",
+                    "correctObjections": ["speculation"],
+                    "explanation": "This question calls for *speculation*.  While a friend can testify about *observations* of John's emotional state, asking for an *opinion* on whether he'd commit suicide is speculative and goes beyond personal knowledge of observable facts. It’s asking for a guess about an internal mental state, not factual testimony."
+                },
+                {
+                    "context": "Cross-Examination by Prosecutor",
+                    "question": "Mr. Lee, you weren't living with John Smith, were you?",
+                    "correctObjections": ["no-objection"],
+                    "explanation": "This is proper cross-examination. It clarifies the limits of the witness's knowledge and perspective.  Highlighting he didn't live with John is relevant to assessing the depth and completeness of his insight into John's daily life and mental state."
+                },
+                {
+                    "context": "Cross-Examination by Prosecutor",
+                    "question": "Isn't it possible that John just told you what he thought you wanted to hear, because he knew you were easily worried?",
+                    "correctObjections": ["argumentative", "speculation"],
+                    "explanation": "This is *argumentative* as it directly challenges the witness's credibility and implies insincerity without factual basis in the question. It's also *speculative* - asking about John's *motives* for telling Mr. Lee things requires guessing at John's internal thoughts and intentions."
+                }
+            ]
+        },
+        {
+            "name": "Dr. Robert Green",
+            "description": "Defense Medical Expert, Forensic Pathologist, contradicting Dr. Carter's findings",
+            "side": "defense",
+            "questions": [
+                {
+                    "context": "Direct Examination by Defense Attorney",
+                    "question": "Dr. Green, are you familiar with the autopsy report prepared by Dr. Carter in the case of John Smith?",
+                    "correctObjections": ["no-objection"],
+                    "explanation": "This establishes the foundation for the expert's testimony – that they have reviewed and are prepared to discuss the opposing expert's report.  It's necessary for context and relevance."
+                },
+                {
+                    "context": "Direct Examination by Defense Attorney",
+                    "question": "Do you agree with Dr. Carter's conclusion about the cause of death?",
+                    "correctObjections": ["no-objection"],
+                    "explanation": "This directly seeks the expert's opinion and whether they concur or disagree with the prosecution's expert. It's central to the defense's strategy of challenging the cause of death finding."
+                },
+                {
+                    "context": "Direct Examination by Defense Attorney",
+                    "question": "In your expert opinion, and based on your review of the autopsy and crime scene photos, could the gunshot wound be consistent with a self-inflicted injury?",
+                    "correctObjections": ["no-objection"],
+                    "explanation": "This question seeks expert medical opinion on whether the evidence is *consistent* with suicide. It's within the expert's scope to analyze medical evidence and offer opinions on possible mechanisms of injury, including self-infliction, and directly challenges the prosecution's implication of homicide."
+                },
+                {
+                    "context": "Direct Examination by Defense Attorney",
+                    "question": "Dr. Green, could you explain to the jury, in simple terms, the precise medical differences between a homicidal gunshot wound and a suicidal gunshot wound?",
+                    "correctObjections": ["vague/ambiguous", "calls-for-narrative"],
+                    "explanation": "This question is *vague/ambiguous*. 'Precise medical differences' is too broad and doesn't specify what aspects are being compared.  It also *calls for a narrative* - inviting a general lecture on medical differences rather than focusing on the specifics of *this* case and the autopsy findings. It's too open-ended and lacks focus."
+                },
+                {
+                    "context": "Cross-Examination by Prosecutor",
+                    "question": "Dr. Green, you are being paid by the defense to testify today, correct?",
+                    "correctObjections": ["no-objection"],
+                    "explanation": "This is proper cross-examination. It explores potential bias by highlighting the expert's financial relationship with the defense. Payment for testimony is a valid area to explore for potential influence on opinion."
+                },
+                {
+                    "context": "Cross-Examination by Prosecutor",
+                    "question": "Isn't it true that you frequently testify for the defense in murder trials, and that your opinions often conveniently align with the defense's strategy?",
+                    "correctObjections": ["argumentative"],
+                    "explanation": "This question is *argumentative*.  It accuses the witness of bias and implies a pattern of dishonest testimony ('conveniently align') without factual basis in the question. It's attacking credibility in an accusatory, not fact-seeking way."
+                }
+            ]
+        },
+        {
+            "name": "Mary Smith",
+            "description": "Defendant, wife of the deceased",
+            "side": "defense",
+            "questions": [
+                {
+                    "context": "Direct Examination by Defense Attorney",
+                    "question": "Mrs. Smith, please describe your relationship with your husband, John.",
+                    "correctObjections": ["no-objection"],
+                    "explanation": "This is a foundational question allowing the defendant to present her perspective on the marriage. It's relevant to context and background, particularly given the prosecution's focus on marital strife as motive."
+                },
+                {
+                    "context": "Direct Examination by Defense Attorney",
+                    "question": "On the night of John's death, can you tell the court what happened in your apartment?",
+                    "correctObjections": ["no-objection"],
+                    "explanation": "This is crucial direct examination allowing the defendant to present her account of the events on the night of the death. It directly addresses the central issue of the trial and provides her version of events."
+                },
+                {
+                    "context": "Direct Examination by Defense Attorney",
+                    "question": "Did you murder your husband, John Smith?",
+                    "correctObjections": ["no-objection"],
+                    "explanation": "This is a direct and necessary question allowing the defendant to explicitly deny the charge.  While it’s a simple ‘yes/no’ question, it allows the defendant to state her innocence directly to the jury. It's not leading as it doesn't suggest the answer."
+                },
+                {
+                    "context": "Direct Examination by Defense Attorney",
+                    "question": "Why would the police and prosecution be trying to frame you for this crime?",
+                    "correctObjections": ["speculation"],
+                    "explanation": "This question is purely *speculative*. It asks the defendant to guess at the *motivations* and *intentions* of the police and prosecution. It's not based on her personal knowledge of facts, but rather conjecture about other parties' internal states and strategies, which is speculative and improper."
+                },
+                {
+                    "context": "Cross-Examination by Prosecutor",
+                    "question": "Mrs. Smith, you were the sole beneficiary of a large life insurance policy on your husband, weren't you?",
+                    "correctObjections": ["no-objection"],
+                    "explanation": "This is proper cross-examination. It elicits factual information about a potential motive (financial gain) that the prosecution is alleging. It directly challenges the defendant's potential credibility and introduces evidence supporting the prosecution's theory."
+                },
+                {
+                    "context": "Cross-Examination by Prosecutor",
+                    "question": "You hated John and wanted him dead so you could collect that insurance money and run off to Mexico, didn't you?",
+                    "correctObjections": ["argumentative"],
+                    "explanation": "This question is highly *argumentative*. It directly accuses the defendant of malice, hatred, and criminal intent ('hated,' 'wanted him dead,' 'run off to Mexico'). It’s not seeking factual information but rather making a strong accusatory statement framed as a question, meant to badger and provoke the witness, making it argumentative and improper."
+                }
+            ]
+        }
+    ]
+},
+                      
                   {
                     "name": "The Corporate Fraud Trial",
-                    "questions": [
-                      {
-                        "context": "Direct Examination of Financial Analyst Ms. Reed",
-                        "question": "State your name, occupation, and your professional qualifications, please.",
-                        "correctObjections": ["no-objection"],
-                        "explanation": "Proper introductory foundation for an expert witness."
-                      },
-                      {
-                        "context": "Direct Examination of Financial Analyst Ms. Reed",
-                        "question": "From your analysis, can you confirm that the defendant clearly intended to deceive shareholders?",
-                        "correctObjections": ["legal-conclusion", "speculation"],
-                        "explanation": "This asks the witness to provide a legal conclusion about intent and speculate about the defendant's mindset."
-                      },
-                      {
-                        "context": "Cross-Examination of Financial Analyst Ms. Reed",
-                        "question": "Ms. Reed, isn't it a fact that your consulting firm was fired by the defendant's company last year, leading to potential bias in your testimony?",
-                        "correctObjections": ["no-objection"],
-                        "explanation": "Proper cross-examination exploring potential bias of the witness."
-                      },
-                      {
-                        "context": "Cross-Examination of Financial Analyst Ms. Reed",
-                        "question": "Given the complexity of corporate finance, isn't it possible these irregularities were simply innocent accounting errors?",
-                        "correctObjections": ["speculation"],
-                        "explanation": "This question asks the expert witness to speculate on hypothetical scenarios."
-                      },
-                      {
-                        "context": "Direct Examination of Corporate Executive Mr. Harper",
-                        "question": "Mr. Harper, what was your understanding of your fiduciary duties under Section 10(b) of the Securities Exchange Act of 1934?",
-                        "correctObjections": ["legal-conclusion"],
-                        "explanation": "Calls for the witness to offer a legal conclusion or interpretation of statutory duties."
-                      },
-                      {
-                        "context": "Cross-Examination of Corporate Executive Mr. Harper",
-                        "question": "You approved every questionable transaction identified in the indictment, correct?",
-                        "correctObjections": ["leading", "argumentative"],
-                        "explanation": "Although leading questions are typically permitted on cross-examination, this one may be objectionable for being argumentative."
-                      }
+                    "statementOfFacts": "<p>In this case, the State has charged TechVision Corporation's CEO Richard Palmer with securities fraud. The prosecution alleges that Palmer knowingly misrepresented the company's financial health to investors, inflating quarterly earnings by $32 million through various accounting manipulations between 2020-2022. When the fraud was discovered, TechVision's stock plummeted 68%, causing massive investor losses.</p><p>The defense maintains that Palmer relied on the information provided by his CFO and accounting team, and any irregularities were honest mistakes rather than intentional deception. They contend that complex accounting rules were misinterpreted but no criminal intent existed.</p>",
+                    "witnesses": [
+                        {
+                            "name": "Ms. Jennifer Reed",
+                            "description": "Forensic accountant who analyzed TechVision's financial records",
+                            "side": "prosecution",
+                            "questions": [
+                                {
+                                    "context": "Direct Examination by Prosecution",
+                                    "question": "Ms. Reed, please state your name, occupation, and professional qualifications for the record.",
+                                    "correctObjections": ["no-objection"],
+                                    "explanation": "This is a proper introductory question establishing the witness's credentials."
+                                },
+                                {
+                                    "context": "Direct Examination by Prosecution",
+                                    "question": "Based on your analysis of TechVision's financial records, what irregularities did you identify in their quarterly reports?",
+                                    "correctObjections": ["no-objection"],
+                                    "explanation": "This is a proper question seeking factual information within the expert's scope."
+                                },
+                                {
+                                    "context": "Direct Examination by Prosecution",
+                                    "question": "From your analysis, can you confirm that the defendant clearly intended to deceive shareholders?",
+                                    "correctObjections": ["legal-conclusion", "speculation"],
+                                    "explanation": "This improperly asks the expert to speculate about the defendant's mental state and draw a legal conclusion about intent to deceive."
+                                },
+                                {
+                                    "context": "Direct Examination by Prosecution",
+                                    "question": "In your professional assessment, would a reasonably competent CEO have been aware of these accounting discrepancies?",
+                                    "correctObjections": ["speculation"],
+                                    "explanation": "This asks the witness to speculate about what a hypothetical CEO would have known."
+                                },
+                                {
+                                    "context": "Cross-Examination by Defense",
+                                    "question": "Ms. Reed, isn't it a fact that your consulting firm was fired by TechVision last year, creating a potential bias in your testimony?",
+                                    "correctObjections": ["no-objection"],
+                                    "explanation": "This is proper cross-examination exploring potential bias or motivation of the witness."
+                                },
+                                {
+                                    "context": "Cross-Examination by Defense",
+                                    "question": "Given the complexity of GAAP regulations, couldn't these accounting irregularities be simple mistakes rather than deliberate fraud?",
+                                    "correctObjections": ["speculation"],
+                                    "explanation": "This asks the witness to speculate about alternative explanations beyond her direct knowledge."
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Mr. Thomas Chen",
+                            "description": "Former CFO of TechVision who worked directly with the defendant",
+                            "side": "prosecution",
+                            "questions": [
+                                {
+                                    "context": "Direct Examination by Prosecution",
+                                    "question": "Mr. Chen, what was your position at TechVision Corporation during the period in question?",
+                                    "correctObjections": ["no-objection"],
+                                    "explanation": "This is a proper foundation question establishing the witness's role."
+                                },
+                                {
+                                    "context": "Direct Examination by Prosecution",
+                                    "question": "Did Mr. Palmer, the CEO, ever instruct you to modify financial figures before reporting them to investors?",
+                                    "correctObjections": ["no-objection"],
+                                    "explanation": "This seeks relevant factual information within the witness's personal knowledge."
+                                },
+                                {
+                                    "context": "Direct Examination by Prosecution",
+                                    "question": "During your quarterly meetings with Mr. Palmer, did you tell him about the accounting problems and did he acknowledge understanding them?",
+                                    "correctObjections": ["compound"],
+                                    "explanation": "This question improperly combines two separate inquiries: whether the witness informed Palmer and whether Palmer acknowledged understanding."
+                                },
+                                {
+                                    "context": "Cross-Examination by Defense",
+                                    "question": "Mr. Chen, you're testifying under an immunity agreement that protects you from prosecution in this case, correct?",
+                                    "correctObjections": ["no-objection"],
+                                    "explanation": "This is proper cross-examination that explores potential bias or motivation for the testimony."
+                                },
+                                {
+                                    "context": "Cross-Examination by Defense",
+                                    "question": "You're just blaming Mr. Palmer to save yourself, aren't you?",
+                                    "correctObjections": ["argumentative"],
+                                    "explanation": "This question is argumentative as it directly accuses the witness of lying rather than seeking information."
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Mr. Robert Harper",
+                            "description": "Current CEO of TechVision who replaced the defendant",
+                            "side": "defense",
+                            "questions": [
+                                {
+                                    "context": "Direct Examination by Defense",
+                                    "question": "Mr. Harper, what was your position at TechVision before you became CEO?",
+                                    "correctObjections": ["no-objection"],
+                                    "explanation": "This is a proper foundation question establishing the witness's background."
+                                },
+                                {
+                                    "context": "Direct Examination by Defense",
+                                    "question": "Based on your experience with TechVision's accounting systems, how difficult would it be for a CEO to identify the types of irregularities alleged by the prosecution?",
+                                    "correctObjections": ["no-objection"],
+                                    "explanation": "This properly seeks information based on the witness's personal knowledge and experience."
+                                },
+                                {
+                                    "context": "Direct Examination by Defense",
+                                    "question": "Mr. Harper, what was your understanding of your fiduciary duties under Section 10(b) of the Securities Exchange Act of 1934?",
+                                    "correctObjections": ["legal-conclusion"],
+                                    "explanation": "This improperly calls for the witness to interpret legal standards rather than testifying to facts."
+                                },
+                                {
+                                    "context": "Cross-Examination by Prosecution",
+                                    "question": "Mr. Harper, isn't it true that as the new CEO, it benefits you to distance the company from intentional wrongdoing?",
+                                    "correctObjections": ["no-objection"],
+                                    "explanation": "This is proper cross-examination exploring potential bias or motive."
+                                },
+                                {
+                                    "context": "Cross-Examination by Prosecution",
+                                    "question": "You testified that the accounting systems were complex, but you've had no problem understanding them since you took over, have you?",
+                                    "correctObjections": ["argumentative"],
+                                    "explanation": "This question is argumentative as it's designed to challenge the witness rather than seek information."
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Dr. Elaine Morgan",
+                            "description": "Corporate governance expert",
+                            "side": "defense",
+                            "questions": [
+                                {
+                                    "context": "Direct Examination by Defense",
+                                    "question": "Dr. Morgan, please describe your qualifications in the field of corporate governance and executive responsibility.",
+                                    "correctObjections": ["no-objection"],
+                                    "explanation": "This is a proper question to establish expert credentials."
+                                },
+                                {
+                                    "context": "Direct Examination by Defense",
+                                    "question": "Based on your review of TechVision's organizational structure, what level of financial detail would typically reach the CEO's desk?",
+                                    "correctObjections": ["no-objection"],
+                                    "explanation": "This properly seeks expert opinion based on the witness's specialized knowledge."
+                                },
+                                {
+                                    "context": "Direct Examination by Defense",
+                                    "question": "In your expert opinion, did Mr. Palmer violate accepted corporate governance standards and commit securities fraud?",
+                                    "correctObjections": ["legal-conclusion"],
+                                    "explanation": "This improperly asks the expert to reach a legal conclusion about whether the defendant committed fraud."
+                                },
+                                {
+                                    "context": "Cross-Examination by Prosecution",
+                                    "question": "Dr. Morgan, you're being paid $500 per hour by the defense for your testimony today, correct?",
+                                    "correctObjections": ["no-objection"],
+                                    "explanation": "This is proper cross-examination exploring potential bias based on compensation."
+                                },
+                                {
+                                    "context": "Cross-Examination by Prosecution",
+                                    "question": "Despite your theories, the bottom line is that the CEO is ultimately responsible for financial reporting and fraud, isn't that right?",
+                                    "correctObjections": ["argumentative", "legal-conclusion"],
+                                    "explanation": "This is argumentative and asks for a legal conclusion about CEO liability."
+                                }
+                            ]
+                        }
                     ]
-                  },
+                },
                   
-                  {
-                    "name": "Capella v. Petzicon",
-                    "questions": [
+                  
+                {
+                  "name": "Capella v. Petzicon",
+                  "statementOfFacts": "<p>Carmen Capella, a renowned dog breeder and handler, is suing Petzicon Products, a major pet food manufacturer, for damages related to the death of her prize-winning show dog, Sally. Ms. Capella alleges that Sally died due to consuming Petzicon brand dog treats that were toxic. She claims that the treats were improperly manufactured and lacked a clear expiration date, leading to the development of harmful toxins. Ms. Capella is seeking compensation for Sally's market value as a show dog, veterinary expenses, and emotional distress. </p><p>Petzicon denies these allegations, asserting that their products are rigorously tested and safe when consumed before the recommended date. They contend that Sally’s death was likely due to an underlying, undiagnosed health condition, or improper storage of the treats by Ms. Capella, not product toxicity.  They maintain they are not liable for Sally's death and any associated damages.</p>",
+                  "witnesses": [
                       {
-                        "context": "Cross-Examination of Sam Stone",
-                        "question": "Good evening, Mr. Stone. Let’s talk about your background. Just to clarify, you are here testifying as an expert witness in the field of chemical engineering?",
-                        "correctObjections": ["no-objection"],
-                        "explanation": "This establishes credentials and is standard cross-examination."
+                          "name": "Carmen Capella",
+                          "description": "Plaintiff, owner and handler of the deceased show dog, Sally",
+                          "side": "prosecution",
+                          "questions": [
+                              {
+                                  "context": "Direct Examination by Plaintiff's Counsel",
+                                  "question": "Ms. Capella, please tell the court about Sally and her significance to you.",
+                                  "correctObjections": ["no-objection"],
+                                  "explanation": "This is a proper introductory question establishing the plaintiff's relationship with the dog and its importance."
+                              },
+                              {
+                                  "context": "Direct Examination by Plaintiff's Counsel",
+                                  "question": "Can you describe the events leading up to Sally's illness and eventual death, focusing on the Petzicon treats?",
+                                  "correctObjections": ["no-objection"],
+                                  "explanation": "This question elicits the plaintiff's account of the key events and connects them to the product in question."
+                              },
+                              {
+                                  "context": "Direct Examination by Plaintiff's Counsel",
+                                  "question": "Did you notice anything unusual about the Petzicon treats themselves, such as the packaging or any warnings?",
+                                  "correctObjections": ["no-objection"],
+                                  "explanation": "This seeks factual observations about the product and its presentation."
+                              },
+                              {
+                                  "context": "Direct Examination by Plaintiff's Counsel",
+                                  "question": "In your opinion, is Petzicon responsible for Sally’s death?",
+                                  "correctObjections": ["speculation"],
+                                  "explanation": "This improperly asks for the plaintiff's opinion on legal responsibility, which is beyond her scope as a lay witness."
+                              },
+                              {
+                                  "context": "Cross-Examination by Defense Counsel",
+                                  "question": "Ms. Capella, isn't it true that you often purchased dog treats in bulk and stored them in your garage, which is not climate-controlled?",
+                                  "correctObjections": ["no-objection"],
+                                  "explanation": "This is proper cross-examination exploring alternative causes and potential contributory negligence."
+                              },
+                              {
+                                  "context": "Cross-Examination by Defense Counsel",
+                                  "question": "You’re just blaming Petzicon because you're grieving and want someone to pay for your loss, isn't that right?",
+                                  "correctObjections": ["argumentative"],
+                                  "explanation": "This question is argumentative as it directly accuses the witness of improper motives, rather than seeking information."
+                              }
+                          ]
                       },
                       {
-                        "context": "Cross-Examination of Sam Stone",
-                        "question": "For the past 15 years, you have been the lead investigator for Petzicon. Is that true?",
-                        "correctObjections": ["no-objection"],
-                        "explanation": "This is a factual question establishing work history."
+                          "name": "Jamison St. Claire",
+                          "description": "Expert witness for the plaintiff, specializing in show dog valuation",
+                          "side": "prosecution",
+                          "questions": [
+                              {
+                                  "context": "Direct Examination by Plaintiff's Counsel",
+                                  "question": "Mr. St. Claire, please describe your expertise in show dog valuation and the methodology you use.",
+                                  "correctObjections": ["no-objection"],
+                                  "explanation": "This is a proper question establishing the expert's credentials and methodology."
+                              },
+                              {
+                                  "context": "Direct Examination by Plaintiff's Counsel",
+                                  "question": "Based on your professional evaluation, what was the fair market value of Sally, the show dog, at the time of her death?",
+                                  "correctObjections": ["no-objection"],
+                                  "explanation": "This directly elicits the expert's professional opinion on valuation, within their expertise."
+                              },
+                              {
+                                  "context": "Direct Examination by Plaintiff's Counsel",
+                                  "question": "Can you explain to the court how the loss of a prize-winning show dog like Sally can impact a breeder’s business and reputation?",
+                                  "correctObjections": ["no-objection"],
+                                  "explanation": "This question seeks to explain the broader financial and reputational consequences of the loss, within the expert's field."
+                              },
+                               {
+                                  "context": "Direct Examination by Plaintiff's Counsel",
+                                  "question": "Mr. St. Claire, are show dogs like Sally typically insured for their full market value?",
+                                  "correctObjections": ["calls-for-speculation", "lack-of-foundation"],
+                                  "explanation": "This is speculative as the expert isn't necessarily an insurance expert and lacks foundation as to specific insurance practices."
+                              },
+                              {
+                                  "context": "Cross-Examination by Defense Counsel",
+                                  "question": "Mr. St. Claire, isn't it true that show dog valuations are highly subjective and fluctuate based on numerous factors?",
+                                  "correctObjections": ["no-objection"],
+                                  "explanation": "This is proper cross-examination highlighting the potential variability and subjectivity in the expert's field."
+                              },
+                              {
+                                  "context": "Cross-Examination by Defense Counsel",
+                                  "question": "You're being paid a significant fee for your testimony today, and your valuation directly benefits Ms. Capella, correct?",
+                                  "correctObjections": ["no-objection"],
+                                  "explanation": "This is proper cross-examination exploring potential bias due to compensation."
+                              }
+                          ]
                       },
                       {
-                        "context": "Cross-Examination of Sam Stone",
-                        "question": "Would you agree that part of your role is to ensure that the company’s reputation remains intact?",
-                        "correctObjections": ["argumentative"],
-                        "explanation": "This question implies bias and is argumentative."
+                          "name": "Alex Delani",
+                          "description": "Holistic Veterinarian who treated Sally",
+                          "side": "prosecution",
+                          "questions": [
+                              {
+                                  "context": "Direct Examination by Plaintiff's Counsel",
+                                  "question": "Dr. Delani, can you please describe your qualifications as a holistic veterinarian and your practice?",
+                                  "correctObjections": ["no-objection"],
+                                  "explanation": "This is a proper question establishing the witness's credentials as an expert."
+                              },
+                              {
+                                  "context": "Direct Examination by Plaintiff's Counsel",
+                                  "question": "In your professional opinion, based on your examination and treatment of Sally, what was the likely cause of her illness and death?",
+                                  "correctObjections": ["no-objection"],
+                                  "explanation": "This is a proper question seeking expert medical opinion on causation based on examination."
+                              },
+                              {
+                                  "context": "Direct Examination by Plaintiff's Counsel",
+                                  "question": "Did you consider or recommend any specific tests, like a necropsy, to determine the exact cause of Sally’s death?",
+                                  "correctObjections": ["no-objection"],
+                                  "explanation": "This is a factual question about the veterinarian's diagnostic process."
+                              },
+                              {
+                                  "context": "Direct Examination by Plaintiff's Counsel",
+                                  "question": "Doctor, can you definitively state that the Petzicon treats were the direct and sole cause of Sally's death, to a medical certainty?",
+                                  "correctObjections": ["calls-for-speculation", "beyond-scope-of-expertise"],
+                                  "explanation": "While a medical professional can opine on likely cause, demanding 'definitive' and 'sole cause' to 'medical certainty' is often beyond scope, particularly without a necropsy. Could be seen as speculation or demanding an impossible level of certainty."
+                              },
+                              {
+                                  "context": "Cross-Examination by Defense Counsel",
+                                  "question": "Dr. Delani, you are a 'holistic' veterinarian. Does your practice rely on methods considered outside mainstream veterinary medicine?",
+                                  "correctObjections": ["no-objection"],
+                                  "explanation": "This is proper cross-examination exploring the basis and potential limitations of the witness's expertise and methodology."
+                              },
+                              {
+                                  "context": "Cross-Examination by Defense Counsel",
+                                  "question": "Isn't it possible that Sally's illness was caused by something entirely unrelated to the Petzicon treats, given the lack of a necropsy?",
+                                  "correctObjections": ["no-objection"],
+                                  "explanation": "This is proper cross-examination highlighting alternative causes and the uncertainty due to lack of a definitive test."
+                              }
+                          ]
                       },
                       {
-                        "context": "Cross-Examination of Sam Stone",
-                        "question": "Isn’t it true that upper management can still sell products without modification, even after you raise concerns?",
-                        "correctObjections": ["no-objection"],
-                        "explanation": "This is a factual inquiry into company policy."
+                          "name": "Sam Stone",
+                          "description": "Lead Investigator for Petzicon Products",
+                          "side": "defense",
+                          "questions": [
+                              {
+                                  "context": "Direct Examination by Defense Counsel",
+                                  "question": "Mr. Stone, please describe your role as Lead Investigator for Petzicon Products and your professional background.",
+                                  "correctObjections": ["no-objection"],
+                                  "explanation": "This is a proper foundational question establishing the witness's role and expertise."
+                              },
+                              {
+                                  "context": "Direct Examination by Defense Counsel",
+                                  "question": "Have you investigated the allegations surrounding Petzicon dog treats and Sally Capella’s death?",
+                                  "correctObjections": ["no-objection"],
+                                  "explanation": "This establishes the witness's involvement in the specific case."
+                              },
+                              {
+                                  "context": "Direct Examination by Defense Counsel",
+                                  "question": "Based on your investigation, have you found any evidence to suggest that Petzicon dog treats are inherently toxic or caused Sally’s death?",
+                                  "correctObjections": ["no-objection"],
+                                  "explanation": "This seeks factual information based on the witness's investigation relevant to the defense's case."
+                              },
+                              {
+                                  "context": "Direct Examination by Defense Counsel",
+                                  "question": "Mr. Stone, do you believe Petzicon is at fault in this situation?",
+                                  "correctObjections": ["speculation", "legal-conclusion"],
+                                  "explanation": "This improperly asks for the witness's opinion on fault, which is a legal conclusion for the court to make, and it's speculative beyond his factual investigation."
+                              },
+                              {
+                                  "context": "Cross-Examination by Plaintiff's Counsel",
+                                  "question": "Good evening, Mr. Stone. Let’s talk about your background. Just to clarify, you are here testifying as an expert witness in the field of chemical engineering?",
+                                  "correctObjections": ["no-objection"],
+                                  "explanation": "This establishes credentials and is standard cross-examination."
+                              },
+                              {
+                                  "context": "Cross-Examination by Plaintiff's Counsel",
+                                  "question": "For the past 15 years, you have been the lead investigator for Petzicon. Is that true?",
+                                  "correctObjections": ["no-objection"],
+                                  "explanation": "This is a factual question establishing work history."
+                              },
+                              {
+                                  "context": "Cross-Examination by Plaintiff's Counsel",
+                                  "question": "Would you agree that part of your role is to ensure that the company’s reputation remains intact?",
+                                  "correctObjections": ["argumentative"],
+                                  "explanation": "This question implies bias and is argumentative."
+                              },
+                              {
+                                  "context": "Cross-Examination by Plaintiff's Counsel",
+                                  "question": "Isn’t it true that upper management can still sell products without modification, even after you raise concerns?",
+                                  "correctObjections": ["no-objection"],
+                                  "explanation": "This is a factual inquiry into company policy."
+                              },
+                              {
+                                  "context": "Cross-Examination by Plaintiff's Counsel",
+                                  "question": "Sally’s Death: You explicitly mention in your affidavit that if a necropsy had been performed, we would have known the definitive cause of Sally’s death, correct?",
+                                  "correctObjections": ["no-objection"],
+                                  "explanation": "This question is drawn from the witness's affidavit and is a valid point of impeachment."
+                              },
+                              {
+                                  "context": "Cross-Examination by Plaintiff's Counsel",
+                                  "question": "Mr. Stone, as a stipulated chemical engineer, knowing the risk of toxicity, wouldn’t an absolute expiration date—rather than a ‘recommended’ date—better protect customers and their pets from harm?",
+                                  "correctObjections": ["speculation", "argumentative"],
+                                  "explanation": "This question asks the witness to speculate on company policy changes and is argumentative."
+                              }
+                          ]
                       },
                       {
-                        "context": "Cross-Examination of Sam Stone",
-                        "question": "Sally’s Death: You explicitly mention in your affidavit that if a necropsy had been performed, we would have known the definitive cause of Sally’s death, correct?",
-                        "correctObjections": ["no-objection"],
-                        "explanation": "This question is drawn from the witness's affidavit and is a valid point of impeachment."
+                          "name": "Pat O'Connell",
+                          "description": "CEO of Petzicon Products",
+                          "side": "defense",
+                          "questions": [
+                              {
+                                  "context": "Direct Examination by Defense Counsel",
+                                  "question": "Mr. O'Connell, please describe your role as CEO of Petzicon Products and the company's commitment to product safety.",
+                                  "correctObjections": ["no-objection"],
+                                  "explanation": "This is a proper introductory question establishing the witness's position and company stance."
+                              },
+                              {
+                                  "context": "Direct Examination by Defense Counsel",
+                                  "question": "Can you explain Petzicon’s quality control and safety testing procedures for your dog treat products?",
+                                  "correctObjections": ["no-objection"],
+                                  "explanation": "This question seeks factual information about company procedures relevant to product safety."
+                              },
+                              {
+                                  "context": "Direct Examination by Defense Counsel",
+                                  "question": "To your knowledge, has Petzicon ever had any other similar incidents or lawsuits related to the toxicity of your dog treats?",
+                                  "correctObjections": ["no-objection"],
+                                  "explanation": "This seeks factual information about prior incidents or claims, relevant to the company's history and product safety record."
+                              },
+                               {
+                                  "context": "Direct Examination by Defense Counsel",
+                                  "question": "Mr. O'Connell, is Petzicon morally responsible for Sally's death?",
+                                  "correctObjections": ["calls-for-speculation", "legal-conclusion"],
+                                  "explanation": "This is speculative and calls for a moral or legal conclusion beyond the CEO's role as a factual witness."
+                              },
+                              {
+                                  "context": "Cross-Examination by Plaintiff's Counsel",
+                                  "question": "Mr. O'Connell, as CEO, are you ultimately responsible for ensuring the safety of Petzicon products?",
+                                  "correctObjections": ["no-objection"],
+                                  "explanation": "This is a proper question exploring the CEO's responsibilities and accountability."
+                              },
+                              {
+                                  "context": "Cross-Examination by Plaintiff's Counsel",
+                                  "question": "Isn't it true that Petzicon prioritizes profits over consumer safety, especially when it comes to cheaper manufacturing processes?",
+                                  "correctObjections": ["argumentative", "calls-for-speculation"],
+                                  "explanation": "This question is argumentative and speculative as it alleges motives and internal company priorities without factual basis."
+                              }
+                          ]
                       },
                       {
-                        "context": "Cross-Examination of Sam Stone",
-                        "question": "Mr. Stone, as a stipulated chemical engineer, knowing the risk of toxicity, wouldn’t an absolute expiration date—rather than a ‘recommended’ date—better protect customers and their pets from harm?",
-                        "correctObjections": ["speculation", "argumentative"],
-                        "explanation": "This question asks the witness to speculate on company policy changes and is argumentative."
+                          "name": "Val Popinjay",
+                          "description": "Expert witness for the defense, specializing in show dog valuation",
+                          "side": "defense",
+                          "questions": [
+                              {
+                                  "context": "Direct Examination by Defense Counsel",
+                                  "question": "Ms. Popinjay, please outline your expertise in show dog valuation and the factors that influence a show dog's market price.",
+                                  "correctObjections": ["no-objection"],
+                                  "explanation": "This is a proper question establishing the expert's qualifications and relevant factors in their field."
+                              },
+                              {
+                                  "context": "Direct Examination by Defense Counsel",
+                                  "question": "Have you reviewed Mr. St. Claire’s valuation of Sally, the show dog?",
+                                  "correctObjections": ["no-objection"],
+                                  "explanation": "This establishes that the expert has reviewed opposing expert's information."
+                              },
+                              {
+                                  "context": "Direct Examination by Defense Counsel",
+                                  "question": "In your expert opinion, is Mr. St. Claire’s valuation of Sally accurate, or would you assess her market value differently?",
+                                  "correctObjections": ["no-objection"],
+                                  "explanation": "This directly asks for expert opinion and comparison/critique of the opposing expert's valuation."
+                              },
+                               {
+                                  "context": "Direct Examination by Defense Counsel",
+                                  "question": "Ms. Popinjay, can you guarantee that your valuation is completely accurate and without any possible error?",
+                                  "correctObjections": ["calls-for-impossible-standard"],
+                                  "explanation": "This question demands an unrealistic and impossible level of certainty from an expert opinion, which is not legally required or practically possible."
+                              },
+                              {
+                                  "context": "Cross-Examination by Plaintiff's Counsel",
+                                  "question": "Ms. Popinjay, you were hired by Petzicon and are being paid to testify in their defense, correct?",
+                                  "correctObjections": ["no-objection"],
+                                  "explanation": "This is proper cross-examination exploring potential bias due to the witness's financial relationship with the defense."
+                              },
+                              {
+                                  "context": "Cross-Examination by Plaintiff's Counsel",
+                                  "question": "Isn't it possible that your lower valuation of Sally is influenced by your desire to please the company that hired you?",
+                                  "correctObjections": ["argumentative", "speculation"],
+                                  "explanation": "This is argumentative and speculative as it assumes the witness's motivation and bias without factual basis."
+                              }
+                          ]
                       }
-                    ]
-                  }
-                ]
+                  ]
+              }                ]
               }
-              
 
 
 
-    
+

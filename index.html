@@ -64,6 +64,40 @@
         .dark .custom-scrollbar::-webkit-scrollbar-thumb {
             background-color: rgba(93, 92, 222, 0.7);
         }
+
+        /* Update these styles in the <style> section */
+        .progress-step {
+            transition: all 0.3s ease;
+            min-width: 70px; /* Minimum width for each step */
+        }
+
+        .progress-step span {
+            text-align: center;
+            white-space: normal; /* Allow text to wrap */
+            max-width: 100px; /* Increased from 80px */
+            font-size: 0.75rem;
+            line-height: 1.2;
+            margin-top: 0.25rem;
+            display: block;
+            overflow: visible; /* Remove truncation */
+            text-overflow: clip;
+            height: 2.4rem; /* Allow for two lines of text */
+        }
+
+        .progress-step[data-side="prosecution"] .w-10 {
+            border: 1px solid rgba(59, 130, 246, 0.3);
+        }
+
+        .progress-step[data-side="defense"] .w-10 {
+            border: 1px solid rgba(139, 92, 246, 0.3);
+        }
+
+        #witness-progress-container {
+            scroll-behavior: smooth;
+            padding: 4px 0;
+            gap: 1rem; /* Increase spacing between witnesses */
+        }
+
     </style>
 </head>
 <body class="bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 min-h-screen transition-colors duration-300">
@@ -80,6 +114,27 @@
                 <div id="modal-content" class="space-y-4">
                     <!-- Content will be populated dynamically -->
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Role Switch Modal -->
+    <div id="role-switch-modal" class="hidden fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center">
+        <div class="bg-white dark:bg-gray-800 rounded-lg shadow-xl p-8 max-w-lg mx-4 fade-slide-in">
+            <div class="text-center mb-6">
+                <div class="inline-block p-4 rounded-full bg-primary bg-opacity-20 mb-4">
+                    <i class="fas fa-sync-alt text-primary text-3xl"></i>
+                </div>
+                <h2 class="text-2xl font-bold">Switching Roles</h2>
+            </div>
+            
+            <p class="mb-4">The prosecution has completed their case.</p>
+            <p class="mb-6">You are now switching roles to act as the <span class="font-bold text-primary">prosecutor's objection assistant</span>. Your job is to monitor the defense attorney's questions and object when they violate the rules of evidence. Although you're not asking the questions yourself, your vigilance helps ensure a fair trial.</p>
+            
+            <div class="text-center">
+                <button id="continue-trial" class="px-6 py-3 bg-primary text-white rounded-lg hover:bg-opacity-90 transition-colors">
+                    Continue to Defense Case
+                </button>
             </div>
         </div>
     </div>
@@ -257,6 +312,14 @@
 
                 <!-- Courtroom Scene -->
                 <div class="bg-gray-100 dark:bg-gray-800 rounded-lg p-5 mb-6">
+                    <!-- Examination Type Status Bar -->
+                    <div id="examination-status" class="mb-3 flex items-center">
+                        <div class="px-3 py-1 rounded-full text-sm font-medium mr-3" id="examination-type-badge">Direct Examination</div>
+                        <div class="text-sm text-gray-500 dark:text-gray-400">
+                            <span id="examination-role">You are assisting as defense counsel</span>
+                        </div>
+                    </div>
+                    
                     <div class="flex items-start mb-4">
                         <div class="flex-shrink-0 w-8 text-primary">
                             <i class="fas fa-user-tie"></i>
@@ -264,6 +327,16 @@
                         <div class="flex-1">
                             <div class="text-sm text-gray-500 dark:text-gray-400 mb-1" id="question-context">Direct Examination of Witness</div>
                             <p class="text-lg font-medium" id="question-text">Loading question...</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Trial Progress (initially hidden) - MOVED HERE -->
+                <div id="trial-progress" class="mb-6 bg-white dark:bg-gray-800 p-4 rounded-lg shadow-md hidden">
+                    <h3 class="font-medium mb-3">Trial Progress</h3>
+                    <div class="flex overflow-x-auto pb-2 custom-scrollbar">
+                        <div id="witness-progress-container" class="flex space-x-1 min-w-max">
+                            <!-- Witness steps will be generated dynamically -->
                         </div>
                     </div>
                 </div>
@@ -452,6 +525,80 @@ function selectRandomTrial() {
     return trials[randomIndex];
 }
 
+// Create confetti animation
+function createConfetti() {
+    const canvas = document.createElement('canvas');
+    canvas.id = 'confetti-canvas';
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    canvas.style.position = 'fixed';
+    canvas.style.top = '0';
+    canvas.style.left = '0';
+    canvas.style.pointerEvents = 'none';
+    canvas.style.zIndex = '100';
+    document.body.appendChild(canvas);
+    
+    const ctx = canvas.getContext('2d');
+    const pieces = [];
+    const colors = ['#5D5CDE', '#f59e0b', '#10B981', '#3B82F6', '#EC4899'];
+    
+    // Create confetti pieces
+    for (let i = 0; i < 150; i++) {
+        pieces.push({
+            x: Math.random() * canvas.width,
+            y: Math.random() * canvas.height - canvas.height,
+            size: Math.random() * 10 + 5,
+            color: colors[Math.floor(Math.random() * colors.length)],
+            speed: Math.random() * 3 + 2,
+            angle: Math.random() * 6.28,
+            spin: Math.random() * 0.2 - 0.1
+        });
+    }
+    
+    let animationFrameId;
+    
+    function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        
+        let stillFalling = false;
+        
+        pieces.forEach(piece => {
+            piece.y += piece.speed;
+            piece.angle += piece.spin;
+            
+            ctx.save();
+            ctx.translate(piece.x, piece.y);
+            ctx.rotate(piece.angle);
+            
+            ctx.fillStyle = piece.color;
+            ctx.fillRect(-piece.size / 2, -piece.size / 2, piece.size, piece.size);
+            
+            ctx.restore();
+            
+            if (piece.y < canvas.height + piece.size) {
+                stillFalling = true;
+            }
+        });
+        
+        if (stillFalling) {
+            animationFrameId = requestAnimationFrame(animate);
+        } else {
+            cancelAnimationFrame(animationFrameId);
+            document.body.removeChild(canvas);
+        }
+    }
+    
+    animate();
+    
+    // Remove confetti after 4 seconds
+    setTimeout(() => {
+        if (document.body.contains(canvas)) {
+            cancelAnimationFrame(animationFrameId);
+            document.body.removeChild(canvas);
+        }
+    }, 4000);
+}
+
 // Function to get a random "easy" question
 function getRandomEasyQuestion() {
     if (!questionBanks.easy || questionBanks.easy.length === 0) {
@@ -525,11 +672,26 @@ loadQuestions();
             
             // Create a button for each trial
             questionBanks.trials.forEach((trial, index) => {
+                // Calculate total questions - handle both old and new trial formats
+                let questionCount = 0;
+                
+                if (trial.witnesses && Array.isArray(trial.witnesses)) {
+                    // New format with witnesses structure
+                    trial.witnesses.forEach(witness => {
+                        if (witness.questions && Array.isArray(witness.questions)) {
+                            questionCount += witness.questions.length;
+                        }
+                    });
+                } else if (trial.questions && Array.isArray(trial.questions)) {
+                    // Old format with direct questions array
+                    questionCount = trial.questions.length;
+                }
+                
                 const trialButton = document.createElement('button');
                 trialButton.className = 'w-full text-left p-4 bg-white dark:bg-gray-700 rounded-lg shadow-sm hover:shadow-md mb-3 transition-shadow';
                 trialButton.innerHTML = `
                     <h3 class="text-xl font-semibold text-purple-800 dark:text-purple-300">${trial.name}</h3>
-                    <p class="text-sm text-gray-600 dark:text-gray-300 mt-1">${trial.questions.length} questions</p>
+                    <p class="text-sm text-gray-600 dark:text-gray-300 mt-1">${questionCount} questions</p>
                 `;
                 trialButton.addEventListener('click', () => {
                     startTrialGame(index);
@@ -541,21 +703,45 @@ loadQuestions();
         // Function to start a specific trial by index
         function startTrialGame(trialIndex) {
             const selectedTrial = questionBanks.trials[trialIndex];
+            
+            // Calculate total questions for the trial
+            let totalQuestions = 0;
+            let allQuestions = [];
+            
+            if (selectedTrial.witnesses && Array.isArray(selectedTrial.witnesses)) {
+                // New format with witnesses structure
+                selectedTrial.witnesses.forEach(witness => {
+                    if (witness.questions && Array.isArray(witness.questions)) {
+                        totalQuestions += witness.questions.length;
+                        allQuestions = allQuestions.concat(witness.questions);
+                    }
+                });
+            } else if (selectedTrial.questions && Array.isArray(selectedTrial.questions)) {
+                // Old format with direct questions array
+                totalQuestions = selectedTrial.questions.length;
+                allQuestions = [...selectedTrial.questions];
+            }
+            
+            // Updated game state for trial mode
             gameState = {
                 difficulty: 'trial',
                 score: 0,
                 questionsAsked: 0,
-                totalQuestions: selectedTrial.questions.length,
+                totalQuestions: totalQuestions,
                 currentQuestion: null,
                 currentStreak: 0,
                 highestStreak: 0,
                 correctAnswers: 0,
                 incorrectAnswers: 0,
-                questionBank: [...selectedTrial.questions],
+                questionBank: [], // Will be set when witness questions start
                 usedQuestions: [],
                 currentTrial: selectedTrial,
                 trialName: selectedTrial.name,
-                trialIndex: trialIndex
+                trialIndex: trialIndex,
+                currentWitness: null,
+                currentSide: null,
+                witnessQuestions: [],
+                allQuestions: allQuestions // Store all questions for reference
             };
             
             // Update UI
@@ -570,12 +756,31 @@ loadQuestions();
             difficultyDisplay.classList.remove('bg-green-100', 'bg-yellow-100', 'bg-red-100', 
                 'text-green-800', 'text-yellow-800', 'text-red-800');
             
-            // Show game screen
+            // Hide the trial selection screen
             trialSelectionScreen.classList.add('hidden');
-            gameScreen.classList.remove('hidden');
             
-            // Load first question
-            loadNextQuestion();
+            // Initialize the trial progress bar
+            initializeTrialProgress(selectedTrial);
+            
+            // Start the trial narrative
+            trialNarrativeHandler.startTrial(selectedTrial, function(witnessData) {
+                if (!witnessData) {
+                    // End the trial if witnessData is null (user clicked skip)
+                    endGame();
+                    return;
+                }
+                
+                // Update game state with current witness data
+                gameState.currentWitness = witnessData.witness;
+                gameState.currentSide = witnessData.side;
+                gameState.questionBank = [...witnessData.questions];
+                gameState.witnessQuestions = witnessData.questions.length;
+                gameState.onWitnessComplete = witnessData.onWitnessComplete;
+                
+                // Show game screen and start questioning
+                gameScreen.classList.remove('hidden');
+                loadNextQuestionForTrial();
+            });
         }
 
         // Initialize game with selected difficulty
@@ -758,6 +963,9 @@ loadQuestions();
                 feedbackTitle.textContent = 'Correct!';
                 feedbackTitle.classList.remove('text-red-700', 'dark:text-red-300');
                 feedbackTitle.classList.add('text-green-700', 'dark:text-green-300');
+                
+                // Trigger confetti animation for correct answers
+                createConfetti();
             } else {
                 feedbackContainer.classList.remove('bg-green-100', 'dark:bg-green-900');
                 feedbackContainer.classList.add('bg-red-100', 'dark:bg-red-900');
@@ -1186,6 +1394,643 @@ function getLegalNickname(accuracy) {
                 objectionModal.classList.add('hidden');
             }
         });
+
+        // Trial Narrative Modal for immersive trial experience
+        const trialNarrativeModal = document.createElement('div');
+        trialNarrativeModal.id = 'trial-narrative-modal';
+        trialNarrativeModal.className = 'fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50 hidden';
+        trialNarrativeModal.innerHTML = `
+            <div class="bg-white dark:bg-gray-800 rounded-lg shadow-xl max-w-2xl w-full p-8 relative">
+                <div class="absolute top-4 right-4">
+                    <button id="skip-narrative" class="text-sm text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200">
+                        Skip <i class="fas fa-forward ml-1"></i>
+                    </button>
+                </div>
+                <div id="narrative-content" class="space-y-6">
+                    <h2 id="narrative-title" class="text-2xl font-bold text-primary text-center"></h2>
+                    <div id="narrative-body" class="prose dark:prose-invert max-w-none">
+                        <!-- Content will be populated dynamically -->
+                    </div>
+                    <div class="flex justify-center mt-8">
+                        <button id="narrative-next" class="px-6 py-2 bg-primary text-white rounded-lg hover:bg-opacity-90 transition-colors">
+                            Continue <i class="fas fa-arrow-right ml-1"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        `;
+        document.body.appendChild(trialNarrativeModal);
+
+        // Trial narrative functionality
+        const trialNarrativeHandler = {
+            modal: trialNarrativeModal,
+            titleElement: null,
+            bodyElement: null,
+            nextButton: null,
+            skipButton: null,
+            currentTrial: null,
+            currentStage: 0,
+            prosecutionWitnesses: [],
+            defenseWitnesses: [],
+            currentSide: 'prosecution',
+            currentWitnessIndex: 0,
+            onComplete: null,
+            
+            init: function() {
+                this.titleElement = document.getElementById('narrative-title');
+                this.bodyElement = document.getElementById('narrative-body');
+                this.nextButton = document.getElementById('narrative-next');
+                this.skipButton = document.getElementById('skip-narrative');
+                
+                this.nextButton.addEventListener('click', () => this.advance());
+                
+                // Change skip button behavior to skip to questioning without ending trial
+                this.skipButton.addEventListener('click', () => this.skipToQuestioning());
+            },
+            
+            startTrial: function(trial, onCompleteCallback) {
+                this.currentTrial = trial;
+                this.currentStage = 0;
+                this.onComplete = onCompleteCallback;
+                
+                // Split witnesses into prosecution and defense
+                this.prosecutionWitnesses = [];
+                this.defenseWitnesses = [];
+                
+                if (trial.witnesses) {
+                    // Use structured witness data if available
+                    trial.witnesses.forEach(witness => {
+                        if (witness.side === 'prosecution') {
+                            this.prosecutionWitnesses.push(witness);
+                        } else if (witness.side === 'defense') {
+                            this.defenseWitnesses.push(witness);
+                        }
+                    });
+                } else {
+                    // Fallback: split questions evenly between prosecution and defense
+                    const halfwayPoint = Math.ceil(trial.questions.length / 2);
+                    
+                    // Create a default prosecution witness with the first half of questions
+                    this.prosecutionWitnesses.push({
+                        name: "Prosecution Witness",
+                        questions: trial.questions.slice(0, halfwayPoint)
+                    });
+                    
+                    // Create a default defense witness with the second half of questions
+                    if (halfwayPoint < trial.questions.length) {
+                        this.defenseWitnesses.push({
+                            name: "Defense Witness",
+                            questions: trial.questions.slice(halfwayPoint)
+                        });
+                    }
+                }
+                
+                this.currentSide = 'prosecution';
+                this.currentWitnessIndex = 0;
+                
+                // Show statement of facts
+                this.showStatementOfFacts();
+            },
+            
+            showStatementOfFacts: function() {
+                this.titleElement.textContent = `${this.currentTrial.name} - Statement of Facts`;
+                
+                let factsHtml = this.currentTrial.statementOfFacts || 
+                    "<p>This is a trial about a disputed matter. You will hear testimony from both the prosecution and defense witnesses.</p>";
+                
+                this.bodyElement.innerHTML = factsHtml;
+                this.modal.classList.remove('hidden');
+                this.currentStage = 1;
+            },
+            
+            showProsecutionIntro: function() {
+                this.titleElement.textContent = "Prosecution's Case";
+                this.bodyElement.innerHTML = `
+                    <p class="text-center"><i class="fas fa-gavel text-primary text-3xl mb-4"></i></p>
+                    <p>The prosecution calls its first witness.</p>
+                    <p class="font-medium">You are acting as defense counsel's <span class="text-primary">objection assistant</span>. Your role is to identify improper questions and make appropriate objections to protect your client's interests.</p>
+                    <p class="mt-3">Although you're not conducting the examination yourself, you're responsible for monitoring the opposing counsel's questions and raising objections when they violate the rules of evidence.</p>
+                    <p class="text-sm mt-4 italic">Remember: Only object when there is a valid legal basis to do so. Your co-counsel relies on you to spot problems!</p>
+                `;
+                this.modal.classList.remove('hidden');
+                this.currentStage = 2;
+            },
+            
+            showDefenseIntro: function() {
+                // Keep the role switch modal functionality
+                const roleModal = document.getElementById('role-switch-modal');
+                roleModal.classList.remove('hidden');
+                
+                document.getElementById('continue-trial').addEventListener('click', () => {
+                    roleModal.classList.add('hidden');
+                    
+                    this.titleElement.textContent = "Defense's Case";
+                    this.bodyElement.innerHTML = `
+                        <p class="text-center"><i class="fas fa-balance-scale text-primary text-3xl mb-4"></i></p>
+                        <p>The defense calls its first witness.</p>
+                        <p class="font-medium">You are now acting as the <span class="text-primary">prosecutor's objection assistant</span>. Your role is to identify when the defense attorney's questions violate the rules of evidence.</p>
+                        <p class="mt-3">Although you don't ask the questions yourself, you must carefully monitor each question to ensure it follows proper procedure and object when necessary.</p>
+                        <p class="text-sm mt-4 italic">The burden of proof remains with the prosecution, and your vigilance helps maintain the integrity of the process.</p>
+                    `;
+                    this.modal.classList.remove('hidden');
+                    this.currentStage = 4;
+                }, { once: true });
+            },
+            
+            showWitnessTransition: function() {
+                const witnesses = this.currentSide === 'prosecution' ? 
+                    this.prosecutionWitnesses : this.defenseWitnesses;
+                    
+                if (this.currentWitnessIndex >= witnesses.length) {
+                    // No more witnesses on this side
+                    if (this.currentSide === 'prosecution') {
+                        this.currentSide = 'defense';
+                        this.currentWitnessIndex = 0;
+                        this.showDefenseIntro();
+                    } else {
+                        // Trial complete
+                        this.showTrialConclusion();
+                    }
+                    return;
+                }
+                
+                const currentWitness = witnesses[this.currentWitnessIndex];
+                this.titleElement.textContent = `${currentWitness.name || 'Witness'} Takes the Stand`;
+                
+                const side = this.currentSide === 'prosecution' ? 'Prosecution' : 'Defense';
+                this.bodyElement.innerHTML = `
+                    <p class="text-center"><i class="fas fa-user text-primary text-3xl mb-4"></i></p>
+                    <p>The ${side.toLowerCase()} calls ${currentWitness.name || 'the next witness'}.</p>
+                    <p class="italic">${currentWitness.description || `This witness will testify about matters relevant to the ${this.currentSide}'s case.`}</p>
+                    <p class="mt-4">Prepare to evaluate the questions for objections.</p>
+                `;
+                this.modal.classList.remove('hidden');
+                this.currentStage = this.currentSide === 'prosecution' ? 3 : 5;
+            },
+            
+            showTrialConclusion: function() {
+                this.titleElement.textContent = "Trial Concluded";
+                this.bodyElement.innerHTML = `
+                    <p class="text-center"><i class="fas fa-flag-checkered text-primary text-3xl mb-4"></i></p>
+                    <p>All witnesses have been examined and the trial has concluded.</p>
+                    <p class="font-medium mt-4">Let's review your performance as both defense counsel and prosecutor.</p>
+                `;
+                this.modal.classList.remove('hidden');
+                this.currentStage = 6;
+            },
+            
+            advance: function() {
+                this.modal.classList.add('hidden');
+                
+                switch (this.currentStage) {
+                    case 1: // After statement of facts
+                        this.showProsecutionIntro();
+                        break;
+                    case 2: // After prosecution intro
+                        this.showWitnessTransition();
+                        break;
+                    case 3: // After prosecution witness intro
+                        // Start questioning with current prosecution witness
+                        this.startQuestioning();
+                        break;
+                    case 4: // After defense intro
+                        this.showWitnessTransition();
+                        break;
+                    case 5: // After defense witness intro
+                        // Start questioning with current defense witness
+                        this.startQuestioning();
+                        break;
+                    case 6: // After trial conclusion
+                        this.complete();
+                        break;
+                }
+            },
+            
+            startQuestioning: function() {
+                // Get current witness questions
+                const witnesses = this.currentSide === 'prosecution' ? 
+                    this.prosecutionWitnesses : this.defenseWitnesses;
+                
+                if (this.currentWitnessIndex < witnesses.length) {
+                    const currentWitness = witnesses[this.currentWitnessIndex];
+                    
+                    if (this.onComplete) {
+                        // Call the callback to start questioning
+                        this.onComplete({
+                            questions: currentWitness.questions || [],
+                            witness: currentWitness,
+                            side: this.currentSide,
+                            onWitnessComplete: () => {
+                                // Move to next witness
+                                this.currentWitnessIndex++;
+                                this.showWitnessTransition();
+                            }
+                        });
+                    }
+                }
+            },
+            
+            complete: function() {
+                this.modal.classList.add('hidden');
+                if (this.onComplete) {
+                    this.onComplete(null); // Signal completion with null
+                }
+            },
+            
+            // New method to skip narrative and jump to questioning
+            skipToQuestioning: function() {
+                this.modal.classList.add('hidden');
+                
+                // Based on current stage, determine what to do
+                if (this.currentStage <= 3) {
+                    // If we're in prosecution phase or earlier, set up first prosecution witness
+                    this.currentSide = 'prosecution';
+                    this.currentWitnessIndex = 0;
+                    if (this.prosecutionWitnesses.length > 0) {
+                        const currentWitness = this.prosecutionWitnesses[this.currentWitnessIndex];
+                        if (this.onComplete) {
+                            this.onComplete({
+                                questions: currentWitness.questions || [],
+                                witness: currentWitness,
+                                side: this.currentSide,
+                                onWitnessComplete: () => {
+                                    this.currentWitnessIndex++;
+                                    this.showWitnessTransition();
+                                }
+                            });
+                        }
+                    } else {
+                        // No prosecution witnesses - move to defense
+                        this.currentSide = 'defense';
+                        this.currentWitnessIndex = 0;
+                        if (this.defenseWitnesses.length > 0) {
+                            const currentWitness = this.defenseWitnesses[this.currentWitnessIndex];
+                            if (this.onComplete) {
+                                this.onComplete({
+                                    questions: currentWitness.questions || [],
+                                    witness: currentWitness,
+                                    side: this.currentSide,
+                                    onWitnessComplete: () => {
+                                        this.currentWitnessIndex++;
+                                        this.showWitnessTransition();
+                                    }
+                                });
+                            }
+                        } else {
+                            // No witnesses at all - end the trial
+                            this.complete();
+                        }
+                    }
+                } else if (this.currentStage <= 5) {
+                    // If we're in defense phase, set up first defense witness
+                    this.currentSide = 'defense';
+                    this.currentWitnessIndex = 0;
+                    if (this.defenseWitnesses.length > 0) {
+                        const currentWitness = this.defenseWitnesses[this.currentWitnessIndex];
+                        if (this.onComplete) {
+                            this.onComplete({
+                                questions: currentWitness.questions || [],
+                                witness: currentWitness,
+                                side: this.currentSide,
+                                onWitnessComplete: () => {
+                                    this.currentWitnessIndex++;
+                                    this.showWitnessTransition();
+                                }
+                            });
+                        }
+                    } else {
+                        // No defense witnesses - end the trial
+                        this.complete();
+                    }
+                } else {
+                    // If we're at the conclusion, complete the trial
+                    this.complete();
+                }
+            }
+        };
+        
+        // Initialize the trial narrative handler
+        trialNarrativeHandler.init();
+
+        // Modify startTrialGame function to use the new trial narrative flow
+        function startTrialGame(trialIndex) {
+            const selectedTrial = questionBanks.trials[trialIndex];
+            
+            // Calculate total questions for the trial
+            let totalQuestions = 0;
+            let allQuestions = [];
+            
+            if (selectedTrial.witnesses && Array.isArray(selectedTrial.witnesses)) {
+                // New format with witnesses structure
+                selectedTrial.witnesses.forEach(witness => {
+                    if (witness.questions && Array.isArray(witness.questions)) {
+                        totalQuestions += witness.questions.length;
+                        allQuestions = allQuestions.concat(witness.questions);
+                    }
+                });
+            } else if (selectedTrial.questions && Array.isArray(selectedTrial.questions)) {
+                // Old format with direct questions array
+                totalQuestions = selectedTrial.questions.length;
+                allQuestions = [...selectedTrial.questions];
+            }
+            
+            // Updated game state for trial mode
+            gameState = {
+                difficulty: 'trial',
+                score: 0,
+                questionsAsked: 0,
+                totalQuestions: totalQuestions,
+                currentQuestion: null,
+                currentStreak: 0,
+                highestStreak: 0,
+                correctAnswers: 0,
+                incorrectAnswers: 0,
+                questionBank: [], // Will be set when witness questions start
+                usedQuestions: [],
+                currentTrial: selectedTrial,
+                trialName: selectedTrial.name,
+                trialIndex: trialIndex,
+                currentWitness: null,
+                currentSide: null,
+                witnessQuestions: [],
+                allQuestions: allQuestions // Store all questions for reference
+            };
+            
+            // Update UI
+            document.getElementById('score').textContent = '0';
+            document.getElementById('question-number').textContent = '1';
+            document.getElementById('total-questions').textContent = gameState.totalQuestions;
+            
+            // Set difficulty display
+            const difficultyDisplay = document.getElementById('difficulty-display');
+            difficultyDisplay.textContent = `Trial: ${gameState.trialName}`;
+            difficultyDisplay.classList.add('bg-purple-100', 'text-purple-800');
+            difficultyDisplay.classList.remove('bg-green-100', 'bg-yellow-100', 'bg-red-100', 
+                'text-green-800', 'text-yellow-800', 'text-red-800');
+            
+            // Hide the trial selection screen
+            trialSelectionScreen.classList.add('hidden');
+            
+            // Initialize the trial progress bar
+            initializeTrialProgress(selectedTrial);
+            
+            // Start the trial narrative
+            trialNarrativeHandler.startTrial(selectedTrial, function(witnessData) {
+                if (!witnessData) {
+                    // End the trial if witnessData is null (user clicked skip)
+                    endGame();
+                    return;
+                }
+                
+                // Update game state with current witness data
+                gameState.currentWitness = witnessData.witness;
+                gameState.currentSide = witnessData.side;
+                gameState.questionBank = [...witnessData.questions];
+                gameState.witnessQuestions = witnessData.questions.length;
+                gameState.onWitnessComplete = witnessData.onWitnessComplete;
+                
+                // Show game screen and start questioning
+                gameScreen.classList.remove('hidden');
+                loadNextQuestionForTrial();
+            });
+        }
+
+        // New function for loading questions in trial mode
+        function loadNextQuestionForTrial() {
+            // Hide feedback container
+            feedbackContainer.classList.add('hidden');
+            
+            // Enable all objection buttons
+            objectionButtons.forEach(button => {
+                button.disabled = false;
+                button.classList.remove('bg-gray-300', 'cursor-not-allowed');
+            });
+            noObjectionButton.disabled = false;
+            noObjectionButton.classList.remove('cursor-not-allowed');
+            
+            // Check if we've reached the end of current witness questions
+            if (gameState.questionBank.length === 0) {
+                // Call witness complete callback
+                if (gameState.onWitnessComplete) {
+                    gameState.onWitnessComplete();
+                }
+                return;
+            }
+            
+            // Get the next question for this witness (in sequence)
+            gameState.currentQuestion = gameState.questionBank.shift();
+            
+            // Update the context to show trial progress
+            const contextElement = document.getElementById('question-context');
+            const witnessName = gameState.currentWitness?.name || 'Witness';
+            const side = gameState.currentSide === 'prosecution' ? 'Prosecution' : 'Defense';
+            contextElement.textContent = `${side} questioning ${witnessName} - ${gameState.currentQuestion.context || ''}`;
+            
+            // Update question text
+            document.getElementById('question-text').textContent = gameState.currentQuestion.question;
+            
+            // Update question number
+            const questionNumber = gameState.questionsAsked + 1;
+            document.getElementById('question-number').textContent = questionNumber;
+            
+            // Update the examination status
+            if (gameState.currentQuestion) {
+                const examinationTypeBadge = document.getElementById('examination-type-badge');
+                const examinationRole = document.getElementById('examination-role');
+                
+                // Set examination type (direct vs cross)
+                let isDirectExamination = true;
+                if (gameState.currentQuestion.context && 
+                    gameState.currentQuestion.context.toLowerCase().includes('cross')) {
+                    isDirectExamination = false;
+                }
+                
+                // Update the badge
+                if (isDirectExamination) {
+                    examinationTypeBadge.textContent = "Direct Examination";
+                    examinationTypeBadge.className = "px-3 py-1 rounded-full text-sm font-medium mr-3 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200";
+                } else {
+                    examinationTypeBadge.textContent = "Cross-Examination";
+                    examinationTypeBadge.className = "px-3 py-1 rounded-full text-sm font-medium mr-3 bg-amber-100 dark:bg-amber-900 text-amber-800 dark:text-amber-200";
+                }
+                
+                // Update the role text based on which side the user is on
+                if (gameState.currentSide === 'prosecution') {
+                    examinationRole.textContent = "You are assisting as defense counsel";
+                } else {
+                    examinationRole.textContent = "You are assisting as prosecutor";
+                }
+            }
+        }
+
+        // Modify the checkAnswer function to support the trial flow
+        const originalCheckAnswer = checkAnswer;
+        checkAnswer = function(selectedObjection) {
+            // Call the original function
+            originalCheckAnswer(selectedObjection);
+            
+            // For trial mode, use the trial-specific next question function
+            if (gameState.difficulty === 'trial') {
+                // Override the next question button behavior
+                document.getElementById('next-question').onclick = function() {
+                    loadNextQuestionForTrial();
+                };
+            }
+        };
+
+    // Add this function to dynamically generate and update the trial progress bar
+function initializeTrialProgress(trial) {
+    const progressContainer = document.getElementById('trial-progress');
+    const witnessContainer = document.getElementById('witness-progress-container');
+    
+    // Only show for trial mode
+    if (!trial || gameState.difficulty !== 'trial') {
+        progressContainer.classList.add('hidden');
+        return;
+    }
+    
+    // Show the progress bar
+    progressContainer.classList.remove('hidden');
+    witnessContainer.innerHTML = '';
+    
+    // Get all witnesses from the trial
+    let witnesses = [];
+    if (trial.witnesses && Array.isArray(trial.witnesses)) {
+        witnesses = trial.witnesses;
+    } else if (trial.questions && Array.isArray(trial.questions)) {
+        // For older format, create dummy witnesses (prosecution & defense)
+        witnesses = [
+            { name: "Prosecution Witness", side: "prosecution" },
+            { name: "Defense Witness", side: "defense" }
+        ];
+    }
+    
+    // Track when we switch from prosecution to defense
+    let currentSide = null;
+    
+    // Create a progress step for each witness
+    witnesses.forEach((witness, index) => {
+        const witnessSide = witness.side || (index < Math.ceil(witnesses.length / 2) ? 'prosecution' : 'defense');
+        
+        // Add role switch icon if we're switching from prosecution to defense
+        if (currentSide === 'prosecution' && witnessSide === 'defense') {
+            // Add switch icon between prosecution and defense
+            const switchIcon = document.createElement('div');
+            switchIcon.className = 'flex flex-col items-center mx-1';
+            switchIcon.innerHTML = `
+                <div class="w-10 h-10 rounded-full bg-primary bg-opacity-20 flex items-center justify-center">
+                    <i class="fas fa-sync-alt text-primary"></i>
+                </div>
+                <span class="text-xs mt-1 text-center text-primary">Switch</span>
+            `;
+            witnessContainer.appendChild(switchIcon);
+        }
+        
+        // Create the witness step
+        const witnessStep = document.createElement('div');
+        witnessStep.className = 'progress-step flex flex-col items-center';
+        witnessStep.dataset.witness = index + 1;
+        witnessStep.dataset.side = witnessSide;
+        
+        // Create witness circle
+        const circle = document.createElement('div');
+        circle.className = 'w-10 h-10 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center transition-colors';
+        circle.textContent = index + 1;
+        
+        // Add witness name - updated styling
+        const name = document.createElement('span');
+        name.className = 'text-xs mt-1 text-center';
+        name.title = witness.name || `Witness ${index + 1}`;
+        name.textContent = witness.name || `Witness ${index + 1}`;
+        
+        // Add data attribute for witness status
+        witnessStep.dataset.status = 'pending';
+        
+        // Add elements to the witness step
+        witnessStep.appendChild(circle);
+        witnessStep.appendChild(name);
+        witnessContainer.appendChild(witnessStep);
+        
+        // Add connecting line (except after the last witness)
+        if (index < witnesses.length - 1) {
+            // Don't add connecting line before the switch icon
+            if (!(witnessSide === 'prosecution' && witnesses[index + 1].side === 'defense')) {
+                const line = document.createElement('div');
+                line.className = 'w-12 h-1 bg-gray-200 dark:bg-gray-700 self-center';
+                line.dataset.lineIndex = index; // Add index for line tracking
+                witnessContainer.appendChild(line);
+            }
+        }
+        
+        // Update current side for next iteration
+        currentSide = witnessSide;
+    });
+    
+    // Mark first witness as active by default if applicable
+    if (witnesses.length > 0) {
+        updateTrialProgress(0);
+    }
+}
+
+// Add new function to update the trial progress
+function updateTrialProgress(currentWitnessIndex) {
+    const progressSteps = document.querySelectorAll('.progress-step');
+    const progressLines = document.querySelectorAll('#witness-progress-container [data-line-index]');
+    
+    // Update each witness step status
+    progressSteps.forEach((step, index) => {
+        // Reset previous styling
+        step.dataset.status = 'pending';
+        const circle = step.querySelector('div:first-child');
+        
+        if (index < currentWitnessIndex) {
+            // Completed witness - green
+            step.dataset.status = 'completed';
+            circle.classList.remove('bg-gray-200', 'dark:bg-gray-700', 'ring-2', 'ring-primary');
+            circle.classList.add('bg-green-500', 'dark:bg-green-600', 'text-white');
+        } else if (index === currentWitnessIndex) {
+            // Current witness - highlighted
+            step.dataset.status = 'active';
+            circle.classList.remove('bg-gray-200', 'dark:bg-gray-700', 'bg-green-500', 'dark:bg-green-600');
+            circle.classList.add('ring-2', 'ring-primary', 'bg-white', 'dark:bg-gray-800', 'text-primary');
+            
+            // Scroll this step into view if needed
+            step.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+        } else {
+            // Future witness - neutral
+            circle.classList.remove('bg-green-500', 'dark:bg-green-600', 'text-white', 'ring-2', 'ring-primary');
+            circle.classList.add('bg-gray-200', 'dark:bg-gray-700');
+        }
+    });
+    
+    // Update connecting lines
+    progressLines.forEach((line, index) => {
+        if (index < currentWitnessIndex) {
+            // Completed connection
+            line.classList.remove('bg-gray-200', 'dark:bg-gray-700');
+            line.classList.add('bg-green-500', 'dark:bg-green-600');
+        } else {
+            // Future connection
+            line.classList.remove('bg-green-500', 'dark:bg-green-600');
+            line.classList.add('bg-gray-200', 'dark:bg-gray-700');
+        }
+    });
+}
+
+// Update the trialNarrativeHandler.startQuestioning function to update progress bar
+const originalStartQuestioning = trialNarrativeHandler.startQuestioning;
+trialNarrativeHandler.startQuestioning = function() {
+    // Get current witness index
+    const currentWitnessIndex = this.currentWitnessIndex;
+    const sideOffset = this.currentSide === 'defense' ? this.prosecutionWitnesses.length : 0;
+    const globalWitnessIndex = sideOffset + currentWitnessIndex;
+    
+    // Update progress bar
+    updateTrialProgress(globalWitnessIndex);
+    
+    // Call original function
+    originalStartQuestioning.call(this);
+};
 
     </script>
 
